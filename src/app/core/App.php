@@ -1,14 +1,42 @@
 <?php
 
+require_once __DIR__ . '/../controllers/Home.php';
+
 class App
 {
-    protected $contoller = 'home';
-    protected $method = 'index';
-    protected $params = [];
+    protected $controller;
+    protected $method;
+    protected $params;
 
     public function __construct()
     {
         $url = $this->parseURL();
+
+        $controllerPart = $url[0] ?? null;
+        if (isset($controllerPart) && file_exists('../app/controllers/' . $controllerPart . '.php')) {
+            require_once __DIR__ . '/../controllers/' . $controllerPart . '.php';
+            $this->controller = new $controllerPart();
+        } else {
+            require_once __DIR__ . '/../controllers/Home.php';
+            $this->controller = new Home();
+        }
+        unset($url[0]);
+
+        $methodPart = $url[1] ?? null;
+        if (isset($methodPart) && method_exists($this->controller, $methodPart)) {
+            $this->method = $methodPart;
+        } else {
+            $this->method = 'index';
+        }
+        unset($url[1]);
+
+        if (!empty($url)) {
+            $this->params = array_values($url);
+        } else {
+            $this->params = [];
+        }
+
+        call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
     private function parseURL()
