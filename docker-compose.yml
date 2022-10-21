@@ -3,15 +3,14 @@ services:
   web:
     image: tubes-1:latest
     ports:
-      - 8008:80
-    volumes:
-      - ./tubes-1:/var/www/html
+      - 8080:80
     env_file: .env
+    volumes:
+      - ./src:/var/www/html/src
   mysql:
     image: mysql:latest
     ports:
-      - 8000:3306
+      - 8081:3306
     env_file: .env
     volumes:
       - ./mysql:/var/lib/mysql
-
