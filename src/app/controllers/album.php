@@ -1,6 +1,6 @@
 <?php
 
-class Album
+class Album implements DefaultMethodInterface
 {
     public function index()
     {

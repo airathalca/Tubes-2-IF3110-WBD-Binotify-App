@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../controllers/Home.php';
-
 class App
 {
     protected $controller;
@@ -17,8 +15,8 @@ class App
             require_once __DIR__ . '/../controllers/' . $controllerPart . '.php';
             $this->controller = new $controllerPart();
         } else {
-            require_once __DIR__ . '/../controllers/Home.php';
-            $this->controller = new Home();
+            require_once __DIR__ . '/../controllers/NotFound.php';
+            $this->controller = new NotFound();
         }
         unset($url[0]);
 

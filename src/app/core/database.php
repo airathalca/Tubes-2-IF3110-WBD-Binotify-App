@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Tables.php';
-
 class Database
 {
     private $host = HOST;
