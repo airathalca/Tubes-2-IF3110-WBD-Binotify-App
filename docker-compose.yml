@@ -6,7 +6,7 @@ services:
       - 8080:80
     env_file: .env
     volumes:
-      - ./src:/var/www/html/src
+      - ./src:/var/www/html
   mysql:
     image: mysql:latest
     ports:
