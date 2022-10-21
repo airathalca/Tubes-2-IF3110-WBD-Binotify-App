@@ -1,6 +1,6 @@
 <?php
 
-class Home implements DefaultMethodInterface
+class Home extends Controller implements DefaultMethodInterface
 {
     public function index()
     {

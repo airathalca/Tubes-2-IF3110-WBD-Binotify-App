@@ -1,6 +1,6 @@
 <?php
 
-class NotFound implements DefaultMethodInterface
+class NotFound extends Controller implements DefaultMethodInterface
 {
     public function index()
     {

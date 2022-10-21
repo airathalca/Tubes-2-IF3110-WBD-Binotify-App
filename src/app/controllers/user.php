@@ -1,6 +1,6 @@
 <?php
 
-class User implements DefaultMethodInterface
+class User extends Controller implements DefaultMethodInterface
 {
     public function index()
     {

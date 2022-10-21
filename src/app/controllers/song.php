@@ -1,6 +1,6 @@
 <?php
 
-class Song implements DefaultMethodInterface
+class Song extends Controller implements DefaultMethodInterface
 {
     public function index()
     {
