@@ -13,7 +13,6 @@ class Database
 
     public function __construct()
     {
-        global $song_table, $album_table, $user_table;
         $dsn = "mysql:host=$this->host;port=$this->port;dbname=$this->db_name";
         try {
             $this->db_connection = new PDO($dsn, $this->user, $this->password);
@@ -22,8 +21,8 @@ class Database
         }
         $this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $this->db_connection->exec($user_table);
-        $this->db_connection->exec($album_table);
-        $this->db_connection->exec($song_table);
+        $this->db_connection->exec(Tables::USER_TABLE);
+        $this->db_connection->exec(Tables::ALBUM_TABLE);
+        $this->db_connection->exec(Tables::SONG_TABLE);
     }
 }
