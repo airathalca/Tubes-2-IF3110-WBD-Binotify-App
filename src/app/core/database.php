@@ -13,16 +13,20 @@ class Database
 
     public function __construct()
     {
-        $dsn = "mysql:host=$this->host;port=$this->port;dbname=$this->db_name";
+        $dsn = 'mysql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->db_name;
+        $option = [
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ];
+
         try {
-            $this->db_connection = new PDO($dsn, $this->user, $this->password);
+            $this->db_connection = new PDO($dsn, $this->user, $this->password, $option);
+
+            $this->db_connection->exec(Tables::USER_TABLE);
+            $this->db_connection->exec(Tables::ALBUM_TABLE);
+            $this->db_connection->exec(Tables::SONG_TABLE);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
-        $this->db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $this->db_connection->exec(Tables::USER_TABLE);
-        $this->db_connection->exec(Tables::ALBUM_TABLE);
-        $this->db_connection->exec(Tables::SONG_TABLE);
     }
 }
