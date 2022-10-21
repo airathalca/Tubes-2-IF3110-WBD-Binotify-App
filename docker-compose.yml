@@ -4,3 +4,4 @@ services:
     image: tubes-1:latest
     ports:
       - 8008:80
+    env_file: .env
