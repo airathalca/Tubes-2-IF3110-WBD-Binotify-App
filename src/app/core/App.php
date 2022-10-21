@@ -13,7 +13,7 @@ class App
         $url = $this->parseURL();
 
         $controllerPart = $url[0] ?? null;
-        if (isset($controllerPart) && file_exists('../app/controllers/' . $controllerPart . '.php')) {
+        if (isset($controllerPart) && file_exists(__DIR__ . '/../controllers/' . $controllerPart . '.php')) {
             require_once __DIR__ . '/../controllers/' . $controllerPart . '.php';
             $this->controller = new $controllerPart();
         } else {
