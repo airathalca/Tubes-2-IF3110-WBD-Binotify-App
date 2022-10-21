@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 $user_table =
     "CREATE TABLE IF NOT EXISTS user (
         user_id         INT             AUTO_INCREMENT      PRIMARY KEY,
