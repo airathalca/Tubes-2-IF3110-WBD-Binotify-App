@@ -4,13 +4,18 @@ services:
     image: tubes-1:latest
     ports:
       - 8080:80
+    hostname: web-tubes-1
     env_file: .env
     volumes:
       - ./src:/var/www/html
   mysql:
     image: mysql:latest
     ports:
-      - 8081:3306
+      - 3307:3306
+    hostname: db-tubes-1
     env_file: .env
     volumes:
       - ./mysql:/var/lib/mysql
+networks:
+  web-mysql:
+    driver: bridge
