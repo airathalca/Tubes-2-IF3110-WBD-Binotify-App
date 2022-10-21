@@ -4,6 +4,9 @@ services:
     image: tubes-1:latest
     ports:
       - 8008:80
+    volumes:
+      - ./tubes-1:/var/www/html
+    env_file: .env
   mysql:
     image: mysql:latest
     ports:
