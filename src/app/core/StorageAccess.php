@@ -12,30 +12,32 @@ class StorageAccess
         $this->storageDir = __DIR__ . '/../../storage/' . $foldername . '/';
     }
 
-    public function createFile($data)
+    public function fileExist($filename)
     {
-        $valid = false;
+        return file_exists($$this->storageDir . $filename);
+    }
+
+    public function saveFile($filename)
+    {
+        $tmpname = $_FILES[$filename]['tmp_name'];
+        $mimeType = mime_content_type($tmpname);
         $filename = '';
 
+        $valid = false;
         while (!$valid) {
-            $filename = uniqid("", true);
+            $filename = md5(uniqid(mt_rand(), true)) . ALLOWED_FILES[$mimeType];
 
             if (!file_exists($this->storageDir . $filename)) {
                 $valid = true;
             }
         }
 
-        file_put_contents($this->storageDir . $filename, $data);
+        move_uploaded_file($tmpname, $filename);
         return $filename;
     }
 
     public function deleteFile($filename)
     {
-        if (file_exists($$this->storageDir . $filename)) {
-            unlink($this->storageDir . $filename);
-            return true;
-        } else {
-            return false;
-        }
+        unlink($this->storageDir . $filename);
     }
 }
