@@ -12,16 +12,19 @@ class StorageAccess
         $this->storageDir = __DIR__ . '/../../storage/' . $foldername . '/';
     }
 
-    public function saveFile($fileinput)
+    private function doesFileExist($filename)
     {
-        $tmpname = $_FILES[$fileinput]['tmp_name'];
+        return file_exists($this->storageDir . $filename);
+    }
 
-        $filesize = filesize($tmpname);
+    public function saveFile($tempname)
+    {
+        $filesize = filesize($tempname);
         if ($filesize > MAX_SIZE) {
             throw new LoggedException('Request Entity Too Large', 413);
         }
 
-        $mimetype = mime_content_type($tmpname);
+        $mimetype = mime_content_type($tempname);
         if (!in_array($mimetype, array_keys(ALLOWED_FILES))) {
             throw new LoggedException('Unsupported Media Type', 415);
         }
@@ -32,7 +35,7 @@ class StorageAccess
             $valid = !$this->doesFileExist($filename);
         }
 
-        $success = move_uploaded_file($tmpname, $filename);
+        $success = move_uploaded_file($tempname, $filename);
         if (!$success) {
             throw new LoggedException('Internal Server Error', 500);
         }
@@ -50,10 +53,5 @@ class StorageAccess
         if (!$success) {
             throw new LoggedException('Internal Server Error', 500);
         }
-    }
-
-    private function doesFileExist($filename)
-    {
-        return file_exists($this->storageDir . $filename);
     }
 }

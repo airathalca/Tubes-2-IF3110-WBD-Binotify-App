@@ -21,56 +21,84 @@ class Database
 
         try {
             $this->db_connection = new PDO($dsn, $this->user, $this->password, $option);
+        } catch (PDOException) {
+            throw new LoggedException('Bad Gateway', 502);
+        }
 
+        try {
             $this->db_connection->exec(Tables::USER_TABLE);
             $this->db_connection->exec(Tables::ALBUM_TABLE);
             $this->db_connection->exec(Tables::SONG_TABLE);
-        } catch (PDOException $e) {
-            die($e->getMessage());
+        } catch (PDOException) {
+            throw new LoggedException('Internal Server Error', 500);
         }
     }
 
     public function query($query)
     {
-        $this->statement = $this->db_connection->prepare($query);
+        try {
+            $this->statement = $this->db_connection->prepare($query);
+        } catch (PDOException) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
     }
 
     public function bind($param, $value, $type = null)
     {
-        if (is_null($type)) {
-            if (is_int($value)) {
-                $type = PDO::PARAM_INT;
-            } else if (is_bool($value)) {
-                $type = PDO::PARAM_BOOL;
-            } else if (is_null($value)) {
-                $type = PDO::PARAM_NULL;
-            } else {
-                $type = PDO::PARAM_STR;
+        try {
+            if (is_null($type)) {
+                if (is_int($value)) {
+                    $type = PDO::PARAM_INT;
+                } else if (is_bool($value)) {
+                    $type = PDO::PARAM_BOOL;
+                } else if (is_null($value)) {
+                    $type = PDO::PARAM_NULL;
+                } else {
+                    $type = PDO::PARAM_STR;
+                }
             }
-        }
 
-        $this->statement->bindValue($param, $value, $type);
+            $this->statement->bindValue($param, $value, $type);
+        } catch (PDOException) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
     }
 
     public function execute()
     {
-        $this->statement->execute();
+        try {
+            $this->statement->execute();
+        } catch (PDOException) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
     }
 
     public function fetch()
     {
-        $this->execute();
-        return $this->statement->fetch(PDO::FETCH_OBJ);
+        try {
+            $this->execute();
+            return $this->statement->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
     }
 
     public function fetchAll()
     {
-        $this->execute();
-        return $this->statement->fetchAll(PDO::FETCH_OBJ);
+        try {
+            $this->execute();
+            return $this->statement->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
     }
 
     public function rowCount()
     {
-        return $this->statement->rowCount();
+        try {
+            return $this->statement->rowCount();
+        } catch (PDOException) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
     }
 }

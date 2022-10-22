@@ -12,7 +12,7 @@ class User
 
     public function login($username, $password)
     {
-        $query = 'SELECT username, password, isAdmin FROM ' . $this->table . ' WHERE username = :username';
+        $query = 'SELECT user_id, username, password FROM ' . $this->table . ' WHERE username = :username';
 
         $this->database->query($query);
         $this->database->bind('username', $username);
@@ -20,9 +20,21 @@ class User
         $user = $this->database->fetch();
 
         if (isset($user) && password_verify($password, $user->password)) {
-            return $user->id;
+            return $user->user_id;
         } else {
             throw new LoggedException('Unauthorized', 401);
         }
+    }
+
+    public function register($username, $password)
+    {
+    }
+
+    public function doesEmailExist($email)
+    {
+    }
+
+    public function doesUsernameExist($username)
+    {
     }
 }
