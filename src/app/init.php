@@ -8,4 +8,6 @@ require_once 'core/Database.php';
 require_once 'core/StorageAccess.php';
 require_once 'core/Tables.php';
 
+require_once 'exceptions/LoggedException.php';
+
 require_once 'interfaces/DefaultMethodInterface.php';

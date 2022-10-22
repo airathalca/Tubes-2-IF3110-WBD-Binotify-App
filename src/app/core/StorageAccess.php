@@ -12,32 +12,48 @@ class StorageAccess
         $this->storageDir = __DIR__ . '/../../storage/' . $foldername . '/';
     }
 
-    public function fileExist($filename)
+    public function saveFile($fileinput)
     {
-        return file_exists($$this->storageDir . $filename);
-    }
+        $tmpname = $_FILES[$fileinput]['tmp_name'];
 
-    public function saveFile($filekey)
-    {
-        $tmpname = $_FILES[$filekey]['tmp_name'];
-        $mimeType = mime_content_type($tmpname);
-        $filename = '';
+        $filesize = filesize($tmpname);
+        if ($filesize > MAX_SIZE) {
+            throw new LoggedException('Request Entity Too Large', 413);
+        }
+
+        $mimetype = mime_content_type($tmpname);
+        if (!in_array($mimetype, array_keys(ALLOWED_FILES))) {
+            throw new LoggedException('Unsupported Media Type', 415);
+        }
 
         $valid = false;
         while (!$valid) {
-            $filename = md5(uniqid(mt_rand(), true)) . ALLOWED_FILES[$mimeType];
-
-            if (!file_exists($this->storageDir . $filename)) {
-                $valid = true;
-            }
+            $filename = md5(uniqid(mt_rand(), true)) . ALLOWED_FILES[$mimetype];
+            $valid = !$this->doesFileExist($filename);
         }
 
-        move_uploaded_file($tmpname, $filename);
+        $success = move_uploaded_file($tmpname, $filename);
+        if (!$success) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
+
         return $filename;
     }
 
     public function deleteFile($filename)
     {
-        unlink($this->storageDir . $filename);
+        if (!$this->doesFileExist($filename)) {
+            throw new LoggedException('Not Found', 404);
+        }
+
+        $success = unlink($this->storageDir . $filename);
+        if (!$success) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
+    }
+
+    private function doesFileExist($filename)
+    {
+        return file_exists($this->storageDir . $filename);
     }
 }

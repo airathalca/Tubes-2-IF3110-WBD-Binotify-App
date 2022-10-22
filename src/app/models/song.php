@@ -3,10 +3,10 @@
 class Song
 {
     private $table = 'song';
-    private $db;
+    private $database;
 
     public function __construct()
     {
-        $this->db = new Database();
+        $this->database = new Database();
     }
 }

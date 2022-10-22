@@ -5,9 +5,9 @@ class Tables
     public const USER_TABLE =
     "CREATE TABLE IF NOT EXISTS user (
         user_id         INT             AUTO_INCREMENT      PRIMARY KEY,
-        email           VARCHAR(256)    NOT NULL,
+        email           VARCHAR(256)    UNIQUE NOT NULL,
+        username        VARCHAR(256)    UNIQUE NOT NULL,
         password        VARCHAR(256)    NOT NULL,
-        username        VARCHAR(256)    NOT NULL,
         isAdmin         BOOLEAN         NOT NULL
     );";
 
