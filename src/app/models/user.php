@@ -27,7 +27,7 @@ class User
 
     public function register($email, $username, $password)
     {
-        $query = 'INSERT INTO user VALUES (:email, :username, :password, :isAdmin)';
+        $query = 'INSERT INTO user VALUES (:email, :username, :password, :is_admin)';
         $options = [
             'cost' => BCRYPT_COST
         ];
@@ -36,7 +36,7 @@ class User
         $this->database->bind('email', $email);
         $this->database->bind('username', $username);
         $this->database->bind('password', password_hash($password, PASSWORD_BCRYPT, $options));
-        $this->database->bind('isAdmin', false);
+        $this->database->bind('is_admin', false);
 
         $this->database->execute();
     }

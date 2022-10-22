@@ -1,6 +1,6 @@
 <?php
 
-interface DefaultMethodInterface
+interface ControllerInterface
 {
     public function index();
 }

@@ -8,7 +8,7 @@ class Tables
         email           VARCHAR(256)    UNIQUE NOT NULL,
         username        VARCHAR(256)    UNIQUE NOT NULL,
         password        VARCHAR(256)    NOT NULL,
-        isAdmin         BOOLEAN         NOT NULL
+        is_admin        BOOLEAN         NOT NULL
     );";
 
     public const ALBUM_TABLE =

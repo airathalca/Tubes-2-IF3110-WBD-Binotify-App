@@ -10,4 +10,5 @@ require_once 'core/Tables.php';
 
 require_once 'exceptions/LoggedException.php';
 
-require_once 'interfaces/DefaultMethodInterface.php';
+require_once 'interfaces/ControllerInterface.php';
+require_once 'interfaces/ViewInterface.php';
