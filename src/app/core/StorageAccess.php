@@ -17,9 +17,9 @@ class StorageAccess
         return file_exists($$this->storageDir . $filename);
     }
 
-    public function saveFile($filename)
+    public function saveFile($filekey)
     {
-        $tmpname = $_FILES[$filename]['tmp_name'];
+        $tmpname = $_FILES[$filekey]['tmp_name'];
         $mimeType = mime_content_type($tmpname);
         $filename = '';
 
