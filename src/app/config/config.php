@@ -11,3 +11,4 @@ define('ALLOWED_FILES', [
     'image/png' => '.png',
     'audio/mpeg' => '.mp3'
 ]);
+define('BCRYPT_COST', 10);
