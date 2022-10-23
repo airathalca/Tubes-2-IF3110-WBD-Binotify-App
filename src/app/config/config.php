@@ -1,17 +1,17 @@
 <?php
 
-// url
+// URL
 define('BASE_URL', 'http://localhost:8080/public');
 
-// database
+// Database
 define('HOST', $_ENV['MYSQL_HOST']);
 define('DBNAME', $_ENV['MYSQL_DATABASE']);
 define('USER', $_ENV['MYSQL_USER']);
 define('PASSWORD', $_ENV['MYSQL_PASSWORD']);
 define('PORT', $_ENV['MYSQL_PORT']);
-define('ROWS_PER_PAGE', 10);
+define('ROWS_PER_PAGE', 10); // Application Logic
 
-// file
+// File
 define('MAX_SIZE', 10 * 1024 * 1024);
 define('ALLOWED_FILES', [
     'image/jpeg' => '.jpeg',
@@ -19,9 +19,10 @@ define('ALLOWED_FILES', [
     'audio/mpeg' => '.mp3'
 ]);
 
-// bcrypt
+// Bcrypt
 define('BCRYPT_COST', 10);
 
-// session
+// Session
 define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);
 define('SESSION_REGENERATION_TIME', 30 * 60);
+define('MAX_SONG_COUNT', 3); // Application Logic

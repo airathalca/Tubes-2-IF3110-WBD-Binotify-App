@@ -8,7 +8,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
     $_SESSION['created_at'] = $current_time;
     $_SESSION['updated_at'] = $current_time;
-    $_SESSION['song_count'] = 0;
 }
 
 if (session_status() === PHP_SESSION_ACTIVE) {
