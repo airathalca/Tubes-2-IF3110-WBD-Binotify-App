@@ -2,14 +2,6 @@
 
 require_once __DIR__ . '/../app/init.php';
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-
-    $current_time = time();
-    $_SESSION['created_at'] = $current_time;
-    $_SESSION['updated_at'] = $current_time;
-}
-
 if (session_status() === PHP_SESSION_ACTIVE) {
     $current_time = time();
 
@@ -23,6 +15,14 @@ if (session_status() === PHP_SESSION_ACTIVE) {
         session_unset();
         session_destroy();
     }
+}
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+
+    $current_time = time();
+    $_SESSION['created_at'] = $current_time;
+    $_SESSION['updated_at'] = $current_time;
 }
 
 $app = new App();
