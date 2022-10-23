@@ -19,7 +19,7 @@ class User extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $indexView = $this->view('user', 'index');
+                    $indexView = $this->view('user', 'userlist');
                     $indexView->render();
                     break;
                 default:

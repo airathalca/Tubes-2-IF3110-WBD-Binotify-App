@@ -9,6 +9,7 @@ define('DBNAME', $_ENV['MYSQL_DATABASE']);
 define('USER', $_ENV['MYSQL_USER']);
 define('PASSWORD', $_ENV['MYSQL_PASSWORD']);
 define('PORT', $_ENV['MYSQL_PORT']);
+define('ROWS_PER_PAGE', 10);
 
 // file
 define('MAX_SIZE', 10 * 1024 * 1024);
