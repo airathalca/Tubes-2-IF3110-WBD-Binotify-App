@@ -9,7 +9,7 @@ class Token
 
     public function checkToken()
     {
-        $token = filter_input(INPUT_POST, 'token', FILTER_DEFAULT);
+        $token = $_POST['token'];
 
         if (!$token || $token !== $_SESSION['token']) {
             throw new LoggedException('Method Not Allowed', 405);

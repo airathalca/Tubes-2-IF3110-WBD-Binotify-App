@@ -17,8 +17,14 @@ class User extends Controller implements ControllerInterface
     public function index()
     {
         try {
-            $indexView = $this->view('user', 'index');
-            $indexView->render();
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    $indexView = $this->view('user', 'index');
+                    $indexView->render();
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
         } catch (Exception $e) {
             http_response_code($e->getCode());
         }
