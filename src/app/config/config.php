@@ -21,3 +21,7 @@ define('ALLOWED_FILES', [
 
 // bcrypt
 define('BCRYPT_COST', 10);
+
+// session
+define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);
+define('SESSION_REGENERATION_TIME', 30 * 60);

@@ -9,6 +9,7 @@ class UserController extends Controller implements ControllerInterface
                 case 'GET':
                     $indexView = $this->view('user', 'UserListView');
                     $indexView->render();
+
                     break;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
