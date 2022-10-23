@@ -2,9 +2,9 @@
 
 class Controller
 {
-    public function view($view, $data = [])
+    public function view($folder, $view, $data = [])
     {
-        require_once __DIR__ . '/../views/' . $view . '.php';
+        require_once __DIR__ . '/../views/' . $folder . '/' . $view . '.php';
         return new $view($data);
     }
 

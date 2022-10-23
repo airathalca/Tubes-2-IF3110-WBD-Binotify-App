@@ -1,7 +1,7 @@
 <?php
 
 // url
-define('BASE_URL', 'http://localhost/public');
+define('BASE_URL', 'http://localhost:8080/public');
 
 // database
 define('HOST', $_ENV['MYSQL_HOST']);

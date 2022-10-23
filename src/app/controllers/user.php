@@ -6,7 +6,7 @@ class User extends Controller implements ControllerInterface
 {
     public function index()
     {
-        $indexView = $this->view('user/index');
+        $indexView = $this->view('user', 'index');
         $indexView->render();
     }
 
@@ -15,7 +15,7 @@ class User extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $loginView = $this->view('user/Login');
+                    $loginView = $this->view('user', 'Login');
                     $loginView->render();
 
                     break;
