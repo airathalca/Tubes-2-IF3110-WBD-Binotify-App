@@ -18,7 +18,7 @@ class UserModel
 
         $user = $this->database->fetch();
 
-        if (property_exists($user, 'user_id') && password_verify($password, $user->password)) {
+        if ($user && password_verify($password, $user->password)) {
             return $user->user_id;
         } else {
             throw new LoggedException('Unauthorized', 401);
@@ -50,7 +50,7 @@ class UserModel
 
         $user = $this->database->fetch();
 
-        return property_exists($user, 'email');
+        return $user;
     }
 
     public function doesUsernameExist($username)
@@ -62,6 +62,6 @@ class UserModel
 
         $user = $this->database->fetch();
 
-        return property_exists($user, 'username');
+        return $user;
     }
 }

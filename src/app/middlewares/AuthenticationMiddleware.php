@@ -18,7 +18,7 @@ class AuthenticationMiddleware
 
         $user = $this->database->fetch();
 
-        if (!property_exists($user, 'user_id')) {
+        if (!$user) {
             throw new LoggedException('Unauthorized', 401);
         }
     }
@@ -32,7 +32,7 @@ class AuthenticationMiddleware
 
         $user = $this->database->fetch();
 
-        if (!property_exists($user, 'is_admin') || !$user->is_admin) {
+        if (!$user || !$user->is_admin) {
             throw new LoggedException('Unauthorized', 401);
         }
     }
