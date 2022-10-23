@@ -15,11 +15,11 @@ class User extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $loginView = $this->view('user', 'Login', ['test' => 'Kinan yang panggil ini']);
+                    $loginView = $this->view('user', 'login', ['test' => 'Aira yang panggil ini']);
                     $loginView->render();
                     break;
                 case 'POST':
-                    $userModel = $this->model('User');
+                    $userModel = $this->model('user');
                     break;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
