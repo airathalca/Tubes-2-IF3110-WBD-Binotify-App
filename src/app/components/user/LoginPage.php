@@ -10,14 +10,14 @@
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/login.css">
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/login.js" defer></script>
-    <title> Login </title>
+    <title>Login</title>
 </head>
 
 <body>
     <header></header>
     <nav></nav>
     <main>
-        <article>WUHU LOGIN</article>
+        <article><?= $this->data['test'] ?></article>
         <aside></aside>
     </main>
     <footer></footer>

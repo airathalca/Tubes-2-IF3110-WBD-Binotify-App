@@ -24,6 +24,8 @@ class App
         if (isset($methodPart) && method_exists($this->controller, $methodPart)) {
             $this->method = $methodPart;
         } else {
+            require_once __DIR__ . '/../controllers/NotFound.php';
+            $this->controller = new NotFound();
             $this->method = 'index';
         }
         unset($url[1]);
