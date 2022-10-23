@@ -18,10 +18,10 @@
     <nav></nav>
     <main>
         <article>
-            <form target="<?= BASE_URL ?>/user/login" method="POST">
+            <form action="<?= BASE_URL ?>/user/login" method="POST">
                 <input type="text" name="username" placeholder="Enter Username">
-                <input type="password" name="password" placeholder="Enter Password">
-                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+                <input type="password" name="password" placeholder="Enter Password" autocomplete="on">
+                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
                 <input type="submit" value="Submit">
             </form>
         </article>
