@@ -41,7 +41,9 @@ class UserController extends Controller implements ControllerInterface
 
                     $userModel = $this->model('UserModel');
                     $userId = $userModel->login($_POST['username'], $_POST['password']);
+
                     $_SESSION['user_id'] = $userId;
+                    http_response_code(201);
 
                     break;
                 default:
@@ -62,6 +64,8 @@ class UserController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     unset($_SESSION['user_id']);
+                    http_response_code(201);
+
                     break;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
@@ -91,6 +95,8 @@ class UserController extends Controller implements ControllerInterface
 
                     $userModel = $this->model('UserModel');
                     $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
+
+                    http_response_code(201);
 
                     break;
                 default:
