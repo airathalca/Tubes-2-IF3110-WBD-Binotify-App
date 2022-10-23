@@ -21,7 +21,7 @@
             <form action="<?= BASE_URL ?>/user/login" method="POST">
                 <input type="text" name="username" placeholder="Enter Username">
                 <input type="password" name="password" placeholder="Enter Password" autocomplete="on">
-                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?? '' ?>">
+                <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
                 <input type="submit" value="Submit">
             </form>
         </article>
