@@ -1,13 +1,27 @@
 <?php
 
 require_once __DIR__ . '/../middlewares/Authentication.php';
+require_once __DIR__ . '/../middlewares/Token.php';
 
 class User extends Controller implements ControllerInterface
 {
+    private $authMiddleware;
+    private $tokenMiddleware;
+
+    public function __construct()
+    {
+        $this->authMiddleware = new Authentication();
+        $this->tokenMiddleware = new Token();
+    }
+
     public function index()
     {
-        $indexView = $this->view('user', 'index');
-        $indexView->render();
+        try {
+            $indexView = $this->view('user', 'index');
+            $indexView->render();
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
     }
 
     public function login()
@@ -15,11 +29,19 @@ class User extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $loginView = $this->view('user', 'login', ['test' => 'Aira yang panggil ini']);
+                    $this->tokenMiddleware->putToken();
+
+                    $loginView = $this->view('user', 'login');
                     $loginView->render();
+
                     break;
                 case 'POST':
+                    $this->tokenMiddleware->checkToken();
+
                     $userModel = $this->model('user');
+                    $userId = $userModel->login($_POST['username'], $_POST['password']);
+                    $_SESSION['user_id'] = $userId;
+
                     break;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);

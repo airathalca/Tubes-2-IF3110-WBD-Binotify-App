@@ -10,7 +10,7 @@
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/login.css">
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/login.js" defer></script>
-    <title>Login</title>
+    <title>User List</title>
 </head>
 
 <body>
@@ -18,12 +18,7 @@
     <nav></nav>
     <main>
         <article>
-            <form target="<?= BASE_URL ?>/user/login" method="POST">
-                <input type="text" name="username" placeholder="Enter Username">
-                <input type="password" name="password" placeholder="Enter Password">
-                <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
-                <input type="submit" value="Submit">
-            </form>
+            <input>
         </article>
         <aside></aside>
     </main>
