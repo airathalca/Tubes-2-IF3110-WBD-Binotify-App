@@ -1,6 +1,6 @@
 <?php
 
-class Token
+class TokenMiddleware
 {
     public function putToken()
     {

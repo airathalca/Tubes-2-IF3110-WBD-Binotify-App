@@ -1,6 +1,6 @@
 <?php
 
-class Authentication
+class AuthenticationMiddleware
 {
     private $database;
 

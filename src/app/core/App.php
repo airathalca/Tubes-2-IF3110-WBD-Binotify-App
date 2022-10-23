@@ -8,16 +8,17 @@ class App
 
     public function __construct()
     {
-        require_once __DIR__ . '/../controllers/NotFound.php';
-        $this->controller = new NotFound();
+        require_once __DIR__ . '/../controllers/NotFoundController.php';
+        $this->controller = new NotFoundController();
         $this->method = 'index';
 
         $url = $this->parseURL();
 
         $controllerPart = $url[0] ?? null;
-        if (isset($controllerPart) && file_exists(__DIR__ . '/../controllers/' . $controllerPart . '.php')) {
-            require_once __DIR__ . '/../controllers/' . $controllerPart . '.php';
-            $this->controller = new $controllerPart();
+        if (isset($controllerPart) && file_exists(__DIR__ . '/../controllers/' . $controllerPart . 'Controller.php')) {
+            require_once __DIR__ . '/../controllers/' . $controllerPart . 'Controller.php';
+            $controllerClass = $controllerPart . 'Controller';
+            $this->controller = new $controllerClass();
         }
         unset($url[0]);
 

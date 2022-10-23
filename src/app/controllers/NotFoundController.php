@@ -1,6 +1,6 @@
 <?php
 
-class NotFound extends Controller implements ControllerInterface
+class NotFoundController extends Controller implements ControllerInterface
 {
     public function index()
     {

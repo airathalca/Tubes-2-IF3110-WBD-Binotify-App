@@ -1,25 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../middlewares/Authentication.php';
-require_once __DIR__ . '/../middlewares/Token.php';
-
-class User extends Controller implements ControllerInterface
+class UserController extends Controller implements ControllerInterface
 {
-    private $authMiddleware;
-    private $tokenMiddleware;
-
-    public function __construct()
-    {
-        $this->authMiddleware = new Authentication();
-        $this->tokenMiddleware = new Token();
-    }
-
     public function index()
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $indexView = $this->view('user', 'userlist');
+                    $indexView = $this->view('user', 'UserListView');
                     $indexView->render();
                     break;
                 default:
@@ -35,16 +23,18 @@ class User extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $this->tokenMiddleware->putToken();
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
 
-                    $loginView = $this->view('user', 'login');
+                    $loginView = $this->view('user', 'LoginView');
                     $loginView->render();
 
                     break;
                 case 'POST':
-                    $this->tokenMiddleware->checkToken();
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
 
-                    $userModel = $this->model('user');
+                    $userModel = $this->model('UserModel');
                     $userId = $userModel->login($_POST['username'], $_POST['password']);
                     $_SESSION['user_id'] = $userId;
 

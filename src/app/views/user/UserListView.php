@@ -1,6 +1,6 @@
 <?php
 
-class Login implements ViewInterface
+class UserListView implements ViewInterface
 {
     public $data;
     public function __construct($data = [])
@@ -10,6 +10,6 @@ class Login implements ViewInterface
 
     public function render()
     {
-        require_once __DIR__ . '/../../components/user/LoginPage.php';
+        require_once __DIR__ . '/../../components/user/UserListPage.php';
     }
 }

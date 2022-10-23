@@ -1,6 +1,6 @@
 <?php
 
-class Home extends Controller implements ControllerInterface
+class HomeController extends Controller implements ControllerInterface
 {
     public function index()
     {

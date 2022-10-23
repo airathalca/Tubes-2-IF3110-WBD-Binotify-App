@@ -1,6 +1,6 @@
 <?php
 
-class Song
+class SongModel
 {
     private $database;
 

@@ -1,6 +1,6 @@
 <?php
 
-class Song extends Controller implements ControllerInterface
+class SongController extends Controller implements ControllerInterface
 {
     public function index()
     {
