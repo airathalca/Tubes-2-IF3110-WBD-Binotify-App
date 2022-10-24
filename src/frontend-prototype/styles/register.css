@@ -1,0 +1,54 @@
+.registration-header img {
+    margin-bottom: 1.5rem;
+}
+
+.registration-form {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.form-group input {
+    padding: 0.5rem 1rem;
+}
+
+.form-button {
+    margin-top: 3rem;
+}
+
+.form-hyperlink {
+    margin-top: 16px;
+}
+
+.form-hyperlink a {
+    color: var(--darkgreen);
+}
+
+@media (min-width: 800px) {
+    /*  Center things out starting from 800px! */
+    .registration-header img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .registration-header p {
+        text-align: center;
+    }
+
+    .registration-form {
+        align-items: center;
+    }
+
+    .form-hyperlink {
+        text-align: center;
+    }
+}
