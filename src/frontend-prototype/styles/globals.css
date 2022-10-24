@@ -27,6 +27,11 @@ img {
     display: block;
 }
 
+button {
+    border: none;
+    outline: none;
+}
+
 .wrapper {
     max-width: 1160px;
     padding: 40px;
@@ -50,11 +55,38 @@ p, label, a, button {
 .black-button {
     background: var(--black);
     color: var(--white);
+}
+
+.green-button {
+    background: var(--lightgreen);
+    color: var(--black);
+}  
+
+.red-button {
+    background: var(--red);
+    color: var(--black);
+}
+
+.button {
     padding: 1rem 2rem;
     transition: all 0.3s linear;
     cursor: pointer;
 }
 
-.black-button:hover {
+.button:hover {
     opacity: 0.8;
+}
+
+.basic-nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    max-width: 100vw;
+    background: black;
+}
+
+.nav-wrapper {
+    max-width: calc(1160px);
+    padding: 1.5rem 2.5rem;
+    margin: 0 auto;
 }

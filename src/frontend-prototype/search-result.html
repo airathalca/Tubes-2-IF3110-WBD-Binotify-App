@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include globals.css di tiap halaman! -->
+    <link rel="stylesheet" href="styles/globals.css">
+    <!-- Page-specific CSS, selalu letakkan SETELAH globals.css-->
+    <link rel="stylesheet" href="styles/search-result.css">
+    <title>Frontend Prototype</title>
+</head>
+<body>
+    <!-- Kelas terluar menyatakan warna latarnya -->
+    <div class="black-body">
+        <nav class="basic-nav">
+            <!-- Basic nav = komponen dengan logo Spotipi yang sticky -->
+            <div class="nav-wrapper">
+                <!-- Nav juga diberikan wrapper! -->
+                <a href="#">
+                    <img src="assets/logo-light.svg" alt="Spotipi logo">
+                </a>
+            </div>
+        </nav>
+        <!-- Konten utama dari halaman harus memiliki wrapper -->
+        <div class="wrapper">
+            <form action="" class="search-form">
+                <div class="form-group">
+                    <!-- Sebuah form terdiri atas label dan inputnya -->
+                    <label for="search">Searching for ...</label>
+                    <input type="text" name="search" placeholder="Chisato X Takina" id="search">
+                </div>
+                <div class="form-group">
+                    <!-- Sebuah form terdiri atas label dan inputnya -->
+                    <label for="sort">Sorted by ...</label>
+                    <select name="sort" id="sort">
+                        <option value="alphabet">Alphabet (A-Z)</option>
+                        <option value="date">Date (Newest first)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!-- Sebuah form terdiri atas label dan inputnya -->
+                    <label for="genre">Enter a genre to filter here!</label>
+                    <input type="text" name="genre" placeholder="Enter a genre to filter here!" id="genre">
+                </div>
+                <div class="form-button">
+                    <button type="submit" class="button green-button">Search!</button>
+                </div>
+            </form>
+
+            <main class="search-results">
+                <header class="search-results-header">
+                    <p>Search results</p>
+                </header>
+                <div class="search-results-flex">
+                    <a href="#" class="single-result">
+                        <img src="assets/sample.png" alt="Chisato x Takina">
+                        <header class="result-header">
+                            <p class="title">Bidaddari Surga</p>
+                            <p>Chisato X Takina</p>
+                        </header>
+                        <div class="result-dategenre">
+                            <p>1 April 2016</p>
+                            <p>Rock</p>
+                        </div>
+                    </a>
+                    <a href="#" class="single-result">
+                        <img src="assets/sample.png" alt="Chisato x Takina">
+                        <header class="result-header">
+                            <p class="title">Bidadari Surga</p>
+                            <p>Chisato X Takina</p>
+                        </header>
+                        <div class="result-dategenre">
+                            <p>1 April 2016</p>
+                            <p>Rock</p>
+                        </div>
+                    </a>
+                    <a href="#" class="single-result">
+                        <img src="assets/sample.png" alt="Chisato x Takina">
+                        <header class="result-header">
+                            <p class="title">Bidadari Surga</p>
+                            <p>Chisato X Takina</p>
+                        </header>
+                        <div class="result-dategenre">
+                            <p>1 April 2016</p>
+                            <p>Rock</p>
+                        </div>
+                    </a>
+                    <a href="#" class="single-result">
+                        <img src="assets/sample.png" alt="Chisato x Takina">
+                        <header class="result-header">
+                            <p class="title">Bidadari Surga</p>
+                            <p>Chisato X Takina</p>
+                        </header>
+                        <div class="result-dategenre">
+                            <p>1 April 2016</p>
+                            <p>Rock</p>
+                        </div>
+                    </a>
+                    <a href="#" class="single-result">
+                        <img src="assets/sample.png" alt="Chisato x Takina">
+                        <header class="result-header">
+                            <p class="title">Bidadari Surga</p>
+                            <p>Chisato X Takina</p>
+                        </header>
+                        <div class="result-dategenre">
+                            <p>1 April 2016</p>
+                            <p>Rock</p>
+                        </div>
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
