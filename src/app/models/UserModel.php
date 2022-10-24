@@ -9,6 +9,19 @@ class UserModel
         $this->database = new Database();
     }
 
+    public function getByPage($page)
+    {
+        $query = 'SELECT user_id, email, username FROM user LIMIT :limit OFFSET :offset';
+
+        $this->database->query($query);
+        $this->database->bind('limit', ROWS_PER_PAGE);
+        $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
+
+        $userArr = $this->database->fetchAll();
+
+        return $userArr;
+    }
+
     public function login($username, $password)
     {
         $query = 'SELECT user_id, password FROM user WHERE username = :username LIMIT 1';

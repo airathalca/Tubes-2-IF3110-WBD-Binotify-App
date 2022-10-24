@@ -7,10 +7,14 @@ class UserController extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $indexView = $this->view('user', 'UserListView');
-                    $indexView->render();
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
 
-                    // Render List of User by Pagination
+                    $userModel = $this->model('UserModel');
+                    $userArr = $userModel->getByPage($page);
+
+                    $indexView = $this->view('user', 'UserListView', ['user_arr' => $userArr]);
+                    $indexView->render();
 
                     break;
                 default:
@@ -97,6 +101,60 @@ class UserController extends Controller implements ControllerInterface
                     $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
 
                     http_response_code(201);
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
+
+    public function email()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    $userModel = $this->model('UserModel');
+                    $user = $userModel->doesEmailExist($_GET['email']);
+
+                    if (!$user) {
+                        throw new LoggedException('Not Found', 404);
+                    }
+
+                    http_response_code(200);
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+        }
+    }
+
+    public function username()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    $userModel = $this->model('UserModel');
+                    $user = $userModel->doesUsernameExist($_GET['username']);
+
+                    if (!$user) {
+                        throw new LoggedException('Not Found', 404);
+                    }
+
+                    http_response_code(200);
 
                     break;
                 default:

@@ -17,7 +17,16 @@
     <header></header>
     <nav></nav>
     <main>
-        <article></article>
+        <section>
+            <?php foreach ($this->data['user_arr'] as $index => $user) : ?>
+                <article>
+                    <div>Index: <?= $index ?></div>
+                    <div>User ID: <?= $user->user_id ?></div>
+                    <div>Email: <?= $user->email ?></div>
+                    <div>Username: <?= $user->username ?></div>
+                </article>
+            <?php endforeach; ?>
+        </section>
         <aside></aside>
     </main>
     <footer></footer>

@@ -9,7 +9,7 @@ class TokenMiddleware
 
     public function checkToken()
     {
-        $token = $_POST['csrf_token'];
+        $token = $_REQUEST['csrf_token'];
 
         if (!$token || $token !== $_SESSION['csrf_token']) {
             throw new LoggedException('Method Not Allowed', 405);
