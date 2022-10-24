@@ -10,7 +10,7 @@
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/user/user-list.css">
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/user-list.js" defer></script>
-    <title>User List</title>
+    <title>Spotipi</title>
 </head>
 
 <body>
