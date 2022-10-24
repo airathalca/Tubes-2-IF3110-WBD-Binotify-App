@@ -23,7 +23,7 @@
                 <input type="text" name="username" placeholder="Enter Username">
                 <input type="password" name="password" placeholder="Enter Password" autocomplete="on">
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Register">
             </form>
         </article>
         <aside></aside>

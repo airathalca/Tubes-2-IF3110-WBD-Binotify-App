@@ -24,6 +24,7 @@
                     <div>User ID: <?= $user->user_id ?></div>
                     <div>Email: <?= $user->email ?></div>
                     <div>Username: <?= $user->username ?></div>
+                    <div>Admin: <?= $user->is_admin ?></div>
                 </article>
             <?php endforeach; ?>
         </section>

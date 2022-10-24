@@ -19,10 +19,12 @@
     <main>
         <article>
             <form action="<?= BASE_URL ?>/user/login" method="POST">
-                <input type="text" name="username" placeholder="Enter Username">
-                <input type="password" name="password" placeholder="Enter Password" autocomplete="on">
+                <input type="text" id="username" name="username" placeholder="Enter Username">
+                <input type="password" id="password" name="password" placeholder="Enter Password" autocomplete="on">
+                <input type="checkbox" id="remember_me" name="remember_me" value="checked">
+                <label for="remember_me">Remember Me</label>
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Login">
             </form>
         </article>
         <aside></aside>
