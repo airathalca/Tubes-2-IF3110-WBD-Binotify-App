@@ -21,9 +21,32 @@
                 <main class="left-side">
                     <nav class="black-navbar">
                         <div class="pad-40">
-                            <button>
+                            <button class="toggle" id="toggle">
                                 <img src="<?= BASE_URL ?>/images/assets/bars.svg" alt="Bars">
                             </button>
+                        </div>
+                        <div class="nav-container" id="nav-container">
+                            <div class="nav-search">
+                                <form action="">
+                                    <label for="search">Enter song/title/artist/published year to search!</label>
+                                    <div class="search-input">
+                                        <input type="text" placeholder="YOASOBI">
+                                        <button type="submit">
+                                            <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <a href="#" class="nav-link">
+                                Album list
+                            </a>
+                            <?php
+                                if ($this->data['username']) { ?>
+                                    <a href="#" class="nav-link">
+                                        Log out
+                                    </a>
+                                <?php } 
+                            ?>
                         </div>
                     </nav>
                     <article>
@@ -156,5 +179,7 @@
             </div>
         </div>
     </div>
+
+    <script src="<?= BASE_URL ?>/javascript/home/home.js"></script>
 </body>
 </html>
