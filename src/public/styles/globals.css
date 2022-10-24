@@ -34,8 +34,11 @@ button {
 
 .wrapper {
     max-width: 1160px;
-    padding: 40px;
     margin: 0 auto;
+}
+
+.pad-40 {
+    padding: 2.5rem;
 }
 
 .white-body {

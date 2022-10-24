@@ -16,10 +16,12 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="centered">
-            <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Spotipi Logo">
-            <p class="main-text">Sorry, we couldn't find the page that you were looking for!</p>
-            <p>Go back to the <a href="#">home page</a>.</p>
+        <div class="pad-40">
+            <div class="centered">
+                <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Spotipi Logo">
+                <p class="main-text">Sorry, we couldn't find the page that you were looking for!</p>
+                <p>Go back to the <a href="/public/home">home page</a>.</p>
+            </div>
         </div>
     </div>
 </body>
