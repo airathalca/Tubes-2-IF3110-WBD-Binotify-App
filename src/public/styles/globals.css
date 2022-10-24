@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    /* Colors */
+    --black: #313131;
+    --white: #ffffff;
+    --darkgreen: #1db954;
+    --lightgreen: #1ed760;
+    --black-lighter: #616161;
+    --pure-black: #000000;
+    --disabled: #c2c2c2;
+    --red: #ff7575;
+
+    /* Font */
+    --roboto: 'Roboto', sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--roboto);
+    color: var(--black); /* berwarna soft black unless stated otherwise */
+}
+
+img {
+    display: block;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+.wrapper {
+    max-width: 1160px;
+    padding: 40px;
+    margin: 0 auto;
+}
+
+.white-body {
+    background: var(--white);
+    min-height: 100vh;
+}
+
+.black-body {
+    background: var(--black);
+    min-height: 100vh;
+}
+
+p, label, a, button {
+    letter-spacing: 0.05em;
+}
+
+.black-button {
+    background: var(--black);
+    color: var(--white);
+}
+
+.green-button {
+    background: var(--lightgreen);
+    color: var(--black);
+}  
+
+.red-button {
+    background: var(--red);
+    color: var(--black);
+}
+
+.button {
+    padding: 1rem 2rem;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.basic-nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    max-width: 100vw;
+    background: black;
+}
+
+.nav-wrapper {
+    max-width: calc(1160px);
+    padding: 1.5rem 2.5rem;
+    margin: 0 auto;
+}
