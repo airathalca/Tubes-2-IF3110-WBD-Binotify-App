@@ -9,6 +9,24 @@ class UserModel
         $this->database = new Database();
     }
 
+    public function getUsernameFromID($user_id)
+    {
+        $query = 'SELECT username FROM user WHERE user_id = :user_id LIMIT 1';
+
+        $this->database->query($query);
+        $this->database->bind('user_id', $user_id);
+
+        $username;
+        try {
+            $data = $this->database->fetch();
+            $username = $data->username;
+        } catch (Exception $e) {
+            $username = null;
+        }
+
+        return $username;
+    }
+
     public function getByPage($page)
     {
         $query = 'SELECT user_id, email, username, is_admin FROM user LIMIT :limit OFFSET :offset';
