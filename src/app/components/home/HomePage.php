@@ -150,7 +150,7 @@
                         if (!$this->data['username']) { ?>
                             <p><a href="/public/user/login">Log in</a> or <a href="/public/user/register">Register</a> to fully experience Spotipi!</p>
                         <?php } else { ?>
-                            <p>Hello, <strong><?php $this->data['username'] ?></strong>!</p>
+                            <p>Hello, <strong><?php echo $this->data['username'] ?></strong>!</p>
                         <?php } ?>
                 </aside>
             </div>

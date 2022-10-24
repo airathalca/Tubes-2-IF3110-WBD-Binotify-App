@@ -7,7 +7,7 @@ define('STORAGE_URL', 'http://localhost:8080/storage');
 // Database
 define('HOST', $_ENV['MYSQL_HOST']);
 define('DBNAME', $_ENV['MYSQL_DATABASE']);
-define('USER', $_ENV['MYSQL_USER']);
+define('USER', $_ENV['MYSQL_USER'] ?? 'root');
 define('PASSWORD', $_ENV['MYSQL_PASSWORD']);
 define('PORT', $_ENV['MYSQL_PORT']);
 define('ROWS_PER_PAGE', 10); // Application Logic

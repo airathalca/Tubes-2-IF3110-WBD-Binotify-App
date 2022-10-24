@@ -16,7 +16,14 @@ class UserModel
         $this->database->query($query);
         $this->database->bind('user_id', $user_id);
 
-        $username = $this->database->fetch();
+        $username;
+        try {
+            $data = $this->database->fetch();
+            $username = $data->username;
+        } catch (Exception $e) {
+            $username = null;
+        }
+
         return $username;
     }
 
