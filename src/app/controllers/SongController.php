@@ -103,10 +103,7 @@ class SongController extends Controller implements ControllerInterface
                         throw new LoggedException('Bad Request', 400);
                     }
                     // File tidak diisi
-                    if ($_FILES['audio']['error'] === 4) {
-                        throw new LoggedException('Bad Request', 400);
-                    }
-                    if ($_FILES['cover']['error'] === 4) {
+                    if ($_FILES['audio']['error'] === 4 || $_FILES['cover']['error'] === 4) {
                         throw new LoggedException('Bad Request', 400);
                     }
 
