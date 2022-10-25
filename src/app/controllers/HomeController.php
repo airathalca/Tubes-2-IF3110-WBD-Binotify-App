@@ -14,7 +14,7 @@ class HomeController extends Controller implements ControllerInterface
                         // Ada data user_id, coba fetch data username!
                         $userModel = $this->model('UserModel');
                         $user = $userModel->getUserFromID($_SESSION['user_id']);
-                        $homeView = $this->view('home', 'MainView', ['username' => $$user->username]);
+                        $homeView = $this->view('home', 'MainView', ['username' => $user->username]);
                     } else {
                         $homeView = $this->view('home', 'MainView', ['username' => null]);
                     }
