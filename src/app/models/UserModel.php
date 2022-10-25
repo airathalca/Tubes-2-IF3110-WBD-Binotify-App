@@ -9,22 +9,16 @@ class UserModel
         $this->database = new Database();
     }
 
-    public function getUsernameFromID($user_id)
+    public function getUserFromID($user_id)
     {
         $query = 'SELECT username FROM user WHERE user_id = :user_id LIMIT 1';
 
         $this->database->query($query);
         $this->database->bind('user_id', $user_id);
 
-        $username;
-        try {
-            $data = $this->database->fetch();
-            $username = $data->username;
-        } catch (Exception $e) {
-            $username = null;
-        }
+        $user = $this->database->fetch();
 
-        return $username;
+        return $user;
     }
 
     public function getByPage($page)
