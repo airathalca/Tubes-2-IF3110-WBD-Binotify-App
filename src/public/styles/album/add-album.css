@@ -1,0 +1,35 @@
+.form-header {
+    font-weight: bold;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: var(--white);
+}
+
+.form-group input[type="text"] {
+    padding: 1rem;
+}
+
+.form-group input[type="date"] {
+    padding: 1rem;
+}
+
+.form-group input[type="file"] {
+    align-self: flex-start;
+    color: var(--white);
+    font-family: var(--roboto);
+}

@@ -29,4 +29,11 @@ class SongModel
         $songArr = $this->database->fetchAll();
         return $songArr;
     }
+    public function getGenre()
+    {
+        $query = 'SELECT DISTINCT genre FROM song';
+        $this->database->query($query);
+        $genreArr = $this->database->fetchAll();
+        return $genreArr;
+    }
 }

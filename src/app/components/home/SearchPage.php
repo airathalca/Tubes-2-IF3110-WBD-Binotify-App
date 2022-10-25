@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,11 +12,15 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/search.css">
+    <script type="text/javascript" defer>
+        const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+    </script>
+    <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
     <title>Search Page</title>
 </head>
 <body>
-    <div class="black-body">     
+    <div class="black-body">
         <div class="wrapper">
             <div class="big-flex-container">
                 <main class="left-side">
@@ -28,17 +33,6 @@
                         <?php
                             if (!$this->data['username'] || !$this->data['is_admin']) { ?>
                                 <div class="nav-container" id="nav-container">
-                                    <div class="nav-search">
-                                        <form action="<?= BASE_URL ?>/home/search" METHOD="GET">
-                                            <label for="search">Enter song/title/artist/published year to search!</label>
-                                            <div class="search-input">
-                                                <input type="text" placeholder="YOASOBI" name="q">
-                                                <button type="submit">
-                                                    <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
                                     <a href="#" class="nav-link">
                                         Album list
                                     </a>
@@ -67,13 +61,55 @@
                                 </div>
                         <?php } ?>
                     </nav>
-                    <article>
+                    <div class="wrapper">
+                        <form action="<?= BASE_URL ?>/home/search" METHOD="GET" class="search-form">
+                            <div class="form-group">
+                                <label for="search">Searching for ...</label>
+                                <input type="text" name="q" placeholder="Chisato X Takina" id="search">
+                            </div>
+                            <div class="form-group">
+                                <label for="sort">Sorted by ...</label>
+                                <select name="sort" id="sort">
+                                    <option value="judul">Title (A-Z)</option>
+                                    <option value="judul desc">Title (Z-A)</option>
+                                    <option value="penyanyi">Singer (A-Z)</option>
+                                    <option value="penyanyi desc">Singer (Z-A)</option>
+                                    <option value="tanggal_terbit">Date (Newest First)</option>
+                                    <option value="tanggal_terbit desc">Date (Latest First)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">Select a genre</label>
+                                <select name="filter" id="filter">
+                                    <option value="all"></option>
+                                    <?php foreach ($this->data['genre_arr'] as $index => $genre ) : ?>
+                                        <option value=<?= $genre->genre ?>><?= $genre->genre ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-button">
+                                <button type="submit" class="button green-button">Search!</button>
+                            </div>
+                        </form>
                         <div class="pad-40">
-                            <p class="article-heading">Songs for you</p>
+                            <p class="article-heading">Search Result</p>
                             <div class="songs-container">
+                                <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
+                                    <a href="" class="single-song">
+                                        <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
+                                        <header class="song-header">
+                                            <p class="title"><?= $song->judul?></p>
+                                            <p><?= $song->penyanyi?></p>
+                                        </header>
+                                        <div class="song-dategenre">
+                                            <p><?= substr($song->tanggal_terbit,0,4)?></p>
+                                            <p><?= $song->genre?></p>
+                                        </div>
+                                    </a>
+                                <?php endforeach; ?>
                             </div>
                         </div>
-                    </article>
+                    </div>
                 </main>
                 <aside class="right-side">
                     <img src="<?= BASE_URL ?>/images/assets/logo-notext-dark.svg" alt="Spotipi Logo">
@@ -87,7 +123,5 @@
             </div>
         </div>
     </div>
-
-    <script src="<?= BASE_URL ?>/javascript/home/home.js"></script>
 </body>
 </html>

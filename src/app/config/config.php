@@ -14,11 +14,14 @@ define('ROWS_PER_PAGE', 10); // Application Logic
 
 // File
 define('MAX_SIZE', 10 * 1024 * 1024);
-define('ALLOWED_FILES', [
-    'image/jpeg' => '.jpeg',
-    'image/png' => '.png',
+define('ALLOWED_AUDIOS', [
     'audio/mpeg' => '.mp3'
 ]);
+define('ALLOWED_IMAGES', [
+    'image/jpeg' => '.jpeg',
+    'image/png' => '.png'
+]);
+
 
 // Bcrypt
 define('BCRYPT_COST', 10);
