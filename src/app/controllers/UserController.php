@@ -85,7 +85,9 @@ class UserController extends Controller implements ControllerInterface
                     $userId = $userModel->login($_POST['username'], $_POST['password']);
                     $_SESSION['user_id'] = $userId;
 
-                    header('Location: ' . BASE_URL . '/home');
+                    // Kembalikan redirect_url
+                    header('Content-Type: application/json');
+                    echo json_encode(["redirect_url" => BASE_URL . "/home"]);
                     exit;
 
                     break;

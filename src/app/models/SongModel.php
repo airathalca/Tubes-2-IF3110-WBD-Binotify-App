@@ -8,29 +8,16 @@ class SongModel
     {
         $this->database = new Database();
     }
+
+    public function get10Songs()
+    {
+        $query = 'SELECT * FROM song ORDER BY song_id DESC LIMIT 10';
+        $this->database->query($query);
+        $songArr = $this->database->fetchAll();
+        return $songArr;
+    }
     public function getByQuery($q, $sort, $filter, $page = 1)
     {
-        // if ($filter = 'all') {}
-        // switch ($sort) {
-        //     case 'judul':
-        //         $query = 'SELECT * FROM song WHERE (judul LIKE :q or penyanyi LIKE :q or tanggal_terbit LIKE :q) 
-        //         ORDER BY judul LIMIT :limit OFFSET :offset';
-        //     case 'penyanyi':
-        //         $query = 'SELECT * FROM song WHERE (judul LIKE :q or penyanyi LIKE :q or tanggal_terbit LIKE :q) 
-        //         ORDER BY penyanyi LIMIT :limit OFFSET :offset';
-        //     case 'tanggal_terbit':
-        //         $query = 'SELECT * FROM song WHERE (judul LIKE :q or penyanyi LIKE :q or tanggal_terbit LIKE :q) 
-        //         ORDER BY tanggal_terbit LIMIT :limit OFFSET :offset';
-        //     case 'judul desc':
-        //         $query = 'SELECT * FROM song WHERE (judul LIKE :q or penyanyi LIKE :q or tanggal_terbit LIKE :q) 
-        //         ORDER BY judul desc LIMIT :limit OFFSET :offset';
-        //     case 'penyanyi desc':
-        //         $query = 'SELECT * FROM song WHERE (judul LIKE :q or penyanyi LIKE :q or tanggal_terbit LIKE :q) 
-        //         ORDER BY penyanyi desc LIMIT :limit OFFSET :offset';
-        //     case 'tanggal_terbit desc':
-        //         $query = 'SELECT * FROM song WHERE (judul LIKE :q or penyanyi LIKE :q or tanggal_terbit LIKE :q) 
-        //         ORDER BY tanggal_terbit desc LIMIT :limit OFFSET :offset';
-        // }
         if ($filter === 'all') {
             $query = "SELECT * FROM song WHERE (judul LIKE :q or penyanyi LIKE :q or tanggal_terbit LIKE :q) ORDER BY $sort LIMIT :limit OFFSET :offset";
         } 
