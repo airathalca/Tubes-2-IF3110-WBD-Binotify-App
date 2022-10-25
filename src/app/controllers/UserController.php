@@ -15,6 +15,7 @@ class UserController extends Controller implements ControllerInterface
 
                     $indexView = $this->view('user', 'UserListView', ['user_arr' => $userArr]);
                     $indexView->render();
+                    exit;
 
                     break;
                 default:
@@ -22,6 +23,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 
@@ -36,6 +38,7 @@ class UserController extends Controller implements ControllerInterface
 
                     $loginView = $this->view('user', 'LoginView');
                     $loginView->render();
+                    exit;
 
                     break;
                 case 'POST':
@@ -47,7 +50,9 @@ class UserController extends Controller implements ControllerInterface
                     $userId = $userModel->login($_POST['username'], $_POST['password']);
 
                     $_SESSION['user_id'] = $userId;
-                    http_response_code(201);
+                    header('Location: ' . BASE_URL . '/home');
+
+                    exit;
 
                     break;
                 default:
@@ -55,6 +60,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 
@@ -64,13 +70,11 @@ class UserController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
                     // Prevent CSRF Attacks
-                    // $tokenMiddleware = $this->middleware('TokenMiddleware');
-                    // $tokenMiddleware->checkToken();
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
 
                     unset($_SESSION['user_id']);
-
-                    header('Location:/public/user/login');
-                    http_response_code(301);
+                    header('Location: ' . BASE_URL . '/user/login');
                     exit;
 
                     break;
@@ -79,6 +83,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 
@@ -102,6 +107,8 @@ class UserController extends Controller implements ControllerInterface
 
                     $userModel = $this->model('UserModel');
                     $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
+
+                    header('Location: ' . BASE_URL . '/user/login');
 
                     break;
                 default:
