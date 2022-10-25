@@ -74,12 +74,13 @@ class UserController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
                     // Prevent CSRF Attacks
-                    $tokenMiddleware = $this->middleware('TokenMiddleware');
-                    $tokenMiddleware->checkToken();
+                    // $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    // $tokenMiddleware->checkToken();
 
                     unset($_SESSION['user_id']);
-                    header('Location: ' . BASE_URL . '/user/login');
-                    exit;
+                    
+                    // Kembalikan redirect_url
+                    echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
 
                     break;
                 default:

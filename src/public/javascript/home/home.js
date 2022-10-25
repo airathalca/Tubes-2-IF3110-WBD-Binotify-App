@@ -19,8 +19,9 @@ const logOutButton = document.querySelector("#log-out");
 
 logOutButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    await fetch('/public/user/logout', {
+    let response = await fetch('/public/user/logout', {
         method: 'POST'
     });
-    window.alert("Logged out!");
+    let data = await response.json();
+    location.replace(data.redirect_url);
 })
