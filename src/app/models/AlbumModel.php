@@ -79,4 +79,12 @@ class AlbumModel
         $this->database->bind('album_id', $albumID);
         $this->database->execute();
     }
+
+    public function deleteAlbum($albumID) {
+        $query = 'DELETE FROM album WHERE album_id = :album_id';
+
+        $this->database->query($query);
+        $this->database->bind('album_id', $albumID);
+        $this->database->execute();
+    }
 }

@@ -101,6 +101,41 @@ class AlbumController extends Controller implements ControllerInterface
         }
     }
 
+    public function delete($params) {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'POST':
+                    // Halaman hanya bisa diakses admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    // Hapus dari storage
+                    $storageAccess = new StorageAccess('images');
+                    $storageAccess->deleteFile($_POST['old_path']);
+
+                    // Hapus dari database
+                    $albumID = (int) $params;
+                    $albumModel = $this->model('AlbumModel');
+                    $albumModel->deleteAlbum($albumID);
+
+                    // Kirimkan response
+                    header('Content-Type: application/json');
+                    // Seharusnya ke album list
+                    echo json_encode(["redirect_url" => "/public/home"]);
+                    exit;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }        
+    }
+
     public function add() 
     {
         try {
@@ -145,8 +180,7 @@ class AlbumController extends Controller implements ControllerInterface
                     $albumModel = $this->model('AlbumModel');
                     $albumID = $albumModel->createAlbum($_POST['title'], $_POST['artist'], $uploadedFile, $_POST['date'], $_POST['genre']);
                     
-                    // Redirect <seharusnya ke album detail>
-                    header('Location: /public/album/add', true, 301);
+                    header("Location: /public/album/detail/$albumID", true, 301);
                     exit;
 
                     break;

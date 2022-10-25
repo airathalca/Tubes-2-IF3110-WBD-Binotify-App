@@ -16,8 +16,12 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+        <?php if ($this->data) { ?>
+            const album_id = <?= $this->data['album_id'] ?>;
+            const image_path = "<?= $this->data['image_path'] ?>";
+        <?php } ?>
     </script>
-    <script src="<?= BASE_URL ?>/javascript/album/add-album.js" defer></script>
+    <script src="<?= BASE_URL ?>/javascript/album/update-album-detail.js" defer></script>
     <title>
         <?php if ($this->data) { ?>
             <?= $this->data['judul'] ?>
@@ -37,7 +41,7 @@
                 <p class="details-header">Album details</p>
                 <?php if ($this->data) { ?>
                     <!-- Album related info -->
-                    <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?php echo $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?php echo $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="album-form">
                         <input type="hidden" name="album_id" value="<?= $this->data['album_id'] ?>">
                         <input type="hidden" name="old_path" value="<?= $this->data['image_path'] ?>">
                         <div class="form-group">
@@ -63,7 +67,7 @@
                         </div>
                         <div class="button-group">
                             <button class="button green-button" type="submit">Save changes</button>
-                            <button class="button red-button" type="button">Delete album</button>
+                            <button class="button red-button" id="delete-button" type="button">Delete album</button>
                         </div>
                     </form>
                     

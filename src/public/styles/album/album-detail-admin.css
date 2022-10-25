@@ -81,3 +81,7 @@
 .add-song-form button {
     margin-top: 1rem;
 }
+
+.info {
+    color: var(--white);
+}
