@@ -108,8 +108,9 @@ class UserController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     unset($_SESSION['user_id']);
-                    header('Location: ' . BASE_URL . '/user/login');
-                    exit;
+                    
+                    // Kembalikan redirect_url
+                    echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
 
                     break;
                 default:

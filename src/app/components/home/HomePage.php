@@ -14,6 +14,9 @@
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
     <!-- JavaScript DOM and AJAX -->
+    <script type="text/javascript" defer>
+        const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+    </script>
     <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
     <title>Home Page</title>
 </head>
@@ -31,10 +34,10 @@
                         </div>
                         <div class="nav-container" id="nav-container">
                             <div class="nav-search">
-                                <form action="">
+                                <form action="<?= BASE_URL ?>/home/search" METHOD="GET">
                                     <label for="search">Enter song/title/artist/published year to search!</label>
                                     <div class="search-input">
-                                        <input type="text" placeholder="YOASOBI">
+                                        <input type="text" placeholder="YOASOBI" name="q">
                                         <button type="submit">
                                             <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
                                         </button>
