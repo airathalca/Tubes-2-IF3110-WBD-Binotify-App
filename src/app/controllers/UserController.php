@@ -2,19 +2,24 @@
 
 class UserController extends Controller implements ControllerInterface
 {
-    public function index($page = 1)
+    public function index()
+    {
+    }
+
+    public function page($number)
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
-                    $authMiddleware->isAdmin();
+                    // $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    // $authMiddleware->isAdmin();
 
                     $userModel = $this->model('UserModel');
-                    $userArr = $userModel->getByPage($page);
+                    $userArr = $userModel->getByPage($number);
 
-                    $indexView = $this->view('user', 'UserListView', ['user_arr' => $userArr]);
-                    $indexView->render();
+                    header('Content-Type: application/json');
+                    echo json_encode($userArr);
+                    exit;
 
                     break;
                 default:
@@ -22,6 +27,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 
@@ -36,6 +42,7 @@ class UserController extends Controller implements ControllerInterface
 
                     $loginView = $this->view('user', 'LoginView');
                     $loginView->render();
+                    exit;
 
                     break;
                 case 'POST':
@@ -47,7 +54,9 @@ class UserController extends Controller implements ControllerInterface
                     $userId = $userModel->login($_POST['username'], $_POST['password']);
 
                     $_SESSION['user_id'] = $userId;
-                    http_response_code(201);
+                    header('Location: ' . BASE_URL . '/home');
+
+                    exit;
 
                     break;
                 default:
@@ -55,6 +64,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 
@@ -68,10 +78,9 @@ class UserController extends Controller implements ControllerInterface
                     // $tokenMiddleware->checkToken();
 
                     unset($_SESSION['user_id']);
-
-                    header('Location:/public/user/login');
-                    http_response_code(301);
-                    exit;
+                    
+                    // Kembalikan redirect_url
+                    echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
 
                     break;
                 default:
@@ -79,6 +88,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 
@@ -102,6 +112,8 @@ class UserController extends Controller implements ControllerInterface
 
                     $userModel = $this->model('UserModel');
                     $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
+
+                    header('Location: ' . BASE_URL . '/user/login');
 
                     break;
                 default:
@@ -129,6 +141,7 @@ class UserController extends Controller implements ControllerInterface
                     }
 
                     http_response_code(200);
+                    exit;
 
                     break;
                 default:
@@ -136,6 +149,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 
@@ -156,6 +170,7 @@ class UserController extends Controller implements ControllerInterface
                     }
 
                     http_response_code(200);
+                    exit;
 
                     break;
                 default:
@@ -163,6 +178,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 }
