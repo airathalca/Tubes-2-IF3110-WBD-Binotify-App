@@ -89,6 +89,40 @@ class SongController extends Controller implements ControllerInterface
                     exit;
 
                     break;
+                case 'POST':
+                    // Halaman hanya bisa diakses admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    // Form tidak lengkap
+                    if (!$_POST['title'] || !$_POST['artist'] || !$_POST['date'] || !$_POST['genre']) {
+                        throw new LoggedException('Bad Request', 400);
+                    }
+                    // File tidak diisi
+                    if ($_FILES['audio']['error'] === 4) {
+                        throw new LoggedException('Bad Request', 400);
+                    }
+                    if ($_FILES['cover']['error'] === 4) {
+                        throw new LoggedException('Bad Request', 400);
+                    }
+
+                    $storageAccessAudio = new StorageAccess('audio');
+                    $uploadedAudio = $storageAccessAudio->saveAudio($_FILES['audio']['tmp_name']);
+
+                    $storageAccessImage = new StorageAccess('images');
+                    $uploadedImage = $storageAccessImage->saveImage($_FILES['cover']['tmp_name']);
+
+                    $songModel = $this->model('SongModel');
+                    $songID = $songModel->addSong($_POST['title'], $_POST['artist'], $_POST['date'], $_POST['genre'], $uploadedAudio, $uploadedImage, $_POST['album']);
+
+                    header("Location: /public/song/detail/$songID", true, 301);
+                    exit;
+
+                    break;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
             }

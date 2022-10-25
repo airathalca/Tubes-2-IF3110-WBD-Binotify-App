@@ -115,23 +115,23 @@
             </form>
             <div class="pad-40">
                 <p class="article-heading">Search Result</p>
+                <?php if (!$this->data['songs']) { ?>
+                    <p class="no-result">Your Search did not match any songs in our database!</p>
+                <?php } else { ?>
                 <div class="search-result-flex songs-result">
-                    <?php if (!$this->data['songs']) { ?>
-                        <p class="no-result">Your Search did not match any songs in our database!</p>
-                    <?php } else { ?>
-                    <?php foreach ($this->data['songs'] as $song) : ?>
-                        <a href="" class="single-song">
-                            <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                            <header class="song-header">
-                                <p class="title"><?= $song->judul ?></p>
-                                <p><?= $song->penyanyi ?></p>
-                            </header>
-                            <div class="song-dategenre">
-                                <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
-                                <p><?= $song->genre ?></p>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>
+                <?php foreach ($this->data['songs'] as $song) : ?>
+                    <a href="/public/song/detail/<?=$song->song_id?>" class="single-song">
+                        <img src="<?= STORAGE_URL ?>/images/7316a521430430e30f0b9f33fc8ed46b.png" alt=<?=$song->judul?>>
+                        <header class="song-header">
+                            <p class="title"><?= $song->judul ?></p>
+                            <p><?= $song->penyanyi ?></p>
+                        </header>
+                        <div class="song-dategenre">
+                            <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
+                            <p><?= $song->genre ?></p>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
                 </div>
                 <div class="pagination">
                     <p id="pagination-text">Page <span id="page-number">1</span> out of <?= $this->data['pages'] ?> pages</p>

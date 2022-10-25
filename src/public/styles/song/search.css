@@ -190,7 +190,7 @@ select {
 
 .songs-result {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
@@ -233,9 +233,8 @@ select {
         width: calc(50% - 2rem);
     }
 
-    .search-results-flex {
-        flex-direction: row;
-        flex-wrap: wrap;
+    .songs-result {
+        gap: 2rem;
     }
     .songs-container {
         flex-direction: row;

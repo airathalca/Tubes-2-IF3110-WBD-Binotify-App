@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label for="album">Album</label>
                         <select name="album" id="album">
-                            <option value="NULL">N/A</option>
+                            <option value="">N/A</option>
                             <?php foreach ($this->data['album_arr'] as $index => $album ) : ?>
                                 <option value=<?= $album->album_id ?>><?= $album->judul ?></option>
                             <?php endforeach; ?>
