@@ -173,8 +173,8 @@ class AlbumController extends Controller implements ControllerInterface
 
                     // Kirimkan response
                     header('Content-Type: application/json');
-                    // Seharusnya ke album list
-                    echo json_encode(["redirect_url" => "/public/home"]);
+                    // Redirect ke album list
+                    echo json_encode(["redirect_url" => "/public/album"]);
                     exit;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
