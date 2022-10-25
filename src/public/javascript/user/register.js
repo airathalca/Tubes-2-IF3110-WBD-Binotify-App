@@ -46,13 +46,13 @@ registrationForm.addEventListener("submit", async (e) => {
     formData.append("email", email);
     formData.append("username", username);
     formData.append("password", password);
+    formData.append("csrf_token", CSRF_TOKEN);
 
     xhr.send(formData);
 
     xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
             data = JSON.parse(xhr.responseText);
-            console.log(data);
             location.replace(data.redirect_url);
         }
     };

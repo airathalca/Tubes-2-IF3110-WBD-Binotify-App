@@ -32,7 +32,7 @@ class AuthenticationMiddleware
         if (!isset($_SESSION['user_id'])) {
             throw new LoggedException('Unauthorized', 401);
         }
-        
+
         $query = 'SELECT is_admin FROM user WHERE user_id = :user_id LIMIT 1';
 
         $this->database->query($query);
