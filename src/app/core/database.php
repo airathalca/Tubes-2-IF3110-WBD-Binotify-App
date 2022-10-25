@@ -101,4 +101,13 @@ class Database
             throw new LoggedException('Internal Server Error', 500);
         }
     }
+    
+    public function lastInsertID()
+    {
+        try {
+            return $this->db_connection->lastInsertId();
+        } catch (PDOException) {
+            throw new LoggedException('Internal Server Error', 500);
+        }
+    }
 }
