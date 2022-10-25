@@ -64,7 +64,7 @@ class UserModel
 
     public function register($email, $username, $password)
     {
-        $query = 'INSERT INTO user VALUES (NULL, :email, :username, :password, :is_admin)';
+        $query = 'INSERT INTO user (email, username, password, is_admin) VALUES (:email, :username, :password, :is_admin)';
         $options = [
             'cost' => BCRYPT_COST
         ];

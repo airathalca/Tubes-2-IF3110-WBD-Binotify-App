@@ -27,41 +27,43 @@
     <div class="white-body">
         <!-- Konten utama dari halaman harus memiliki wrapper -->
         <div class="wrapper">
-            <main>
-                <!-- Contoh konten untuk halaman registrasi -->
-                <header class="registration-header">
-                    <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Spotipi Logo">
-                    <p>Sign up for free to start listening.</p>
-                </header>
-                <form class="registration-form">
-                    <div class="form-group">
-                        <!-- Sebuah form terdiri atas label dan inputnya -->
-                        <label for="username">What's your username?</label>
-                        <input type="text" name="username" placeholder="johndoe" id="username">
+            <div class="pad-40">
+                <main>
+                    <!-- Contoh konten untuk halaman registrasi -->
+                    <header class="registration-header">
+                        <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Spotipi Logo">
+                        <p>Sign up for free to start listening.</p>
+                    </header>
+                    <form class="registration-form">
+                        <div class="form-group">
+                            <!-- Sebuah form terdiri atas label dan inputnya -->
+                            <label for="username">What's your username?</label>
+                            <input type="text" name="username" placeholder="johndoe" id="username">
+                        </div>
+                        <div class="form-group">
+                            <!-- Sebuah form terdiri atas label dan inputnya -->
+                            <label for="email">What's your email?</label>
+                            <input type="email" name="email" placeholder="john@doe.com" id="email">
+                        </div>
+                        <div class="form-group">
+                            <!-- Sebuah form terdiri atas label dan inputnya -->
+                            <label for="password">Pick a password!</label>
+                            <input type="password" name="password" placeholder="●●●●●●" id="password" autocomplete="on">
+                        </div>
+                        <div class="form-group">
+                            <!-- Sebuah form terdiri atas label dan inputnya -->
+                            <label for="confirm_password">Confirm your password!</label>
+                            <input type="password" name="confirm_password" placeholder="●●●●●●" id="confirm_password" autocomplete="on">
+                        </div>
+                        <div class="form-button">
+                            <button type="submit" class="button black-button">Sign up</button>
+                        </div>
+                    </form>
+                    <div class="form-hyperlink">
+                        <p>Have an account? <a href="<?= BASE_URL ?>/user/login">Log in</a>.</p>
                     </div>
-                    <div class="form-group">
-                        <!-- Sebuah form terdiri atas label dan inputnya -->
-                        <label for="email">What's your email?</label>
-                        <input type="email" name="email" placeholder="john@doe.com" id="email">
-                    </div>
-                    <div class="form-group">
-                        <!-- Sebuah form terdiri atas label dan inputnya -->
-                        <label for="password">Pick a password!</label>
-                        <input type="password" name="password" placeholder="●●●●●●" id="password" autocomplete="on">
-                    </div>
-                    <div class="form-group">
-                        <!-- Sebuah form terdiri atas label dan inputnya -->
-                        <label for="confirm_password">Confirm your password!</label>
-                        <input type="password" name="confirm_password" placeholder="●●●●●●" id="confirm_password" autocomplete="on">
-                    </div>
-                    <div class="form-button">
-                        <button type="submit" class="button black-button">Sign up</button>
-                    </div>
-                </form>
-                <div class="form-hyperlink">
-                    <p>Have an account? <a href="<?= BASE_URL ?>/user/login">Log in</a>.</p>
-                </div>
-            </main>
+                </main>
+            </div>
         </div>
     </div>
 </body>

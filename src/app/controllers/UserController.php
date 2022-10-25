@@ -144,6 +144,7 @@ class UserController extends Controller implements ControllerInterface
                     $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
 
                     // Kembalikan redirect_url
+                    header('Content-Type: application/json');
                     echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
 
                     break;

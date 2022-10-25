@@ -50,8 +50,9 @@ registrationForm.addEventListener("submit", async (e) => {
     xhr.send(formData);
 
     xhr.onreadystatechange = () => {
-        if (this.readyState === 4) {
-            data = JSON.parse(this.responseText);
+        if (xhr.readyState === 4) {
+            data = JSON.parse(xhr.responseText);
+            console.log(data);
             location.replace(data.redirect_url);
         }
     };
