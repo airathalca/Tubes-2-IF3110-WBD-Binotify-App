@@ -31,10 +31,10 @@
                         </div>
                         <div class="nav-container" id="nav-container">
                             <div class="nav-search">
-                                <form action="">
+                                <form action="<?= BASE_URL ?>/home/search" METHOD="GET">
                                     <label for="search">Enter song/title/artist/published year to search!</label>
                                     <div class="search-input">
-                                        <input type="text" placeholder="YOASOBI">
+                                        <input type="text" placeholder="YOASOBI" name="q">
                                         <button type="submit">
                                             <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
                                         </button>
