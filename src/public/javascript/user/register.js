@@ -3,12 +3,13 @@ const emailInput = document.querySelector("#email");
 const passwordInput = document.querySelector("#password");
 const passwordConfirmedInput = document.querySelector("#confirm-password");
 const registrationForm = document.querySelector(".registration-form");
+const usernameAlert = document.querySelector("#username-alert");
+const emailAlert = document.querySelector("#email-alert");
 
 usernameInput &&
     usernameInput.addEventListener(
         "keyup",
         debounce(() => {
-            const usernameAlert = document.querySelector("#username-alert");
             const username = usernameInput.value;
 
             const xhr = new XMLHttpRequest();
@@ -21,10 +22,8 @@ usernameInput &&
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (this.status !== 200) {
-                        console.log(username);
                         usernameAlert.className = "alert-hide";
                     } else {
-                        console.log(username);
                         usernameAlert.className = "alert-show";
                     }
                 }
@@ -36,7 +35,6 @@ emailInput &&
     emailInput.addEventListener(
         "keyup",
         debounce(() => {
-            const emailAlert = document.querySelector("#email-alert");
             const email = emailInput.value;
 
             const xhr = new XMLHttpRequest();
@@ -49,10 +47,8 @@ emailInput &&
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (this.status !== 200) {
-                        console.log(email);
                         emailAlert.className = "alert-hide";
                     } else {
-                        console.log(email);
                         emailAlert.className = "alert-show";
                     }
                 }
