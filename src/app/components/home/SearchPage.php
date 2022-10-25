@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +13,14 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/search.css">
+    <script type="text/javascript" defer>
+        const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+    </script>
+    <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
     <title>Search Page</title>
 </head>
 <body>
-    <div class="black-body">     
+    <div class="black-body">
         <div class="wrapper">
             <div class="big-flex-container">
                 <main class="left-side">
@@ -118,7 +123,5 @@
             </div>
         </div>
     </div>
-
-    <script src="<?= BASE_URL ?>/javascript/home/home.js"></script>
 </body>
 </html>
