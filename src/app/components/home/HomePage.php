@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
-    <!-- JavaScript -->
+    <!-- JavaScript DOM and AJAX -->
     <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
     <title>Home Page</title>
 </head>

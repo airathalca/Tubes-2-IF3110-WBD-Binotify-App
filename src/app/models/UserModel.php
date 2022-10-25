@@ -34,6 +34,18 @@ class UserModel
         return $userArr;
     }
 
+    public function pageCount()
+    {
+        $query = 'SELECT CEIL(COUNT(user_id) / :rows_per_page) AS page_count FROM user';
+
+        $this->database->query($query);
+        $this->database->bind('rows_per_page', ROWS_PER_PAGE);
+
+        $user = $this->database->fetch();
+
+        return $user->page_count;
+    }
+
     public function login($username, $password)
     {
         $query = 'SELECT user_id, password FROM user WHERE username = :username LIMIT 1';

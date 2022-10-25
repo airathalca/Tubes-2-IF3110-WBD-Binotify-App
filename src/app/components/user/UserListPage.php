@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/user/user-list.css">
+    <!-- JavaScript Constant -->
+    <script type="text/javascript" defer>
+        const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+    </script>
+    <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/user-list.js" defer></script>
     <title>Spotipi</title>
 </head>
@@ -21,15 +26,9 @@
     <nav></nav>
     <main>
         <section>
-            <?php foreach ($this->data['user_arr'] as $index => $user) : ?>
-                <article>
-                    <div>Index: <?= $index ?></div>
-                    <div>User ID: <?= $user->user_id ?></div>
-                    <div>Email: <?= $user->email ?></div>
-                    <div>Username: <?= $user->username ?></div>
-                    <div>Admin: <?= $user->is_admin ?></div>
-                </article>
-            <?php endforeach; ?>
+            <?php foreach (range(1, $this->data['page_count']) as $number) : ?>
+                <a href="<?= BASE_URL ?>/user/page/<?= $number ?>"><?= $number ?></a>
+            <? endforeach ?>
         </section>
         <aside></aside>
     </main>

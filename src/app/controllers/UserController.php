@@ -4,6 +4,32 @@ class UserController extends Controller implements ControllerInterface
 {
     public function index()
     {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent Access except Admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
+
+                    $userModel = $this->model('UserModel');
+                    $pageCount = $userModel->pageCount();
+
+                    $userListView = $this->view('user', 'UserListView', ['page_count' => $pageCount]);
+                    $userListView->render();
+                    exit;
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
     }
 
     public function page($number)
@@ -11,8 +37,13 @@ class UserController extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    // $authMiddleware = $this->middleware('AuthenticationMiddleware');
-                    // $authMiddleware->isAdmin();
+                    // Prevent Access except Admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
 
                     $userModel = $this->model('UserModel');
                     $userArr = $userModel->getByPage($number);
@@ -52,10 +83,9 @@ class UserController extends Controller implements ControllerInterface
 
                     $userModel = $this->model('UserModel');
                     $userId = $userModel->login($_POST['username'], $_POST['password']);
-
                     $_SESSION['user_id'] = $userId;
-                    header('Location: ' . BASE_URL . '/home');
 
+                    header('Location: ' . BASE_URL . '/home');
                     exit;
 
                     break;
