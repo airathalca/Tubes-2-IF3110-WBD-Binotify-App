@@ -136,6 +136,7 @@ class UserController extends Controller implements ControllerInterface
                     }
 
                     http_response_code(200);
+                    exit;
 
                     break;
                 default:
@@ -143,6 +144,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 
@@ -163,6 +165,7 @@ class UserController extends Controller implements ControllerInterface
                     }
 
                     http_response_code(200);
+                    exit;
 
                     break;
                 default:
@@ -170,6 +173,7 @@ class UserController extends Controller implements ControllerInterface
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+            exit;
         }
     }
 }

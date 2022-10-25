@@ -8,8 +8,6 @@ class HomeController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
                     // Cari user ID
-                    $homeView = null;
-
                     if (isset($_SESSION['user_id'])) {
                         // Ada data user_id, coba fetch data username!
                         $userModel = $this->model('UserModel');

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +13,13 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
+    <!-- JavaScript -->
+    <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
     <title>Home Page</title>
 </head>
+
 <body>
-    <div class="black-body">     
+    <div class="black-body">
         <div class="wrapper">
             <div class="big-flex-container">
                 <main class="left-side">
@@ -41,11 +45,11 @@
                                 Album list
                             </a>
                             <?php
-                                if ($this->data['username']) { ?>
-                                    <a href="#" id="log-out" class="nav-link">
-                                        Log out
-                                    </a>
-                                <?php } 
+                            if ($this->data['username']) { ?>
+                                <a href="#" id="log-out" class="nav-link">
+                                    Log out
+                                </a>
+                            <?php }
                             ?>
                         </div>
                     </nav>
@@ -170,16 +174,15 @@
                 <aside class="right-side">
                     <img src="<?= BASE_URL ?>/images/assets/logo-notext-dark.svg" alt="Spotipi Logo">
                     <?php
-                        if (!$this->data['username']) { ?>
-                            <p><a href="/public/user/login">Log in</a> or <a href="/public/user/register">Register</a> to fully experience Spotipi!</p>
-                        <?php } else { ?>
-                            <p>Hello, <strong><?php echo $this->data['username'] ?></strong>!</p>
-                        <?php } ?>
+                    if (!$this->data['username']) { ?>
+                        <p><a href="/public/user/login">Log in</a> or <a href="/public/user/register">Register</a> to fully experience Spotipi!</p>
+                    <?php } else { ?>
+                        <p>Hello, <strong><?php echo $this->data['username'] ?></strong>!</p>
+                    <?php } ?>
                 </aside>
             </div>
         </div>
     </div>
-
-    <script src="<?= BASE_URL ?>/javascript/home/home.js"></script>
 </body>
+
 </html>

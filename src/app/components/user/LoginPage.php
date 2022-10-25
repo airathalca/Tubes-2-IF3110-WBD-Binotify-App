@@ -8,6 +8,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="<?= BASE_URL ?>/images/icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/images/icon/favicon-16x16.png">
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
+    <!-- Page-specific CSS -->
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/user/login.css">
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/login.js" defer></script>
     <title>Spotipi</title>
