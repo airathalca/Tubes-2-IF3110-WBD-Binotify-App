@@ -97,42 +97,42 @@
                     <label for="sort">Sorted by ...</label>
                     <select name="sort" id="sort">
                         <option value="judul"
-                            <?php if ($_GET['sort'] == 'judul') { ?>
+                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul') { ?>
                                 selected="selected"
                             <?php } ?>
                         >
                             Title (A-Z)
                         </option>
                         <option value="judul desc"
-                            <?php if ($_GET['sort'] == 'judul desc') { ?>
+                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul desc') { ?>
                                 selected="selected"
                             <?php } ?>
                         >
                             Title (Z-A)
                         </option>
                         <option value="penyanyi"
-                            <?php if ($_GET['sort'] == 'penyanyi') { ?>
+                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi') { ?>
                                 selected="selected"
                             <?php } ?>
                         >
                             Singer (A-Z)
                         </option>
                         <option value="penyanyi desc"
-                            <?php if ($_GET['sort'] == 'penyanyi desc') { ?>
+                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi desc') { ?>
                                 selected="selected"
                             <?php } ?>
                         >
                             Singer (Z-A)
                         </option>
                         <option value="tanggal_terbit"
-                            <?php if ($_GET['sort'] == 'tanggal_terbit') { ?>
+                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit') { ?>
                                 selected="selected"
                             <?php } ?>
                         >
                             Date (Newest First)
                         </option>
                         <option value="tanggal_terbit desc"
-                            <?php if ($_GET['sort'] == 'tanggal_terbit desc') { ?>
+                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit desc') { ?>
                                 selected="selected"
                             <?php } ?>
                         >
@@ -146,7 +146,7 @@
                         <option value="all"></option>
                         <?php foreach ($this->data['genre_arr'] as $index => $genre) : ?>
                             <option value=<?= $genre->genre ?>
-                                <?php if ($_GET['filter'] == $genre->genre) { ?>
+                                <?php if (isset($_GET['filter']) && $_GET['filter'] == $genre->genre) { ?>
                                     selected="selected"
                                 <?php } ?>
                             >
@@ -167,7 +167,7 @@
                 <div class="search-result-flex songs-result">
                 <?php foreach ($this->data['songs'] as $song) : ?>
                     <a href="/public/song/detail/<?=$song->song_id?>" class="single-song">
-                        <img src="<?= STORAGE_URL ?>/images/7316a521430430e30f0b9f33fc8ed46b.png" alt=<?=$song->judul?>>
+                        <img src="<?= STORAGE_URL ?>/images/<?=$song->image_path?>" alt=<?=$song->judul?>>
                         <header class="song-header">
                             <p class="title"><?= $song->judul ?></p>
                             <p><?= $song->penyanyi ?></p>

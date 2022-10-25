@@ -84,7 +84,7 @@
                             <div class="songs-container">
                                 <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
                                     <a href="" class="single-song">
-                                        <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
+                                        <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt="<?= $song->judul ?>">
                                         <header class="song-header">
                                             <p class="title"><?= $song->judul ?></p>
                                             <p><?= $song->penyanyi ?></p>
