@@ -10,7 +10,7 @@ class AlbumModel
     }
 
     public function getAlbums($page) {
-        $query = 'SELECT * FROM album LIMIT :limit OFFSET :offset';
+        $query = 'SELECT * FROM album ORDER BY judul ASC LIMIT :limit OFFSET :offset';
 
         $this->database->query($query);
         $this->database->bind('limit', ROWS_PER_PAGE);
