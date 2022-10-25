@@ -106,7 +106,7 @@ class SongController extends Controller implements ControllerInterface
                     if ($_FILES['audio']['error'] === 4 || $_FILES['cover']['error'] === 4) {
                         throw new LoggedException('Bad Request', 400);
                     }
-
+                    
                     $storageAccessAudio = new StorageAccess('songs');
                     $uploadedAudio = $storageAccessAudio->saveAudio($_FILES['audio']['tmp_name']);
 

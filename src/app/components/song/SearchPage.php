@@ -87,17 +87,57 @@
             <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="search-form">
                 <div class="form-group">
                     <label for="search">Searching for ...</label>
-                    <input type="text" name="q" placeholder="Chisato X Takina" id="search">
+                    <input type="text" name="q" placeholder="Title/year/artist/published date" id="search"
+                        <?php if ($_GET['q']) { ?>
+                            value="<?= $_GET['q'] ?>"
+                        <?php } ?>
+                    >
                 </div>
                 <div class="form-group">
                     <label for="sort">Sorted by ...</label>
                     <select name="sort" id="sort">
-                        <option value="judul">Title (A-Z)</option>
-                        <option value="judul desc">Title (Z-A)</option>
-                        <option value="penyanyi">Singer (A-Z)</option>
-                        <option value="penyanyi desc">Singer (Z-A)</option>
-                        <option value="tanggal_terbit">Date (Newest First)</option>
-                        <option value="tanggal_terbit desc">Date (Latest First)</option>
+                        <option value="judul"
+                            <?php if ($_GET['sort'] == 'judul') { ?>
+                                selected="selected"
+                            <?php } ?>
+                        >
+                            Title (A-Z)
+                        </option>
+                        <option value="judul desc"
+                            <?php if ($_GET['sort'] == 'judul desc') { ?>
+                                selected="selected"
+                            <?php } ?>
+                        >
+                            Title (Z-A)
+                        </option>
+                        <option value="penyanyi"
+                            <?php if ($_GET['sort'] == 'penyanyi') { ?>
+                                selected="selected"
+                            <?php } ?>
+                        >
+                            Singer (A-Z)
+                        </option>
+                        <option value="penyanyi desc"
+                            <?php if ($_GET['sort'] == 'penyanyi desc') { ?>
+                                selected="selected"
+                            <?php } ?>
+                        >
+                            Singer (Z-A)
+                        </option>
+                        <option value="tanggal_terbit"
+                            <?php if ($_GET['sort'] == 'tanggal_terbit') { ?>
+                                selected="selected"
+                            <?php } ?>
+                        >
+                            Date (Newest First)
+                        </option>
+                        <option value="tanggal_terbit desc"
+                            <?php if ($_GET['sort'] == 'tanggal_terbit desc') { ?>
+                                selected="selected"
+                            <?php } ?>
+                        >
+                            Date (Latest First)
+                        </option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -105,7 +145,13 @@
                     <select name="filter" id="filter">
                         <option value="all"></option>
                         <?php foreach ($this->data['genre_arr'] as $index => $genre) : ?>
-                            <option value=<?= $genre->genre ?>><?= $genre->genre ?></option>
+                            <option value=<?= $genre->genre ?>
+                                <?php if ($_GET['filter'] == $genre->genre) { ?>
+                                    selected="selected"
+                                <?php } ?>
+                            >
+                                <?= $genre->genre ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
