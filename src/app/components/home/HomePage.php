@@ -47,7 +47,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <a href="" class="nav-link">
+                                <a href="/public/album" class="nav-link">
                                     Album list
                                 </a>
                                 <?php
@@ -63,10 +63,10 @@
                                 <a href="#" class="nav-link">
                                     Add song
                                 </a>
-                                <a href="<?= BASE_URL?>/album/add" class="nav-link">
+                                <a href="/public/album/add" class="nav-link">
                                     Add album
                                 </a>
-                                <a href="#" class="nav-link">
+                                <a href="/public/album" class="nav-link">
                                     Album list
                                 </a>
                                 <a href="#" id="log-out" class="nav-link">
@@ -78,6 +78,9 @@
                     <article>
                         <div class="pad-40">
                             <p class="article-heading">Songs for you</p>
+                            <?php if (!$this->data['song_arr']) { ?>
+                                <p class="info">There are currently no songs available on Spotipi!</p>
+                            <?php } ?>
                             <div class="songs-container">
                                 <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
                                     <a href="" class="single-song">

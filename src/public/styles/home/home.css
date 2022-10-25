@@ -172,6 +172,11 @@
     color: var(--darkgreen);
 }
 
+.info {
+    color: var(--white);
+    margin-top: 0.5rem;
+}
+
 @media (min-width: 800px) {
     .single-song {
         width: calc(50% - 2rem);
