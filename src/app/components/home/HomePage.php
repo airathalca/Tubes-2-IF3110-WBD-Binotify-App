@@ -60,7 +60,7 @@
                             </div>
                         <?php else : ?>
                             <div class="nav-container" id="nav-container">
-                                <a href="#" class="nav-link">
+                                <a href="<?= BASE_URL ?>/song/add" class="nav-link">
                                     Add song
                                 </a>
                                 <a href="<?= BASE_URL ?>/album/add" class="nav-link">
