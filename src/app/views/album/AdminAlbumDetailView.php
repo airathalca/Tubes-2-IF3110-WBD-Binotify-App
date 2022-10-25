@@ -1,6 +1,6 @@
 <?php
 
-class AlbumDetailView implements ViewInterface
+class AdminAlbumDetailView implements ViewInterface
 {
     public $data;
     public function __construct($data = [])
@@ -10,6 +10,6 @@ class AlbumDetailView implements ViewInterface
 
     public function render()
     {
-        require_once __DIR__ . '/../../components/album/AlbumDetailPage.php';
+        require_once __DIR__ . '/../../components/album/AdminAlbumDetailPage.php';
     }
 }

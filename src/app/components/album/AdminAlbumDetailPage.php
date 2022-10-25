@@ -18,7 +18,13 @@
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
     </script>
     <script src="<?= BASE_URL ?>/javascript/album/add-album.js" defer></script>
-    <title><?= $this->data['judul'] ?></title>
+    <title>
+        <?php if ($this->data) { ?>
+            <?= $this->data['judul'] ?>
+        <?php } else { ?>
+            Album not found
+        <?php } ?>
+    </title>
 </head>
 
 <body>
@@ -28,6 +34,7 @@
 
             <!-- Form -->
             <div class="pad-40">
+                <p class="details-header">ADMIN VIEW!!!</p>
                 <p class="details-header">Album details</p>
                 <?php if ($this->data) { ?>
                     <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">

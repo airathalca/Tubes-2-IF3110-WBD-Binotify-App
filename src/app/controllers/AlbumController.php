@@ -31,7 +31,22 @@ class AlbumController extends Controller implements ControllerInterface
                         $album_props = ["album_id" => $album->album_id, "judul" => $album->judul, "penyanyi" => $album->penyanyi, "total_duration" => $minutes . " min " . $seconds . " sec", "image_path" => $album->image_path, "tanggal_terbit" => $album->tanggal_terbit, "genre" => $album->genre];
                     }
 
-                    $albumDetailView = $this->view('album', 'AlbumDetailView', $album_props);
+                    // Decide if user view or not
+                    $albumDetailView;
+
+                    if (!isset($_SESSION['user_id'])) {
+                        $albumDetailView = $this->view('album', 'UserAlbumDetailView', $album_props);
+                    } else {
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+
+                        if (!$user || !$user->is_admin) {
+                            $albumDetailView = $this->view('album', 'UserAlbumDetailView', $album_props);
+                        } else {
+                            /* View admin! */
+                            $albumDetailView = $this->view('album', 'AdminAlbumDetailView', $album_props);
+                        }
+                    }
 
                     $albumDetailView->render();
 
