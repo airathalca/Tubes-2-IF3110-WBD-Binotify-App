@@ -4,7 +4,57 @@ class AlbumController extends Controller implements ControllerInterface
 {
     public function index()
     {
-        echo 'Taylor Swift keren!';
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent CSRF Attacks
+                    // $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    // $tokenMiddleware->putToken();
+
+                    // Load album-album di page 1
+                    $albumModel = $this->model('AlbumModel');
+                    $res = $albumModel->getAlbums(1);
+
+                    // Load AlbumListView
+                    $albumListView = $this->view('album', 'AlbumListView', $res);
+                    $albumListView->render();
+                    exit;
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
+
+    public function fetch($page)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
+
+                    // Load album-album di page 1
+                    $albumModel = $this->model('AlbumModel');
+                    $res = $albumModel->getAlbums((int) $page);
+
+                    header('Content-Type: application/json');
+                    echo json_encode($res);
+                    exit;
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
     }
 
     public function detail($params)

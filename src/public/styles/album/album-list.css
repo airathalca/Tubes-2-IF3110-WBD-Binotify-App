@@ -1,0 +1,99 @@
+.album-list-header {
+    color: var(--white);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.albums-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.single-album {
+    background: var(--black-lighter);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    text-decoration: none;
+    transition: all 0.3s linear;
+}
+
+.single-album:hover {
+    cursor: pointer;
+    transform: scale(1.025);
+}
+
+.single-album img {
+    margin: 0 auto;
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+
+.album-header {
+    margin-top: 16px;
+}
+
+.album-header p {
+    color: var(--white);
+}
+
+.album-header p.title {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.album-dategenre {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.album-dategenre p {
+    color: var(--white);
+}
+
+.pagination {
+    margin-top: 2.5rem;
+}
+
+.pagination p {
+    color: var(--white);
+}
+
+.pagination-buttons {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 5rem;
+}
+
+.pagination-buttons button {
+    background: var(--white);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.pagination-buttons button:hover {
+    opacity: 0.8;
+}
+
+.pagination-buttons button:disabled {
+    opacity: 0.3;
+}
+
+.pagination span {
+    color: var(--white);
+}
+
+@media (min-width: 800px) {
+    .single-album {
+        width: calc(50% - 2rem);
+    }
+
+    .albums-list {
+        gap: 2rem;
+    }
+}

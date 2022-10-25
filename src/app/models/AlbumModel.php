@@ -9,6 +9,25 @@ class AlbumModel
         $this->database = new Database();
     }
 
+    public function getAlbums($page) {
+        $query = 'SELECT * FROM album LIMIT :limit OFFSET :offset';
+
+        $this->database->query($query);
+        $this->database->bind('limit', ROWS_PER_PAGE);
+        $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
+
+        $albums = $this->database->fetchAll();
+
+        $query = 'SELECT COUNT(*) AS album_count FROM album';
+        $this->database->query($query);
+        $albums_count = $this->database->fetch();
+        $pages_count = ceil($albums_count->album_count / ROWS_PER_PAGE);
+
+        $return_array = ["albums" => $albums, "pages" => $pages_count];
+
+        return $return_array;
+    }
+
     public function getAlbumFromID($albumID) {
         $query = 'SELECT album_id, judul, penyanyi, total_duration, image_path, tanggal_terbit, genre FROM album WHERE album_id = :album_id LIMIT 1';
 
