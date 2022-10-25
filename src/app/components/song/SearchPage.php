@@ -16,7 +16,7 @@
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
     </script>
-    <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
+    <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>Search Page</title>
 </head>
 <body>
@@ -32,7 +32,7 @@
                     <?php
                     if (!$this->data['username'] || !$this->data['is_admin']) { ?>
                         <div class="nav-container" id="nav-container">
-                            <a href="#" class="nav-link">
+                            <a href="<?= BASE_URL?>/album" class="nav-link">
                                 Album list
                             </a>
                             <?php
@@ -45,13 +45,13 @@
                         </div>
                     <?php } else { ?>
                         <div class="nav-container" id="nav-container">
-                            <a href="#" class="nav-link">
+                            <a href="<?= BASE_URL?>/song/add" class="nav-link">
                                 Add song
                             </a>
-                            <a href="#" class="nav-link">
+                            <a href="<?= BASE_URL?>/album/add" class="nav-link">
                                 Add album
                             </a>
-                            <a href="#" class="nav-link">
+                            <a href="<?= BASE_URL?>/album" class="nav-link">
                                 Album list
                             </a>
                             <a href="#" id="log-out" class="nav-link">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label for="sort">Sorted by ...</label>
-                            <select name="sort" id="sort">
+                            <select name="sort" id="dropdown">
                                 <option value="judul">Title (A-Z)</option>
                                 <option value="judul desc">Title (Z-A)</option>
                                 <option value="penyanyi">Singer (A-Z)</option>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="form-group">
                             <label for="genre">Select a genre</label>
-                            <select name="filter" id="filter">
+                            <select name="filter" id="dropdown">
                                 <option value="all"></option>
                                 <?php foreach ($this->data['genre_arr'] as $index => $genre ) : ?>
                                     <option value=<?= $genre->genre ?>><?= $genre->genre ?></option>

@@ -9,6 +9,13 @@ class AlbumModel
         $this->database = new Database();
     }
 
+    public function getAllAlbum() {
+        $query = 'SELECT album_id, judul FROM album';
+        $this->database->query($query);
+        $albumArr = $this->database->fetchAll();
+        return $albumArr;
+    }
+    
     public function getAlbumFromID($albumID) {
         $query = 'SELECT album_id, judul, penyanyi, total_duration, image_path, tanggal_terbit, genre FROM album WHERE album_id = :album_id LIMIT 1';
 
