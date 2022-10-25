@@ -44,22 +44,13 @@ class AlbumController extends Controller implements ControllerInterface
                     if ($_FILES['cover']['error'] === 4) {
                         throw new LoggedException('Bad Request', 400);
                     }
-                    // File tidak sesuai extensionnya
-                    $extension = explode('.', $_FILES['cover']['name']);
-                    $extension = strtolower(end($extension));
-                    if (!in_array($extension, ['jpeg', 'png'])) {
-                        throw new LoggedException('Bad Request', 400);
-                    }
+
+                    $storageAccess = new StorageAccess('images');
+                    $uploadedFile = $storageAccess->saveImage($_FILES['cover']['tmp_name']);
                     
                     $albumModel = $this->model('AlbumModel');
-                    $albumID = $albumModel->createAlbum($_POST['title'], $_POST['artist'], $_FILES['cover']['tmp_name'], $_POST['date'], $_POST['genre']);
-
-                    $fileLocation = "/images/album/$albumID.$extension";
+                    $albumID = $albumModel->createAlbum($_POST['title'], $_POST['artist'], $uploadedFile, $_POST['date'], $_POST['genre']);
                     
-                    move_uploaded_file($_FILES['cover']['tmp_name'], '../storage' . $fileLocation);
-
-                    $albumModel->changeAlbumPath($albumID, $fileLocation);
-
                     // Redirect <seharusnya ke album detail>
                     header('Location: /public/album/add', true, 301);
                     exit;
