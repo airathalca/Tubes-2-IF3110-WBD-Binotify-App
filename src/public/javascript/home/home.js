@@ -23,7 +23,6 @@ logOutButton && logOutButton.addEventListener('click', async (e) => {
 
     const xhr = new XMLHttpRequest();
 
-    console.log(CSRF_TOKEN);
     xhr.open("POST", `/public/user/logout?csrf_token=${CSRF_TOKEN}`);
     xhr.send();
 
