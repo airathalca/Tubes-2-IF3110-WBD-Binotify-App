@@ -17,11 +17,19 @@ toggleButton.addEventListener('click', () => {
 
 const logOutButton = document.querySelector("#log-out");
 
-logOutButton.addEventListener('click', async (e) => {
+logOutButton && logOutButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    let response = await fetch('/public/user/logout', {
-        method: 'POST'
-    });
-    let data = await response.json();
-    location.replace(data.redirect_url);
+    let data = {};
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "/public/user/logout");
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4) {
+            data = JSON.parse(this.responseText);
+            location.replace(data.redirect_url);
+        }
+    }
 })
