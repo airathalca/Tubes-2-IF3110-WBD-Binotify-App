@@ -47,7 +47,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <a href="#" class="nav-link">
+                                <a href="" class="nav-link">
                                     Album list
                                 </a>
                                 <?php
@@ -63,7 +63,7 @@
                                 <a href="#" class="nav-link">
                                     Add song
                                 </a>
-                                <a href="#" class="nav-link">
+                                <a href="<?= BASE_URL?>/album/add" class="nav-link">
                                     Add album
                                 </a>
                                 <a href="#" class="nav-link">
@@ -79,116 +79,19 @@
                         <div class="pad-40">
                             <p class="article-heading">Songs for you</p>
                             <div class="songs-container">
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
-                                <a href="" class="single-song">
-                                    <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
-                                    <header class="song-header">
-                                        <p class="title">Bidadari Surga</p>
-                                        <p>Chisato X Takina</p>
-                                    </header>
-                                    <div class="song-dategenre">
-                                        <p>1 April 2016</p>
-                                        <p>Rock</p>
-                                    </div>
-                                </a>
+                                <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
+                                    <a href="" class="single-song">
+                                        <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
+                                        <header class="song-header">
+                                            <p class="title"><?= $song->judul?></p>
+                                            <p><?= $song->penyanyi?></p>
+                                        </header>
+                                        <div class="song-dategenre">
+                                            <p><?= substr($song->tanggal_terbit,0,4)?></p>
+                                            <p><?= $song->genre?></p>
+                                        </div>
+                                    </a>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </article>
