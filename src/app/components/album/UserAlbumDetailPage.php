@@ -17,7 +17,6 @@
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
     </script>
-    <script src="<?= BASE_URL ?>/javascript/album/add-album.js" defer></script>
     <title>
         <?php if ($this->data) { ?>
             <?= $this->data['judul'] ?>

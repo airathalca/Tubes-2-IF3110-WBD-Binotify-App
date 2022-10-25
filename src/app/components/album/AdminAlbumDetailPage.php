@@ -12,7 +12,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/album/album-detail.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/album/album-detail-admin.css">
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
@@ -34,41 +34,63 @@
 
             <!-- Form -->
             <div class="pad-40">
-                <p class="details-header">ADMIN VIEW!!!</p>
                 <p class="details-header">Album details</p>
                 <?php if ($this->data) { ?>
-                    <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">
-                    <p class="album-title"><?= $this->data['judul'] ?></p>
-                    <p class="album-artist"><?= $this->data['penyanyi'] ?></p>
-                    <p class="album-duration"><?= $this->data['total_duration'] ?></p>
+                    <!-- Album related info -->
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">
+                            <label for="cover">Upload new photo</label>
+                            <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Album title</label>
+                            <input type="text" name="title" id="title" value=<?= $this->data['judul'] ?>>
+                        </div>
+                        <div class="form-group">
+                            <label for="artist">Artist</label>
+                            <input type="text" name="artist" id="artist" value=<?= $this->data['penyanyi'] ?>>
+                        </div>
+                        <div class="button-group">
+                            <button class="button green-button" type="submit">Save changes</button>
+                            <button class="button red-button" type="button">Delete album</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Delete songs -->
                     <p class="songs-list-header">Songs inside this album:</p>
                     <div class="songs-list">
-                        <a href="#" class="single-song">
+                        <div class="single-song">
                             <p class="song-title">Bidadari Surga</p>
                             <p class="song-genre">Rock</p>
                             <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                        <a href="#" class="single-song">
+                            <button class="button red-button">Delete song</button>
+                        </div>
+                        <div class="single-song">
                             <p class="song-title">Bidadari Surga</p>
                             <p class="song-genre">Rock</p>
                             <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                        <a href="#" class="single-song">
+                            <button class="button red-button">Delete song</button>
+                        </div>
+                        <div class="single-song">
                             <p class="song-title">Bidadari Surga</p>
                             <p class="song-genre">Rock</p>
                             <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                        <a href="#" class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                        <a href="#" class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
+                            <button class="button red-button">Delete song</button>
+                        </div>
                     </div>
+
+                    <!-- Add song into album! -->
+                    <p class="add-song-header">Add a song into this album!</p>
+                    <form action="" method="post" class="add-song-form">
+                        <div class="dropdown">
+                            <select name="song" id="song">
+                                <option value="1">Bidadari Surga</option>
+                                <option value="2">Bidadari Neraka</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="button green-button">Add song to album</button>
+                    </form>
                 <?php } else { ?>
                     <p class="info">Cannot find the album you're looking for!</p>
                 <?php } ?>
