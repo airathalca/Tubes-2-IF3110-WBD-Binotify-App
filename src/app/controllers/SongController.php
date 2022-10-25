@@ -11,37 +11,52 @@ class SongController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
                     $q = '';
-                    $sort = 'judul';
-                    $filter = 'all';
-
                     if (isset($_GET['q'])) {
                         $q = $_GET['q'];
                     }
-                    if (isset($_GET['filter'])) {
-                        $filter = $_GET['filter'];
-                    }
-                    if (isset($_GET['sort'])) {
-                        $sort = $_GET['sort'];
-                    }
                     $songModel = $this->model('SongModel');
                     $genreArr = $songModel->getGenre();
-                    $songArr = $songModel->getByQuery($q, $sort, $filter);
+                    $songArr = $songModel->getByQuery($q);
                     if (isset($_SESSION['user_id'])) {
                         $userModel = $this->model('UserModel');
                         $user = $userModel->getUserFromID($_SESSION['user_id']);
-                        $searchView = $this->view('song', 'SearchView', ['username' => $user->username, 'is_admin' => $user->is_admin, 
-                        'genre_arr' => $genreArr, 'song_arr' => $songArr]);
+                        $searchView = $this->view('song', 'SearchView', array_merge(['is_admin' => $user->is_admin,'username' => $user->username, 'genre_arr' => $genreArr], $songArr) );
                     } else {
-                        $searchView = $this->view('song', 'SearchView', ['username' => null, 
-                        'genre_arr' => $genreArr, 'song_arr' => $songArr]);
+                        $searchView = $this->view('song', 'SearchView', array_merge(['username' => null, 'genre_arr' => $genreArr], $songArr));
                     }
                     $searchView->render();
+                    exit;
+
                     break;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
             }
         } catch (Exception $e) {
             http_response_code($e->getCode());
+        }
+    }
+
+    public function fetch($page) {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
+
+                    $songModel = $this->model('SongModel');
+                    $songArr = $songModel->getByQuery($_GET['q'], $_GET['sort'], $_GET['filter'], $page);
+
+                    header('Content-Type: application/json');
+                    echo json_encode($songArr);
+                    exit;
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
         }
     }
 
