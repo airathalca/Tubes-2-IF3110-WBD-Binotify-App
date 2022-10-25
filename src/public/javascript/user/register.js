@@ -6,6 +6,7 @@ const passwordConfirmedInput = document.querySelector("#confirm_password");
 
 registrationForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    let data = {};
 
     const username = usernameInput.value;
     const email = emailInput.value;
@@ -40,13 +41,18 @@ registrationForm.addEventListener("submit", async (e) => {
     const xhr = new XMLHttpRequest();
 
     xhr.open("POST", "/public/user/register");
-    xhr.send(
-        `username=${username}&email=${email}&password=${password}&csrf_token=${CSRF_TOKEN}`
-    );
+
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("csrf_token", CSRF_TOKEN);
+
+    xhr.send(formData);
 
     xhr.onreadystatechange = () => {
-        if (this.readyState === XMLHttpRequest.DONE) {
-            const data = JSON.parse(this.responseText);
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            data = JSON.parse(xhr.responseText);
             location.replace(data.redirect_url);
         }
     };

@@ -7,6 +7,100 @@ class AlbumController extends Controller implements ControllerInterface
         echo 'Taylor Swift keren!';
     }
 
+    public function detail($params)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
+
+                    $albumID = (int) $params;
+
+                    // Grab album data
+                    $albumModel = $this->model('AlbumModel');
+                    $album = $albumModel->getAlbumFromID($albumID);
+                    $album_props = [];
+
+                    if ($album) {
+                        // Format duration
+                        $minutes = floor(((int) $album->total_duration) / 60);
+                        $seconds = ((int) $album->total_duration) % 60;
+    
+                        $album_props = ["album_id" => $album->album_id, "judul" => $album->judul, "penyanyi" => $album->penyanyi, "total_duration" => $minutes . " min " . $seconds . " sec", "image_path" => $album->image_path, "tanggal_terbit" => $album->tanggal_terbit, "genre" => $album->genre];
+                    }
+
+                    // Decide if user view or not
+                    $albumDetailView;
+
+                    if (!isset($_SESSION['user_id'])) {
+                        $albumDetailView = $this->view('album', 'UserAlbumDetailView', $album_props);
+                    } else {
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+
+                        if (!$user || !$user->is_admin) {
+                            $albumDetailView = $this->view('album', 'UserAlbumDetailView', $album_props);
+                        } else {
+                            /* View admin! */
+                            $albumDetailView = $this->view('album', 'AdminAlbumDetailView', $album_props);
+                        }
+                    }
+
+                    $albumDetailView->render();
+
+                    exit;
+
+                    break;
+                case 'POST':
+                    // Halaman hanya bisa diakses admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    /* Lakukan validasi */
+                    // Form ada yang kosong
+                    if (!$_POST['title'] || !$_POST['artist'] || !$_POST['date'] || !$_POST['genre']) {
+                        throw new LoggedException('Bad Request', 400);
+                    }
+
+                    // Perbarui dahulu data yang ada, file dilakukan belakangan.
+                    $albumModel = $this->model('AlbumModel');
+                    $albumID = $_POST['album_id'];
+
+                    $albumModel->changeAlbumTitle($albumID, $_POST['title']);
+                    $albumModel->changeAlbumArtist($albumID, $_POST['artist']);
+                    $albumModel->changeAlbumDate($albumID, $_POST['date']);
+                    $albumModel->changeAlbumGenre($albumID, $_POST['genre']);
+
+                    if ($_FILES['cover']['error'] !== 4) {
+                        // Perlu memperbarui file!
+                        $storageAccess = new StorageAccess('images');
+                        
+                        $storageAccess->deleteFile($_POST['old_path']);
+
+                        $uploadedFile = $storageAccess->saveImage($_FILES['cover']['tmp_name']);
+                        
+                        // Update entri database
+                        $albumModel->changeAlbumPath($albumID, $uploadedFile);
+                    }
+
+                    // Refresh page!
+                    header("Location: /public/album/detail/$albumID", true, 301);
+                    exit;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
+
     public function add() 
     {
         try {

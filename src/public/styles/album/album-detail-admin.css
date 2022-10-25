@@ -1,0 +1,83 @@
+.details-header {
+    color: var(--white);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.album-cover {
+    width: 100%;
+    max-width: 300px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    color: var(--white);
+}
+
+.form-group input[type="file"] {
+    align-self: flex-start;
+    color: var(--white);
+    font-family: var(--roboto);
+}
+
+.form-group input[type="text"], .form-group input[type="date"] {
+    padding: 1rem;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.songs-list-header {
+    color: var(--white);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.songs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.single-song {
+    padding: 1rem;
+    background: var(--black-lighter);
+    border-radius: 0.5rem;
+}
+
+.single-song p {
+    color: var(--white);
+}
+
+.song-dateduration {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.add-song-header {
+    margin-top: 1.5rem;
+    color: var(--white);
+}
+
+.add-song-form {
+    display: block;
+}
+
+.dropdown select {
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.add-song-form button {
+    margin-top: 1rem;
+}

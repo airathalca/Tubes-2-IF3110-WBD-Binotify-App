@@ -10,12 +10,12 @@ class AlbumModel
     }
 
     public function getAlbumFromID($albumID) {
-        $query = 'SELECT album_id, judul, penyanyyi, total_duration, image_path, tangagl_terbit, genre FROM album WHERE album_id = :album_id LIMIT 1';
+        $query = 'SELECT album_id, judul, penyanyi, total_duration, image_path, tanggal_terbit, genre FROM album WHERE album_id = :album_id LIMIT 1';
 
         $this->database->query($query);
         $this->database->bind('album_id', $albumID);
 
-        $album -> $this->database->fetch();
+        $album = $this->database->fetch();
 
         return $album;
     }
@@ -33,6 +33,42 @@ class AlbumModel
         $this->database->execute();
         
         return $this->database->lastInsertID();
+    }
+
+    public function changeAlbumTitle($albumID, $newTitle) {
+        $query = 'UPDATE album SET judul = :judul WHERE album_id = :album_id';
+
+        $this->database->query($query);
+        $this->database->bind('judul', $newTitle);
+        $this->database->bind('album_id', $albumID);
+        $this->database->execute();
+    }
+
+    public function changeAlbumArtist($albumID, $newArtist) {
+        $query = 'UPDATE album SET penyanyi = :penyanyi WHERE album_id = :album_id';
+
+        $this->database->query($query);
+        $this->database->bind('penyanyi', $newArtist);
+        $this->database->bind('album_id', $albumID);
+        $this->database->execute();
+    }
+
+    public function changeAlbumDate($albumID, $newDate) {
+        $query = 'UPDATE album SET tanggal_terbit = :tanggal_terbit WHERE album_id = :album_id';
+
+        $this->database->query($query);
+        $this->database->bind('tanggal_terbit', $newDate);
+        $this->database->bind('album_id', $albumID);
+        $this->database->execute();
+    }
+
+    public function changeAlbumGenre($albumID, $newGenre) {
+        $query = 'UPDATE album SET genre = :genre WHERE album_id = :album_id';
+
+        $this->database->query($query);
+        $this->database->bind('genre', $newGenre);
+        $this->database->bind('album_id', $albumID);
+        $this->database->execute();
     }
 
     public function changeAlbumPath($albumID, $newPath) {
