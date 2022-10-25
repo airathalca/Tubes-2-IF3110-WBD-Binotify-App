@@ -19,12 +19,13 @@
     <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
     <title>Search Page</title>
 </head>
+
 <body>
     <div class="black-body">
         <div class="wrapper">
             <div class="big-flex-container">
                 <main class="left-side">
-                <nav class="black-navbar">
+                    <nav class="black-navbar">
                         <div class="pad-40">
                             <button class="toggle" id="toggle">
                                 <img src="<?= BASE_URL ?>/images/assets/bars.svg" alt="Bars">
@@ -82,7 +83,7 @@
                                 <label for="genre">Select a genre</label>
                                 <select name="filter" id="filter">
                                     <option value="all"></option>
-                                    <?php foreach ($this->data['genre_arr'] as $index => $genre ) : ?>
+                                    <?php foreach ($this->data['genre_arr'] as $index => $genre) : ?>
                                         <option value=<?= $genre->genre ?>><?= $genre->genre ?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -98,12 +99,12 @@
                                     <a href="" class="single-song">
                                         <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
                                         <header class="song-header">
-                                            <p class="title"><?= $song->judul?></p>
-                                            <p><?= $song->penyanyi?></p>
+                                            <p class="title"><?= $song->judul ?></p>
+                                            <p><?= $song->penyanyi ?></p>
                                         </header>
                                         <div class="song-dategenre">
-                                            <p><?= substr($song->tanggal_terbit,0,4)?></p>
-                                            <p><?= $song->genre?></p>
+                                            <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
+                                            <p><?= $song->genre ?></p>
                                         </div>
                                     </a>
                                 <?php endforeach; ?>
@@ -114,14 +115,15 @@
                 <aside class="right-side">
                     <img src="<?= BASE_URL ?>/images/assets/logo-notext-dark.svg" alt="Spotipi Logo">
                     <?php
-                        if (!$this->data['username']) { ?>
-                            <p><a href="<?=BASE_URL?>/user/login">Log in</a> or <a href="<?=BASE_URL?>/user/register">Register</a> to fully experience Spotipi!</p>
-                        <?php } else { ?>
-                            <p>Hello, <strong><?php echo $this->data['username'] ?></strong>!</p>
-                        <?php } ?>
+                    if (!$this->data['username']) { ?>
+                        <p><a href="<?= BASE_URL ?>/user/login">Log in</a> or <a href="<?= BASE_URL ?>/user/register">Register</a> to fully experience Spotipi!</p>
+                    <?php } else { ?>
+                        <p>Hello, <strong><?php echo $this->data['username'] ?></strong>!</p>
+                    <?php } ?>
                 </aside>
             </div>
         </div>
     </div>
 </body>
+
 </html>

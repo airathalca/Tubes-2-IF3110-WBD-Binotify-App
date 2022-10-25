@@ -27,13 +27,11 @@ class AlbumController extends Controller implements ControllerInterface
                         // Format duration
                         $minutes = floor(((int) $album->total_duration) / 60);
                         $seconds = ((int) $album->total_duration) % 60;
-    
+
                         $album_props = ["album_id" => $album->album_id, "judul" => $album->judul, "penyanyi" => $album->penyanyi, "total_duration" => $minutes . " min " . $seconds . " sec", "image_path" => $album->image_path, "tanggal_terbit" => $album->tanggal_terbit, "genre" => $album->genre];
                     }
 
                     // Decide if user view or not
-                    $albumDetailView;
-
                     if (!isset($_SESSION['user_id'])) {
                         $albumDetailView = $this->view('album', 'UserAlbumDetailView', $album_props);
                     } else {
@@ -80,11 +78,11 @@ class AlbumController extends Controller implements ControllerInterface
                     if ($_FILES['cover']['error'] !== 4) {
                         // Perlu memperbarui file!
                         $storageAccess = new StorageAccess('images');
-                        
+
                         $storageAccess->deleteFile($_POST['old_path']);
 
                         $uploadedFile = $storageAccess->saveImage($_FILES['cover']['tmp_name']);
-                        
+
                         // Update entri database
                         $albumModel->changeAlbumPath($albumID, $uploadedFile);
                     }
@@ -101,7 +99,8 @@ class AlbumController extends Controller implements ControllerInterface
         }
     }
 
-    public function delete($params) {
+    public function delete($params)
+    {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
@@ -133,10 +132,10 @@ class AlbumController extends Controller implements ControllerInterface
         } catch (Exception $e) {
             http_response_code($e->getCode());
             exit;
-        }        
+        }
     }
 
-    public function add() 
+    public function add()
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
@@ -176,10 +175,10 @@ class AlbumController extends Controller implements ControllerInterface
 
                     $storageAccess = new StorageAccess('images');
                     $uploadedFile = $storageAccess->saveImage($_FILES['cover']['tmp_name']);
-                    
+
                     $albumModel = $this->model('AlbumModel');
                     $albumID = $albumModel->createAlbum($_POST['title'], $_POST['artist'], $uploadedFile, $_POST['date'], $_POST['genre']);
-                    
+
                     header("Location: /public/album/detail/$albumID", true, 301);
                     exit;
 

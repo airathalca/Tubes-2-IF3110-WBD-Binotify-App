@@ -1,5 +1,6 @@
 const toggleButton = document.querySelector("#toggle");
 const navContainer = document.querySelector("#nav-container");
+const logOutButton = document.querySelector("#log-out");
 let isToggled = false;
 
 toggleButton.addEventListener("click", () => {
@@ -15,12 +16,9 @@ toggleButton.addEventListener("click", () => {
     }
 });
 
-const logOutButton = document.querySelector("#log-out");
-
 logOutButton &&
     logOutButton.addEventListener("click", async (e) => {
         e.preventDefault();
-        let data = {};
 
         const xhr = new XMLHttpRequest();
 
@@ -32,7 +30,7 @@ logOutButton &&
 
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE) {
-                data = JSON.parse(this.responseText);
+                const data = JSON.parse(this.responseText);
                 location.replace(data.redirect_url);
             }
         };
