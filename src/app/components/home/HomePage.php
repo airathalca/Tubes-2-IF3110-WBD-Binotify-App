@@ -14,6 +14,9 @@
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
     <!-- JavaScript -->
+    <script type="text/javascript" defer>
+        const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+    </script>
     <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
     <title>Home Page</title>
 </head>
