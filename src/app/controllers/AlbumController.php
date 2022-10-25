@@ -15,8 +15,19 @@ class AlbumController extends Controller implements ControllerInterface
                     $albumModel = $this->model('AlbumModel');
                     $res = $albumModel->getAlbums(1);
 
+                    // Keperluan navbar
+                    $nav;
+                    if (isset($_SESSION['user_id'])) {
+                        // Ada data user_id, coba fetch data username!
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+                        $nav = ['username' => $user->username, 'is_admin' => $user->is_admin];
+                    } else {
+                        $nav = ['username' => null];
+                    }
+
                     // Load AlbumListView
-                    $albumListView = $this->view('album', 'AlbumListView', $res);
+                    $albumListView = $this->view('album', 'AlbumListView', array_merge($res, $nav));
                     $albumListView->render();
                     exit;
 
@@ -81,18 +92,29 @@ class AlbumController extends Controller implements ControllerInterface
                         $album_props = ["album_id" => $album->album_id, "judul" => $album->judul, "penyanyi" => $album->penyanyi, "total_duration" => $minutes . " min " . $seconds . " sec", "image_path" => $album->image_path, "tanggal_terbit" => $album->tanggal_terbit, "genre" => $album->genre];
                     }
 
+                    // Keperluan navbar
+                    $nav;
+                    if (isset($_SESSION['user_id'])) {
+                        // Ada data user_id, coba fetch data username!
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+                        $nav = ['username' => $user->username, 'is_admin' => $user->is_admin];
+                    } else {
+                        $nav = ['username' => null];
+                    }
+
                     // Decide if user view or not
                     if (!isset($_SESSION['user_id'])) {
-                        $albumDetailView = $this->view('album', 'UserAlbumDetailView', $album_props);
+                        $albumDetailView = $this->view('album', 'UserAlbumDetailView', array_merge($album_props, $nav));
                     } else {
                         $userModel = $this->model('UserModel');
                         $user = $userModel->getUserFromID($_SESSION['user_id']);
 
                         if (!$user || !$user->is_admin) {
-                            $albumDetailView = $this->view('album', 'UserAlbumDetailView', $album_props);
+                            $albumDetailView = $this->view('album', 'UserAlbumDetailView', array_merge($album_props, $nav));
                         } else {
                             /* View admin! */
-                            $albumDetailView = $this->view('album', 'AdminAlbumDetailView', $album_props);
+                            $albumDetailView = $this->view('album', 'AdminAlbumDetailView', array_merge($album_props, $nav));
                         }
                     }
 
@@ -198,8 +220,19 @@ class AlbumController extends Controller implements ControllerInterface
                     $tokenMiddleware = $this->middleware('TokenMiddleware');
                     $tokenMiddleware->putToken();
 
+                    // Keperluan navbar
+                    $nav;
+                    if (isset($_SESSION['user_id'])) {
+                        // Ada data user_id, coba fetch data username!
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+                        $nav = ['username' => $user->username, 'is_admin' => $user->is_admin];
+                    } else {
+                        $nav = ['username' => null];
+                    }
+
                     // Load AddAlbumView.php
-                    $addAlbumView = $this->view('album', 'AddAlbumView');
+                    $addAlbumView = $this->view('album', 'AddAlbumView', $nav);
                     $addAlbumView->render();
                     exit;
 
