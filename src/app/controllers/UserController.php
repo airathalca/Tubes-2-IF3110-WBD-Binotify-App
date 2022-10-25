@@ -2,19 +2,23 @@
 
 class UserController extends Controller implements ControllerInterface
 {
-    public function index($page = 1)
+    public function index()
+    {
+    }
+
+    public function page($number)
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
-                    $authMiddleware->isAdmin();
+                    // $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    // $authMiddleware->isAdmin();
 
                     $userModel = $this->model('UserModel');
-                    $userArr = $userModel->getByPage($page);
+                    $userArr = $userModel->getByPage($number);
 
-                    $indexView = $this->view('user', 'UserListView', ['user_arr' => $userArr]);
-                    $indexView->render();
+                    header('Content-Type: application/json');
+                    echo json_encode($userArr);
                     exit;
 
                     break;
