@@ -57,7 +57,6 @@ class Database
                     $type = PDO::PARAM_STR;
                 }
             }
-
             $this->statement->bindValue($param, $value, $type);
         } catch (PDOException) {
             throw new LoggedException('Internal Server Error', 500);

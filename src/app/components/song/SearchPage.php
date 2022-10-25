@@ -12,7 +12,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/search.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/song/search.css">
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
     </script>
@@ -24,45 +24,45 @@
         <div class="wrapper">
             <div class="big-flex-container">
                 <main class="left-side">
-                    <nav class="black-navbar">
+                <nav class="black-navbar">
                         <div class="pad-40">
                             <button class="toggle" id="toggle">
                                 <img src="<?= BASE_URL ?>/images/assets/bars.svg" alt="Bars">
                             </button>
                         </div>
                         <?php
-                            if (!$this->data['username'] || !$this->data['is_admin']) { ?>
-                                <div class="nav-container" id="nav-container">
-                                    <a href="#" class="nav-link">
-                                        Album list
-                                    </a>
-                                    <?php
-                                        if ($this->data['username']) { ?>
-                                            <a href="#" id="log-out" class="nav-link">
-                                                Log out
-                                            </a>
-                                        <?php } 
-                                    ?>
-                                </div>
-                            <?php } else { ?>
-                                <div class="nav-container" id="nav-container">
-                                    <a href="#" class="nav-link">
-                                        Add song
-                                    </a>
-                                    <a href="#" class="nav-link">
-                                        Add album
-                                    </a>
-                                    <a href="#" class="nav-link">
-                                       Album list
-                                    </a>
+                        if (!$this->data['username'] || !$this->data['is_admin']) { ?>
+                            <div class="nav-container" id="nav-container">
+                                <a href="#" class="nav-link">
+                                    Album list
+                                </a>
+                                <?php
+                                if ($this->data['username']) { ?>
                                     <a href="#" id="log-out" class="nav-link">
                                         Log out
                                     </a>
-                                </div>
+                                <?php }
+                                ?>
+                            </div>
+                        <?php } else { ?>
+                            <div class="nav-container" id="nav-container">
+                                <a href="#" class="nav-link">
+                                    Add song
+                                </a>
+                                <a href="#" class="nav-link">
+                                    Add album
+                                </a>
+                                <a href="#" class="nav-link">
+                                    Album list
+                                </a>
+                                <a href="#" id="log-out" class="nav-link">
+                                    Log out
+                                </a>
+                            </div>
                         <?php } ?>
                     </nav>
                     <div class="wrapper">
-                        <form action="<?= BASE_URL ?>/home/search" METHOD="GET" class="search-form">
+                        <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="search-form">
                             <div class="form-group">
                                 <label for="search">Searching for ...</label>
                                 <input type="text" name="q" placeholder="Chisato X Takina" id="search">

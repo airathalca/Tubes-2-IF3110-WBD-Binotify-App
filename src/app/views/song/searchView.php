@@ -8,6 +8,6 @@ class SearchView implements ViewInterface
     }
 
     public function render() {
-        require_once __DIR__ . '/../../components/home/SearchPage.php';
+        require_once __DIR__ . '/../../components/song/SearchPage.php';
     }
 }
