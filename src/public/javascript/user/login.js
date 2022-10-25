@@ -16,7 +16,6 @@ loginForm &&
         }
 
         const xhr = new XMLHttpRequest();
-
         xhr.open("POST", "/public/user/login");
 
         const formData = new FormData();
@@ -25,7 +24,6 @@ loginForm &&
         formData.append("csrf_token", CSRF_TOKEN);
 
         xhr.send(formData);
-
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 const data = JSON.parse(xhr.responseText);

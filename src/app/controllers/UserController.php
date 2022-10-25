@@ -162,7 +162,7 @@ class UserController extends Controller implements ControllerInterface
         }
     }
 
-    public function email()
+    public function username()
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
@@ -172,7 +172,7 @@ class UserController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     $userModel = $this->model('UserModel');
-                    $user = $userModel->doesEmailExist($_GET['email']);
+                    $user = $userModel->doesUsernameExist($_GET['username']);
 
                     if (!$user) {
                         throw new LoggedException('Not Found', 404);
@@ -191,7 +191,7 @@ class UserController extends Controller implements ControllerInterface
         }
     }
 
-    public function username()
+    public function email()
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
@@ -201,7 +201,7 @@ class UserController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     $userModel = $this->model('UserModel');
-                    $user = $userModel->doesUsernameExist($_GET['username']);
+                    $user = $userModel->doesEmailExist($_GET['email']);
 
                     if (!$user) {
                         throw new LoggedException('Not Found', 404);

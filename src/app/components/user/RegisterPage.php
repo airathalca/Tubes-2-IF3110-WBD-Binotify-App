@@ -16,6 +16,7 @@
     <!-- JavaScript Constant -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+        const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
     </script>
     <!-- JavaScript Library -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
@@ -36,10 +37,12 @@
                     <div class="form-group">
                         <label for="username">What's your username?</label>
                         <input type="text" name="username" placeholder="johndoe" id="username">
+                        <p id="username-alert" class="alert-hide">Invalid username format!</p>
                     </div>
                     <div class="form-group">
                         <label for="email">What's your email?</label>
                         <input type="email" name="email" placeholder="john@doe.com" id="email">
+                        <p id="email-alert" class="alert-hide">Invalid email format!</p>
                     </div>
                     <div class="form-group">
                         <label for="password">Pick a password!</label>

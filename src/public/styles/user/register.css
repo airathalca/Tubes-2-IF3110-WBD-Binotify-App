@@ -32,3 +32,12 @@
 .form-hyperlink a {
     color: var(--darkgreen);
 }
+
+.alert-show {
+    display: block;
+    color: var(--red);
+}
+
+.alert-hide {
+    display: none;
+}

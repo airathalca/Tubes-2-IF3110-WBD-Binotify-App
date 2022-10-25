@@ -34,7 +34,7 @@
                             </button>
                         </div>
                         <?php
-                        if (!$this->data['username'] || !$this->data['is_admin']) { ?>
+                        if (!$this->data['username'] || !$this->data['is_admin']) : ?>
                             <div class="nav-container" id="nav-container">
                                 <div class="nav-search">
                                     <form action="<?= BASE_URL ?>/song/search" METHOD="GET">
@@ -51,19 +51,19 @@
                                     Album list
                                 </a>
                                 <?php
-                                if ($this->data['username']) { ?>
+                                if ($this->data['username']) : ?>
                                     <a href="#" id="log-out" class="nav-link">
                                         Log out
                                     </a>
-                                <?php }
+                                <?php endif;
                                 ?>
                             </div>
-                        <?php } else { ?>
+                        <?php else : ?>
                             <div class="nav-container" id="nav-container">
                                 <a href="#" class="nav-link">
                                     Add song
                                 </a>
-                                <a href="/public/album/add" class="nav-link">
+                                <a href="<?= BASE_URL ?>/album/add" class="nav-link">
                                     Add album
                                 </a>
                                 <a href="/public/album" class="nav-link">
@@ -73,7 +73,7 @@
                                     Log out
                                 </a>
                             </div>
-                        <?php } ?>
+                        <?php endif; ?>
                     </nav>
                     <article>
                         <div class="pad-40">
@@ -86,12 +86,12 @@
                                     <a href="" class="single-song">
                                         <img src="<?= BASE_URL ?>/images/assets/sample.png" alt="Chisato x Takina">
                                         <header class="song-header">
-                                            <p class="title"><?= $song->judul?></p>
-                                            <p><?= $song->penyanyi?></p>
+                                            <p class="title"><?= $song->judul ?></p>
+                                            <p><?= $song->penyanyi ?></p>
                                         </header>
                                         <div class="song-dategenre">
-                                            <p><?= substr($song->tanggal_terbit,0,4)?></p>
-                                            <p><?= $song->genre?></p>
+                                            <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
+                                            <p><?= $song->genre ?></p>
                                         </div>
                                     </a>
                                 <?php endforeach; ?>
@@ -102,11 +102,11 @@
                 <aside class="right-side">
                     <img src="<?= BASE_URL ?>/images/assets/logo-notext-dark.svg" alt="Spotipi Logo">
                     <?php
-                    if (!$this->data['username']) { ?>
+                    if (!$this->data['username']) : ?>
                         <p><a href="/public/user/login">Log in</a> or <a href="/public/user/register">Register</a> to fully experience Spotipi!</p>
-                    <?php } else { ?>
+                    <?php else : ?>
                         <p>Hello, <strong><?= $this->data['username'] ?></strong>!</p>
-                    <?php } ?>
+                    <?php endif; ?>
                 </aside>
             </div>
         </div>
