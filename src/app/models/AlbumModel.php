@@ -10,12 +10,12 @@ class AlbumModel
     }
 
     public function getAlbumFromID($albumID) {
-        $query = 'SELECT album_id, judul, penyanyyi, total_duration, image_path, tangagl_terbit, genre FROM album WHERE album_id = :album_id LIMIT 1';
+        $query = 'SELECT album_id, judul, penyanyi, total_duration, image_path, tanggal_terbit, genre FROM album WHERE album_id = :album_id LIMIT 1';
 
         $this->database->query($query);
         $this->database->bind('album_id', $albumID);
 
-        $album -> $this->database->fetch();
+        $album = $this->database->fetch();
 
         return $album;
     }

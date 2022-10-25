@@ -7,6 +7,46 @@ class AlbumController extends Controller implements ControllerInterface
         echo 'Taylor Swift keren!';
     }
 
+    public function detail($params)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
+
+                    $albumID = (int) $params;
+
+                    // Grab album data
+                    $albumModel = $this->model('AlbumModel');
+                    $album = $albumModel->getAlbumFromID($albumID);
+                    $album_props = [];
+
+                    if ($album) {
+                        // Format duration
+                        $minutes = floor(((int) $album->total_duration) / 60);
+                        $seconds = ((int) $album->total_duration) % 60;
+    
+                        $album_props = ["album_id" => $album->album_id, "judul" => $album->judul, "penyanyi" => $album->penyanyi, "total_duration" => $minutes . " min " . $seconds . " sec", "image_path" => $album->image_path, "tanggal_terbit" => $album->tanggal_terbit, "genre" => $album->genre];
+                    }
+
+                    $albumDetailView = $this->view('album', 'AlbumDetailView', $album_props);
+
+                    $albumDetailView->render();
+
+                    exit;
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
+
     public function add() 
     {
         try {
