@@ -11,12 +11,20 @@ class SongController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
                     $q = '';
+                    $sort = 'judul';
+                    $filter = 'all';
                     if (isset($_GET['q'])) {
                         $q = $_GET['q'];
                     }
+                    if (isset($_GET['sort'])) {
+                        $sort = $_GET['sort'];
+                    }
+                    if (isset($_GET['filter'])) {
+                        $filter = $_GET['filter'];
+                    }
                     $songModel = $this->model('SongModel');
                     $genreArr = $songModel->getGenre();
-                    $songArr = $songModel->getByQuery($q);
+                    $songArr = $songModel->getByQuery($q, $sort, $filter);
                     if (isset($_SESSION['user_id'])) {
                         $userModel = $this->model('UserModel');
                         $user = $userModel->getUserFromID($_SESSION['user_id']);

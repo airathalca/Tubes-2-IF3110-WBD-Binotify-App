@@ -2,10 +2,6 @@
     display: flex;
 }
 
-.left-side {
-    width: 100%;
-}
-
 .black-navbar {
     position: sticky;
     top: 0;
@@ -103,8 +99,15 @@
 .article-heading {
     font-weight: bold;
     color: var(--white);
+    margin-bottom: 1rem;
 }
 
+.no-result {
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
 .songs-container {
     display: flex;
     flex-direction: column;
@@ -154,24 +157,6 @@
     color: var(--white);
 }
 
-.right-side {
-    position: sticky;
-    top: 0;
-    width: 19.5rem;
-    background: var(--white);
-    height: 100vh;
-    padding: 1.5rem;
-    z-index: 998;
-}
-
-.right-side img {
-    margin-bottom: 1rem;
-}
-
-.right-side a {
-    color: var(--darkgreen);
-}
-
 .search-form {
     padding: 1rem;
     display: flex;
@@ -201,6 +186,46 @@ select {
     background-repeat: no-repeat;
     background-position: calc(100% - 1.3em) center;
     background-size: 2rem;
+}
+
+.songs-result {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.pagination {
+    margin-top: 2.5rem;
+}
+
+.pagination p {
+    color: var(--white);
+}
+
+.pagination-buttons {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 5rem;
+}
+
+.pagination-buttons button {
+    background: var(--white);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.pagination-buttons button:hover {
+    opacity: 0.8;
+}
+
+.pagination-buttons button:disabled {
+    opacity: 0.3;
+}
+
+.pagination span {
+    color: var(--white);
 }
 
 @media (min-width: 800px) {
