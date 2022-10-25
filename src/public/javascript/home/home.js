@@ -24,11 +24,14 @@ logOutButton &&
 
         const xhr = new XMLHttpRequest();
 
-        xhr.open("POST", `/public/user/logout?csrf_token=${CSRF_TOKEN}`);
-        xhr.send();
+        xhr.open("POST", `/public/user/logout`);
+
+        const formData = new FormData();
+        formData.append("csrf_token", CSRF_TOKEN);
+        xhr.send(formData);
 
         xhr.onreadystatechange = function () {
-            if (this.readyState === 4) {
+            if (this.readyState === XMLHttpRequest.DONE) {
                 data = JSON.parse(this.responseText);
                 location.replace(data.redirect_url);
             }

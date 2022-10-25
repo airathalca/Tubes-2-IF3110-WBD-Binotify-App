@@ -110,7 +110,9 @@ class UserController extends Controller implements ControllerInterface
                     unset($_SESSION['user_id']);
 
                     // Kembalikan redirect_url
+                    header('Content-Type: application/json');
                     echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
+                    exit;
 
                     break;
                 default:
@@ -133,12 +135,13 @@ class UserController extends Controller implements ControllerInterface
 
                     $registerView = $this->view('user', 'RegisterView');
                     $registerView->render();
+                    exit;
 
                     break;
                 case 'POST':
                     // Prevent CSRF Attacks
-                    // $tokenMiddleware = $this->middleware('TokenMiddleware');
-                    // $tokenMiddleware->checkToken();
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
 
                     $userModel = $this->model('UserModel');
                     $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
@@ -146,6 +149,7 @@ class UserController extends Controller implements ControllerInterface
                     // Kembalikan redirect_url
                     header('Content-Type: application/json');
                     echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
+                    exit;
 
                     break;
                 default:
