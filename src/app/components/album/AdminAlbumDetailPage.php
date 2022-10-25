@@ -37,7 +37,9 @@
                 <p class="details-header">Album details</p>
                 <?php if ($this->data) { ?>
                     <!-- Album related info -->
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?php echo $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="album_id" value="<?= $this->data['album_id'] ?>">
+                        <input type="hidden" name="old_path" value="<?= $this->data['image_path'] ?>">
                         <div class="form-group">
                             <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">
                             <label for="cover">Upload new photo</label>
@@ -45,11 +47,19 @@
                         </div>
                         <div class="form-group">
                             <label for="title">Album title</label>
-                            <input type="text" name="title" id="title" value=<?= $this->data['judul'] ?>>
+                            <input type="text" name="title" id="title" value="<?= $this->data['judul'] ?>">
                         </div>
                         <div class="form-group">
                             <label for="artist">Artist</label>
-                            <input type="text" name="artist" id="artist" value=<?= $this->data['penyanyi'] ?>>
+                            <input type="text" name="artist" id="artist" value="<?= $this->data['penyanyi'] ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Published date</label>
+                            <input type="date" name="date" id="date" value="<?= $this->data['tanggal_terbit'] ?>">
+                            </div>
+                        <div class="form-group">
+                            <label for="genre">Genre</label>
+                            <input type="text" name="genre" id="genre" placeholder="Rock" value="<?= $this->data['genre'] ?>">
                         </div>
                         <div class="button-group">
                             <button class="button green-button" type="submit">Save changes</button>

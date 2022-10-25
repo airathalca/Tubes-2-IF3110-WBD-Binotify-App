@@ -53,6 +53,45 @@ class AlbumController extends Controller implements ControllerInterface
                     exit;
 
                     break;
+                case 'POST':
+                    // Halaman hanya bisa diakses admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    /* Lakukan validasi */
+                    // Form ada yang kosong
+                    if (!$_POST['title'] || !$_POST['artist'] || !$_POST['date'] || !$_POST['genre']) {
+                        throw new LoggedException('Bad Request', 400);
+                    }
+
+                    // Perbarui dahulu data yang ada, file dilakukan belakangan.
+                    $albumModel = $this->model('AlbumModel');
+                    $albumID = $_POST['album_id'];
+
+                    $albumModel->changeAlbumTitle($albumID, $_POST['title']);
+                    $albumModel->changeAlbumArtist($albumID, $_POST['artist']);
+                    $albumModel->changeAlbumDate($albumID, $_POST['date']);
+                    $albumModel->changeAlbumGenre($albumID, $_POST['genre']);
+
+                    if ($_FILES['cover']['error'] !== 4) {
+                        // Perlu memperbarui file!
+                        $storageAccess = new StorageAccess('images');
+                        
+                        $storageAccess->deleteFile($_POST['old_path']);
+
+                        $uploadedFile = $storageAccess->saveImage($_FILES['cover']['tmp_name']);
+                        
+                        // Update entri database
+                        $albumModel->changeAlbumPath($albumID, $uploadedFile);
+                    }
+
+                    // Refresh page!
+                    header("Location: /public/album/detail/$albumID", true, 301);
+                    exit;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
             }

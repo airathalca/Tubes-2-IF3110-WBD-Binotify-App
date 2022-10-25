@@ -26,7 +26,7 @@
     font-family: var(--roboto);
 }
 
-.form-group input[type="text"] {
+.form-group input[type="text"], .form-group input[type="date"] {
     padding: 1rem;
 }
 
