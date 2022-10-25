@@ -37,7 +37,7 @@
                         if (!$this->data['username'] || !$this->data['is_admin']) { ?>
                             <div class="nav-container" id="nav-container">
                                 <div class="nav-search">
-                                    <form action="<?= BASE_URL ?>/home/search" METHOD="GET">
+                                    <form action="<?= BASE_URL ?>/song/search" METHOD="GET">
                                         <label for="search">Enter song/title/artist/published year to search!</label>
                                         <div class="search-input">
                                             <input type="text" placeholder="YOASOBI" name="q">
