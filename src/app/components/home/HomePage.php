@@ -42,7 +42,7 @@
                             </a>
                             <?php
                                 if ($this->data['username']) { ?>
-                                    <a href="#" class="nav-link">
+                                    <a href="#" id="log-out" class="nav-link">
                                         Log out
                                     </a>
                                 <?php } 

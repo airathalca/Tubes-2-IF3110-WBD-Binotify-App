@@ -14,3 +14,13 @@ toggleButton.addEventListener('click', () => {
         navContainer.className = "nav-container";
     }
 })
+
+const logOutButton = document.querySelector("#log-out");
+
+logOutButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await fetch('/public/user/logout', {
+        method: 'POST'
+    });
+    window.alert("Logged out!");
+})

@@ -64,11 +64,14 @@ class UserController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
                     // Prevent CSRF Attacks
-                    $tokenMiddleware = $this->middleware('TokenMiddleware');
-                    $tokenMiddleware->checkToken();
+                    // $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    // $tokenMiddleware->checkToken();
 
                     unset($_SESSION['user_id']);
-                    http_response_code(201);
+
+                    header('Location:/public/user/login');
+                    http_response_code(301);
+                    exit;
 
                     break;
                 default:
@@ -99,8 +102,6 @@ class UserController extends Controller implements ControllerInterface
 
                     $userModel = $this->model('UserModel');
                     $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
-
-                    http_response_code(201);
 
                     break;
                 default:
