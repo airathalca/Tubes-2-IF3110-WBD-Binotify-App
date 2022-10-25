@@ -1,0 +1,115 @@
+.black-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.black-navbar, .black-navbar img {
+    background: var(--pure-black);
+}
+
+.toggle, .toggle-rotate {
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.toggle-rotate {
+    transform: rotate(90deg);
+}
+
+.toggle:hover {
+    transform: scale(1.05);
+}
+
+
+.toggle-rotate:hover {
+    transform: scale(1.05) rotate(90deg);
+}
+
+.nav-container {
+    background: var(--pure-black);
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transform: translateY(-300%);
+    transition: all 0.3s linear;
+    padding-bottom: 0.5rem;
+}
+
+.nav-container.show {
+    transform: translateY(0);
+}
+
+.nav-search form {
+    padding: 1rem 2.5rem;
+    background: var(--black-lighter);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-search form label {
+    color: var(--white);
+}
+
+.nav-link {
+    padding: 1rem 2.5rem;
+    background: var(--black-lighter);
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.3s linear;
+}
+
+.nav-link:hover {
+    padding-left: calc(2.5rem + 0.5rem);
+}
+
+.form-header {
+    font-weight: bold;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: var(--white);
+}
+
+.form-group input[type="text"] {
+    padding: 1rem;
+}
+
+.form-group input[type="date"] {
+    padding: 1rem;
+}
+
+.form-group select {
+    padding: 1rem;
+}
+
+.form-group input[type="file"] {
+    align-self: flex-start;
+    color: var(--white);
+    font-family: var(--roboto);
+}
+
+select {
+    appearance: none;
+    background-image: url(../../images/assets/dropdown-arrow.svg);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1.3em) center;
+    background-size: 1.25rem;
+}
