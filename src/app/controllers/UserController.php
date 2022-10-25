@@ -108,7 +108,7 @@ class UserController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     unset($_SESSION['user_id']);
-                    
+
                     // Kembalikan redirect_url
                     echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
 
@@ -137,13 +137,14 @@ class UserController extends Controller implements ControllerInterface
                     break;
                 case 'POST':
                     // Prevent CSRF Attacks
-                    $tokenMiddleware = $this->middleware('TokenMiddleware');
-                    $tokenMiddleware->checkToken();
+                    // $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    // $tokenMiddleware->checkToken();
 
                     $userModel = $this->model('UserModel');
                     $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
 
-                    header('Location: ' . BASE_URL . '/user/login');
+                    // Kembalikan redirect_url
+                    echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
 
                     break;
                 default:

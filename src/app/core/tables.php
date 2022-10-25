@@ -11,16 +11,6 @@ class Tables
         is_admin            BOOLEAN         NOT NULL
     );";
 
-    public const USER_TOKEN_TABLE =
-    "CREATE TABLE IF NOT EXISTS user_token (
-        user_token_id       INT             AUTO_INCREMENT      PRIMARY KEY,
-        selector            VARCHAR(256)    NOT NULL,
-        hashed_validator    VARCHAR(256)    NOT NULL,
-        user_id             INT             NOT NULL,
-        expired_date        DATETIME        NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES user (user_id) ON UPDATE CASCADE ON DELETE CASCADE
-    );";
-
     public const ALBUM_TABLE =
     "CREATE TABLE IF NOT EXISTS album (
         album_id            INT             AUTO_INCREMENT      PRIMARY KEY,

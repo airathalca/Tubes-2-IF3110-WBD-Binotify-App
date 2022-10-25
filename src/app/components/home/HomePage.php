@@ -13,10 +13,11 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
-    <!-- JavaScript DOM and AJAX -->
+    <!-- JavaScript Constant -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
     </script>
+    <!-- JavaScript DOM and AJAX -->
     <script src="<?= BASE_URL ?>/javascript/home/home.js" defer></script>
     <title>Home Page</title>
 </head>
@@ -33,45 +34,45 @@
                             </button>
                         </div>
                         <?php
-                            if (!$this->data['username'] || !$this->data['is_admin']) { ?>
-                                <div class="nav-container" id="nav-container">
-                                    <div class="nav-search">
-                                        <form action="<?= BASE_URL ?>/home/search" METHOD="GET">
-                                            <label for="search">Enter song/title/artist/published year to search!</label>
-                                            <div class="search-input">
-                                                <input type="text" placeholder="YOASOBI" name="q">
-                                                <button type="submit">
-                                                    <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <a href="#" class="nav-link">
-                                        Album list
-                                    </a>
-                                    <?php
-                                        if ($this->data['username']) { ?>
-                                            <a href="#" id="log-out" class="nav-link">
-                                                Log out
-                                            </a>
-                                        <?php } 
-                                    ?>
+                        if (!$this->data['username'] || !$this->data['is_admin']) { ?>
+                            <div class="nav-container" id="nav-container">
+                                <div class="nav-search">
+                                    <form action="<?= BASE_URL ?>/home/search" METHOD="GET">
+                                        <label for="search">Enter song/title/artist/published year to search!</label>
+                                        <div class="search-input">
+                                            <input type="text" placeholder="YOASOBI" name="q">
+                                            <button type="submit">
+                                                <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                            <?php } else { ?>
-                                <div class="nav-container" id="nav-container">
-                                    <a href="#" class="nav-link">
-                                        Add song
-                                    </a>
-                                    <a href="#" class="nav-link">
-                                        Add album
-                                    </a>
-                                    <a href="#" class="nav-link">
-                                       Album list
-                                    </a>
+                                <a href="#" class="nav-link">
+                                    Album list
+                                </a>
+                                <?php
+                                if ($this->data['username']) { ?>
                                     <a href="#" id="log-out" class="nav-link">
                                         Log out
                                     </a>
-                                </div>
+                                <?php }
+                                ?>
+                            </div>
+                        <?php } else { ?>
+                            <div class="nav-container" id="nav-container">
+                                <a href="#" class="nav-link">
+                                    Add song
+                                </a>
+                                <a href="#" class="nav-link">
+                                    Add album
+                                </a>
+                                <a href="#" class="nav-link">
+                                    Album list
+                                </a>
+                                <a href="#" id="log-out" class="nav-link">
+                                    Log out
+                                </a>
+                            </div>
                         <?php } ?>
                     </nav>
                     <article>
@@ -198,7 +199,7 @@
                     if (!$this->data['username']) { ?>
                         <p><a href="/public/user/login">Log in</a> or <a href="/public/user/register">Register</a> to fully experience Spotipi!</p>
                     <?php } else { ?>
-                        <p>Hello, <strong><?php echo $this->data['username'] ?></strong>!</p>
+                        <p>Hello, <strong><?= $this->data['username'] ?></strong>!</p>
                     <?php } ?>
                 </aside>
             </div>
