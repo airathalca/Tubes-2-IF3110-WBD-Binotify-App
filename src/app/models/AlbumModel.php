@@ -9,33 +9,37 @@ class AlbumModel
         $this->database = new Database();
     }
 
-    public function getAlbums($page) {
-        $query = 'SELECT * FROM album ORDER BY judul ASC LIMIT :limit OFFSET :offset';
+    public function getAlbums($page)
+    {
+        $query = 'SELECT album_id, judul, penyanyi, total_duration, image_path, tanggal_terbit, genre FROM album ORDER BY judul ASC LIMIT :limit OFFSET :offset';
 
         $this->database->query($query);
         $this->database->bind('limit', ROWS_PER_PAGE);
         $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
-
         $albums = $this->database->fetchAll();
 
-        $query = 'SELECT COUNT(*) AS album_count FROM album';
+        $query = 'SELECT CEIL(COUNT(album_id) / :rows_per_page) AS page_count FROM album';
+
         $this->database->query($query);
-        $albums_count = $this->database->fetch();
-        $pages_count = ceil($albums_count->album_count / ROWS_PER_PAGE);
+        $this->database->bind('rows_per_page', ROWS_PER_PAGE);
+        $album = $this->database->fetch();
+        $pagesCount = $album->page_count;
 
-        $return_array = ["albums" => $albums, "pages" => $pages_count];
-
-        return $return_array;
+        $returnArr = ['albums' => $albums, 'pages' => $pagesCount];
+        return $returnArr;
     }
 
-    public function getAllAlbum() {
+    public function getAllAlbum()
+    {
         $query = 'SELECT album_id, judul FROM album';
         $this->database->query($query);
         $albumArr = $this->database->fetchAll();
+
         return $albumArr;
     }
-    
-    public function getAlbumFromID($albumID) {
+
+    public function getAlbumFromID($albumID)
+    {
         $query = 'SELECT album_id, judul, penyanyi, total_duration, image_path, tanggal_terbit, genre FROM album WHERE album_id = :album_id LIMIT 1';
 
         $this->database->query($query);
@@ -46,9 +50,10 @@ class AlbumModel
         return $album;
     }
 
-    public function createAlbum($title, $singer, $image_path, $published_date, $genre) {
+    public function createAlbum($title, $singer, $image_path, $published_date, $genre)
+    {
         $query = 'INSERT INTO album (judul, penyanyi, total_duration, image_path, tanggal_terbit, genre) VALUES (:judul, :penyanyi, 0, :image_path, :tanggal_terbit, :genre)';
-        
+
         $this->database->query($query);
         $this->database->bind('judul', $title);
         $this->database->bind('penyanyi', $singer);
@@ -57,11 +62,12 @@ class AlbumModel
         $this->database->bind('genre', $genre);
 
         $this->database->execute();
-        
+
         return $this->database->lastInsertID();
     }
 
-    public function changeAlbumTitle($albumID, $newTitle) {
+    public function changeAlbumTitle($albumID, $newTitle)
+    {
         $query = 'UPDATE album SET judul = :judul WHERE album_id = :album_id';
 
         $this->database->query($query);
@@ -70,7 +76,8 @@ class AlbumModel
         $this->database->execute();
     }
 
-    public function changeAlbumArtist($albumID, $newArtist) {
+    public function changeAlbumArtist($albumID, $newArtist)
+    {
         $query = 'UPDATE album SET penyanyi = :penyanyi WHERE album_id = :album_id';
 
         $this->database->query($query);
@@ -79,7 +86,8 @@ class AlbumModel
         $this->database->execute();
     }
 
-    public function changeAlbumDate($albumID, $newDate) {
+    public function changeAlbumDate($albumID, $newDate)
+    {
         $query = 'UPDATE album SET tanggal_terbit = :tanggal_terbit WHERE album_id = :album_id';
 
         $this->database->query($query);
@@ -88,7 +96,8 @@ class AlbumModel
         $this->database->execute();
     }
 
-    public function changeAlbumGenre($albumID, $newGenre) {
+    public function changeAlbumGenre($albumID, $newGenre)
+    {
         $query = 'UPDATE album SET genre = :genre WHERE album_id = :album_id';
 
         $this->database->query($query);
@@ -97,7 +106,8 @@ class AlbumModel
         $this->database->execute();
     }
 
-    public function changeAlbumPath($albumID, $newPath) {
+    public function changeAlbumPath($albumID, $newPath)
+    {
         $query = 'UPDATE album SET image_path = :image_path WHERE album_id = :album_id';
 
         $this->database->query($query);
@@ -106,7 +116,8 @@ class AlbumModel
         $this->database->execute();
     }
 
-    public function deleteAlbum($albumID) {
+    public function deleteAlbum($albumID)
+    {
         $query = 'DELETE FROM album WHERE album_id = :album_id';
 
         $this->database->query($query);
@@ -114,7 +125,8 @@ class AlbumModel
         $this->database->execute();
     }
 
-    public function addDuration($albumID, $duration) {
+    public function addDuration($albumID, $duration)
+    {
         $query = 'UPDATE album SET total_duration = total_duration + :duration WHERE album_id = :album_id';
         $this->database->query($query);
         $this->database->bind('duration', (int) $duration);
@@ -122,7 +134,8 @@ class AlbumModel
         $this->database->execute();
     }
 
-    public function substractDuration($albumID, $duration) {
+    public function substractDuration($albumID, $duration)
+    {
         $query = 'UPDATE album SET total_duration = total_duration - :duration WHERE album_id = :album_id';
         $this->database->query($query);
         $this->database->bind('duration', (int) $duration);

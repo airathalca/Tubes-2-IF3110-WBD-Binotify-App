@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
-    <!-- JavaScript Constant -->
+    <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
     </script>
@@ -69,6 +69,9 @@
                                 <a href="/public/album" class="nav-link">
                                     Album list
                                 </a>
+                                <a href="/public/user" class="nav-link">
+                                    User List
+                                </a>
                                 <a href="#" id="log-out" class="nav-link">
                                     Log out
                                 </a>
@@ -78,9 +81,9 @@
                     <article>
                         <div class="pad-40">
                             <p class="article-heading">Songs for you</p>
-                            <?php if (!$this->data['song_arr']) { ?>
+                            <?php if (!$this->data['song_arr']) : ?>
                                 <p class="info">There are currently no songs available on Spotipi!</p>
-                            <?php } ?>
+                            <?php endif; ?>
                             <div class="songs-container">
                                 <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
                                     <a href="" class="single-song">

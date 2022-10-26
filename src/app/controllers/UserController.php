@@ -15,10 +15,21 @@ class UserController extends Controller implements ControllerInterface
                     $tokenMiddleware = $this->middleware('TokenMiddleware');
                     $tokenMiddleware->putToken();
 
+                    // Grab user data
                     $userModel = $this->model('UserModel');
-                    $pageCount = $userModel->pageCount();
+                    $res = $userModel->getUsers(1);
 
-                    $userListView = $this->view('user', 'UserListView', ['page_count' => $pageCount]);
+                    // Keperluan navbar
+                    if (isset($_SESSION['user_id'])) {
+                        // Ada data user_id, coba fetch data username!
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+                        $nav = ['username' => $user->username, 'is_admin' => $user->is_admin];
+                    } else {
+                        $nav = ['username' => null];
+                    }
+
+                    $userListView = $this->view('user', 'UserListView', array_merge($nav, $res));
                     $userListView->render();
                     exit;
 
@@ -32,7 +43,7 @@ class UserController extends Controller implements ControllerInterface
         }
     }
 
-    public function page($number)
+    public function fetch($page)
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
@@ -46,11 +57,11 @@ class UserController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     $userModel = $this->model('UserModel');
-                    $userArr = $userModel->getByPage($number);
+                    $res = $userModel->getUsers((int) $page);
 
                     header('Content-Type: application/json');
                     http_response_code(200);
-                    echo json_encode($userArr);
+                    echo json_encode($res);
                     exit;
 
                     break;

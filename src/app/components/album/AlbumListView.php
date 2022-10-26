@@ -10,19 +10,20 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/images/icon/favicon-16x16.png">
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <!-- Global CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/globals.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/navbar.css">
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/album/album-list.css">
-    <!-- JavaScript DOM and AJAX -->
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/album/album-list.css">
+    <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
         const STORAGE_URL = "<?= STORAGE_URL ?>";
         let pages = 0;
-        <?php if ($this->data['pages']) { ?>
-            pages = "<?= $this->data['pages'] ?>"
-        <?php } ?>
+        <?php if ($this->data['pages']) : ?>
+            pages = parseInt("<?= $this->data['pages'] ?>");
+        <?php endif; ?>
     </script>
+    <!-- JavaScript DOM and AJAX -->
     <script src="<?= BASE_URL ?>/javascript/album/album-list.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
@@ -46,7 +47,7 @@
                     </div>
                 </div>
                 <?php
-                if (!$this->data['username'] || !$this->data['is_admin']) { ?>
+                if (!$this->data['username'] || !$this->data['is_admin']) : ?>
                     <div class="nav-container" id="nav-container">
                         <div class="nav-search">
                             <form action="<?= BASE_URL ?>/song/search" METHOD="GET">
@@ -63,14 +64,13 @@
                             Album list
                         </a>
                         <?php
-                        if ($this->data['username']) { ?>
+                        if ($this->data['username']) : ?>
                             <a href="#" id="log-out" class="nav-link">
                                 Log out
                             </a>
-                        <?php }
-                        ?>
+                        <?php endif; ?>
                     </div>
-                <?php } else { ?>
+                <?php else : ?>
                     <div class="nav-container" id="nav-container">
                         <a href="/public/song/add" class="nav-link">
                             Add song
@@ -81,20 +81,23 @@
                         <a href="/public/album" class="nav-link">
                             Album list
                         </a>
+                        <a href="/public/user" class="nav-link">
+                            User List
+                        </a>
                         <a href="#" id="log-out" class="nav-link">
                             Log out
                         </a>
                     </div>
-                <?php } ?>
+                <?php endif; ?>
             </nav>
-            <!-- Form -->
+            <!-- Main -->
             <div class="pad-40">
                 <p class="album-list-header">Albums available on Spotipi</p>
-                <?php if (!$this->data['albums']) { ?>
+                <?php if (!$this->data['albums']) : ?>
                     <p class="info">There are no albums yet available on Spotipi!</p>
-                <?php } else { ?>
+                <?php else : ?>
                     <div class="albums-list">
-                        <?php foreach($this->data['albums'] as $album) { ?>
+                        <?php foreach ($this->data['albums'] as $album) : ?>
                             <a href="/public/album/detail/<?= $album->album_id ?>" class="single-album">
                                 <img src="<?= STORAGE_URL ?>/images/<?= $album->image_path ?>" alt="<?= $album->judul ?>">
                                 <header class="album-header">
@@ -106,7 +109,7 @@
                                     <p><?= $album->genre ?></p>
                                 </div>
                             </a>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </div>
                     <div class="pagination">
                         <p id="pagination-text">Page <span id="page-number">1</span> out of <?= $this->data['pages'] ?> pages</p>
@@ -114,12 +117,12 @@
                             <button id="prev-page" disabled>
                                 <img src="<?= BASE_URL ?>/images/assets/arrow-left.svg" alt="">
                             </button>
-                            <button id="next-page" <?php if ($this->data['pages'] == 1) {?> disabled <? } ?>>
+                            <button id="next-page" <?php if ($this->data['pages'] == 1) : ?> disabled <? endif; ?>>
                                 <img src="<?= BASE_URL ?>/images/assets/arrow-right.svg" alt="">
                             </button>
                         </div>
                     </div>
-                <?php } ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

@@ -21,29 +21,24 @@ class UserModel
         return $user;
     }
 
-    public function getByPage($page)
+    public function getUsers($page)
     {
-        $query = 'SELECT user_id, email, username, is_admin FROM user LIMIT :limit OFFSET :offset';
+        $query = 'SELECT email, username, is_admin FROM user LIMIT :limit OFFSET :offset';
 
         $this->database->query($query);
         $this->database->bind('limit', ROWS_PER_PAGE);
         $this->database->bind('offset', ($page - 1) * ROWS_PER_PAGE);
+        $users = $this->database->fetchAll();
 
-        $userArr = $this->database->fetchAll();
-
-        return $userArr;
-    }
-
-    public function pageCount()
-    {
         $query = 'SELECT CEIL(COUNT(user_id) / :rows_per_page) AS page_count FROM user';
 
         $this->database->query($query);
         $this->database->bind('rows_per_page', ROWS_PER_PAGE);
-
         $user = $this->database->fetch();
+        $pageCount = $user->page_count;
 
-        return $user->page_count;
+        $returnArr = ['users' => $users, 'pages' => $pageCount];
+        return $returnArr;
     }
 
     public function login($username, $password)
