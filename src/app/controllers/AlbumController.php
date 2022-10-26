@@ -150,8 +150,16 @@ class AlbumController extends Controller implements ControllerInterface
                     $albumModel = $this->model('AlbumModel');
                     $albumID = $_POST['album_id'];
 
+                    $oldAlbumArtist = ($albumModel->getAlbumFromID($albumID))->penyanyi;
+
                     $albumModel->changeAlbumTitle($albumID, $_POST['title']);
+
                     $albumModel->changeAlbumArtist($albumID, $_POST['artist']);
+                    if ($_POST['artist'] !== $oldAlbumArtist) {
+                        $songModel = $this->model('SongModel');
+                        $songModel->bulkResetAlbum($albumID);
+                    }
+
                     $albumModel->changeAlbumDate($albumID, $_POST['date']);
                     $albumModel->changeAlbumGenre($albumID, $_POST['genre']);
 

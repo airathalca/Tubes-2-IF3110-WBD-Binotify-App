@@ -117,6 +117,13 @@ class SongModel
         $this->database->execute();
     }
 
+    public function bulkResetAlbum($albumID) {
+        $query = 'UPDATE song SET album_id = NULL where album_id = :album_id';
+        $this->database->query($query);
+        $this->database->bind('album_id', $albumID);
+        $this->database->execute();
+    }
+
     public function getAlbumlessSongs($penyanyi) {
         $query = 'SELECT * from song WHERE album_id is NULL AND penyanyi = :penyanyi';
         $this->database->query($query);
