@@ -100,7 +100,7 @@
                     <?php if ($this->data['songs']) { ?>
                         <div class="songs-list">
                             <?php foreach($this->data['songs'] as $song) { ?>
-                                <a href="/song/detail/<?= $song->song_id ?>" class="single-song">
+                                <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
                                     <p class="song-title"><?= $song->judul ?></p>
                                     <p class="song-genre"><?= $song->genre ?></p>
                                     <p class="song-dateduration"><?= $song->tanggal_terbit ?> - <?= round($song->duration/60) ?> min <?= $song->duration%60 ?> sec</p>
