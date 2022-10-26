@@ -64,7 +64,7 @@ class MP3Access
     {
         $kbps = ($bitrate*1000)/8;
         $datasize = filesize($this->filename) - $offset;
-        return round($datasize / $kbps);
+        return floor($datasize / $kbps);
     }
  
     private function skipID3v2Tag(&$block)

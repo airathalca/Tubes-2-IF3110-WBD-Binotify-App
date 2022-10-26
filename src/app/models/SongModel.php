@@ -131,4 +131,59 @@ class SongModel
         $this->database->bind('song_id', $songID);
         $this->database->execute();
     }
+
+    public function changeSongTitle($songID, $newTitle) {
+        $query = 'UPDATE song SET judul = :judul WHERE song_id = :song_id';
+
+        $this->database->query($query);
+        $this->database->bind('judul', $newTitle);
+        $this->database->bind('song_id', $songID);
+        $this->database->execute();
+    }
+
+    public function changeSongArtist($songID, $newArtist) {
+        $query = 'UPDATE song SET penyanyi = :penyanyi, album_id = NULL WHERE song_id = :song_id';
+        
+        $this->database->query($query);
+        $this->database->bind('penyanyi', $newArtist);
+        $this->database->bind('song_id', $songID);
+        $this->database->execute();
+    }
+
+    public function changeSongDate($songID, $newDate) {
+        $query = 'UPDATE song SET tanggal_terbit = :tanggal_terbit WHERE song_id = :song_id';
+
+        $this->database->query($query);
+        $this->database->bind('tanggal_terbit', $newDate);
+        $this->database->bind('song_id', $songID);
+        $this->database->execute();
+    }
+
+    public function changeSongGenre($songID, $newGenre) {
+        $query = 'UPDATE song SET genre = :genre WHERE song_id = :song_id';
+
+        $this->database->query($query);
+        $this->database->bind('genre', $newGenre);
+        $this->database->bind('song_id', $songID);
+        $this->database->execute();
+    }
+
+    public function changeCoverPath($songID, $newPath) {
+        $query = 'UPDATE song SET image_path = :image_path WHERE song_id = :song_id';
+
+        $this->database->query($query);
+        $this->database->bind('image_path', $newPath);
+        $this->database->bind('song_id', $songID);
+        $this->database->execute();
+    }
+
+    public function changeAudioPath($songID, $duration, $newPath) {
+        $query = 'UPDATE song SET audio_path = :audio_path, duration = :duration WHERE song_id = :song_id';
+
+        $this->database->query($query);
+        $this->database->bind('audio_path', $newPath);
+        $this->database->bind('song_id', $songID);
+        $this->database->bind('duration', $duration);
+        $this->database->execute();
+    }
 }

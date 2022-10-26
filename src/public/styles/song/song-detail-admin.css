@@ -9,25 +9,31 @@
     max-width: 300px;
 }
 
-.song-title {
-    color: var(--white);
-    font-weight: bold;
-    margin-top: 1rem;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
-.song-artist {
+.form-group label {
     color: var(--white);
-    margin-top: 0.5rem;
 }
 
-.song-genre {
+.form-group input[type="file"] {
+    align-self: flex-start;
     color: var(--white);
-    margin-top: 0.5rem;
+    font-family: var(--roboto);
 }
-.song-dateduration {
-    color: var(--white);
-    margin-top: 0.25rem;
-    margin-bottom: 1.5rem;
+
+.form-group input[type="text"], .form-group input[type="date"] {
+    padding: 1rem;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .button-album {
