@@ -99,4 +99,11 @@ class SongModel
         
         return $this->database->lastInsertID();
     }
+
+    public function resetAlbum($songID) {
+        $query = 'UPDATE song SET album_id = NULL where song_id = :song_id';
+        $this->database->query($query);
+        $this->database->bind('song_id', $songID);
+        $this->database->execute();
+    }
 }
