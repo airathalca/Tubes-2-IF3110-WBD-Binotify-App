@@ -113,7 +113,7 @@ const newData = (data) => {
         pagination.style.display = "none";
     }
     else {
-        pagination.style.display = "inline";
+        pagination.style.display = "block";
         currentPage = 1;
         pageText.innerHTML = `Page <span id="page-number">1</span> out of ${data.pages} pages`;
         updateData(data);
