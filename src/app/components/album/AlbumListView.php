@@ -105,7 +105,7 @@
                                     <p><?= $album->penyanyi ?></p>
                                 </header>
                                 <div class="album-dategenre">
-                                    <p><?= $album->tanggal_terbit ?></p>
+                                    <p><?= substr($album->tanggal_terbit, 0, 4) ?></p>
                                     <p><?= $album->genre ?></p>
                                 </div>
                             </a>
