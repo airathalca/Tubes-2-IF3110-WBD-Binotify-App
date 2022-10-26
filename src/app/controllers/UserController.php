@@ -87,6 +87,7 @@ class UserController extends Controller implements ControllerInterface
 
                     // Kembalikan redirect_url
                     header('Content-Type: application/json');
+                    http_response_code(201);
                     echo json_encode(["redirect_url" => BASE_URL . "/home"]);
                     exit;
 
@@ -113,6 +114,7 @@ class UserController extends Controller implements ControllerInterface
 
                     // Kembalikan redirect_url
                     header('Content-Type: application/json');
+                    http_response_code(201);
                     echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
                     exit;
 
@@ -150,6 +152,7 @@ class UserController extends Controller implements ControllerInterface
 
                     // Kembalikan redirect_url
                     header('Content-Type: application/json');
+                    http_response_code(201);
                     echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
                     exit;
 
