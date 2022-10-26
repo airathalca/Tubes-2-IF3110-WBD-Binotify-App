@@ -235,13 +235,9 @@ class SongController extends Controller implements ControllerInterface
                     $songModel = $this->model('SongModel');
                     $song = $songModel->getSong($songID);
                     if ($song) {
-                        // Format duration
-                        $minutes = floor(((int) $song->duration) / 60);
-                        $seconds = ((int) $song->duration) % 60;
-                        $date = date('d F Y', strtotime($song->tanggal_terbit));
                         $song_props = [
-                            "song_id" => $song->song_id, "judul" => $song->judul, "penyanyi" => $song->penyanyi, "duration" => $minutes . " min " . $seconds . " sec",
-                            "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $date, "genre" => $song->genre, "album" => $song->album_id
+                            "song_id" => $song->song_id, "judul" => $song->judul, "penyanyi" => $song->penyanyi, "duration" => $song->duration,
+                            "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $song->tanggal_terbit, "genre" => $song->genre, "album" => $song->album_id, 
                         ];
                     } else {
                         throw new LoggedException('Not Found', 404);
@@ -253,8 +249,6 @@ class SongController extends Controller implements ControllerInterface
                         $user = $userModel->getUserFromID($_SESSION['user_id']);
                         $nav = ['username' => $user->username, 'is_admin' => $user->is_admin];
                         if ($user->is_admin) {
-                            $song_props['tanggal_terbit'] = $song->tanggal_terbit;
-                            $song_props['duration'] = $song->duration;
                             $songDetailView = $this->view('song', 'AdminSongDetailView', array_merge($song_props, $nav));
                         } else {
                             $songDetailView = $this->view('song', 'UserSongDetailView', array_merge($song_props, $nav));
@@ -276,15 +270,13 @@ class SongController extends Controller implements ControllerInterface
                     $tokenMiddleware = $this->middleware('TokenMiddleware');
                     $tokenMiddleware->checkToken();
 
-                    if (!$_POST['title'] || !$_POST['artist'] || !$_POST['date'] || !$_POST['genre']) {
+                    if (!$_POST['title'] || !$_POST['date'] || !$_POST['genre']) {
                         throw new LoggedException('Bad Request', 400);
                     }
 
                     $songModel = $this->model('SongModel');
                     $songID = $_POST['song_id'];
-                    if ($_POST['artist'] !== $_POST['old_artist']) {
-                        $songModel->changeSongArtist($songID, $_POST['artist']);
-                    }
+
                     $songModel->changeSongTitle($songID, $_POST['title']);
                     $songModel->changeSongDate($songID, $_POST['date']);
                     $songModel->changeSongGenre($songID, $_POST['genre']);
@@ -307,7 +299,7 @@ class SongController extends Controller implements ControllerInterface
                             $diffDuration = $duration - (int) $_POST['old_duration'];
                         }
                         $songModel->changeAudioPath($songID, $duration, $uploadedAudio);
-                        if ($diffDuration !== 0 && $_POST['artist'] === $_POST['old_artist']) {
+                        if ($diffDuration !== 0 && $_POST['album_id'] !== null) {
                             $albumModel = $this->model('AlbumModel');
                             $albumModel->addDuration($_POST['album_id'], $diffDuration);
                         }

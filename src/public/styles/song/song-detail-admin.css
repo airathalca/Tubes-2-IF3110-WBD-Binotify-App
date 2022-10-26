@@ -9,6 +9,27 @@
     max-width: 300px;
 }
 
+.song-title {
+    color: var(--white);
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.song-artist {
+    color: var(--white);
+    margin-top: 0.5rem;
+}
+
+.song-genre {
+    color: var(--white);
+    margin-top: 0.5rem;
+}
+.song-dateduration {
+    color: var(--white);
+    margin-top: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;

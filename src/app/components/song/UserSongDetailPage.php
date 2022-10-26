@@ -46,7 +46,8 @@
                     <p class="song-title"><?= $this->data['judul'] ?></p>
                     <p class="song-artist"><?= $this->data['penyanyi'] ?></p>
                     <p class="song-genre"><?= $this->data['genre'] ?></p>
-                    <p class="song-dateduration"><?= $this->data['tanggal_terbit'] ?> - <?=$this->data['duration']?></p>
+                    <p class="song-dateduration"><?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> - 
+                    <?=floor(((int) $this->data['duration']) / 60) . " min " . ((int) $this->data['duration']) % 60 . " sec" ?></p>
                     <?php if ($this->data['album'] === NULL) { ?>
                         <p class="info">This song doesn't belong to any album yet!</p>
                     <?php } else  { ?>
