@@ -86,3 +86,11 @@
     color: var(--white);
     margin-top: 0.5rem;
 }
+
+select {
+    appearance: none;
+    background-image: url(../../images/assets/dropdown-arrow.svg);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1.3em) center;
+    background-size: 2rem;
+}

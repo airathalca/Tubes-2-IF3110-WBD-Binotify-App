@@ -146,15 +146,21 @@
                     <?php } ?>
                     <!-- Add song into album! -->
                     <p class="add-song-header">Add a song into this album!</p>
-                    <form action="" method="post" class="add-song-form">
-                        <div class="dropdown">
-                            <select name="song" id="song">
-                                <option value="1">Bidadari Surga</option>
-                                <option value="2">Bidadari Neraka</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="button green-button">Add song to album</button>
-                    </form>
+                    <?php if (!$this->data['songs_to_add']) { ?>
+                        <p class="info">There are no songs available for you to add!</p>
+                    <?php } ?>
+                    <?php if ($this->data['songs_to_add']) { ?>
+                        <form action="" method="post" class="add-song-form">
+                            <div class="dropdown">
+                                <select name="song" id="song">
+                                    <?php foreach($this->data['songs_to_add'] as $song) { ?>
+                                        <option value="<?= $song->song_id ?>">[ID <?= $song->song_id ?>] <?= $song->judul ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <button type="submit" class="button green-button">Add song to album</button>
+                        </form>
+                    <?php } ?>
                 <?php } else { ?>
                     <p class="info">Cannot find the album you're looking for!</p>
                 <?php } ?>

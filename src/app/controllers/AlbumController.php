@@ -84,6 +84,7 @@ class AlbumController extends Controller implements ControllerInterface
                     $album = $albumModel->getAlbumFromID($albumID);
                     $album_props = [];
                     $album_songs = ["songs" => []];
+                    $songs_to_add = ["songs_to_add" => []];
 
                     if ($album) {
                         // Format duration
@@ -95,6 +96,9 @@ class AlbumController extends Controller implements ControllerInterface
                         // Get album songs
                         $songModel = $this->model('SongModel');
                         $album_songs = ["songs" => $songModel->getSongsFromAlbum($albumID)];
+
+                        // Get songs to add
+                        $songs_to_add = ["songs_to_add" => $songModel->getAlbumlessSongs()];
                     }
 
                     // Keperluan navbar
@@ -119,7 +123,7 @@ class AlbumController extends Controller implements ControllerInterface
                             $albumDetailView = $this->view('album', 'UserAlbumDetailView', array_merge($album_props, $nav, $album_songs));
                         } else {
                             /* View admin! */
-                            $albumDetailView = $this->view('album', 'AdminAlbumDetailView', array_merge($album_props, $nav, $album_songs));
+                            $albumDetailView = $this->view('album', 'AdminAlbumDetailView', array_merge($album_props, $nav, $album_songs, $songs_to_add));
                         }
                     }
 
