@@ -10,7 +10,6 @@ class UserAlbumDetailView implements ViewInterface
 
     public function render()
     {
-        var_dump ($this->data);
         require_once __DIR__ . '/../../components/album/UserAlbumDetailPage.php';
     }
 }
