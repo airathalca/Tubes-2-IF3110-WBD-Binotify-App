@@ -70,7 +70,7 @@
                     </div>
                 <?php } else { ?>
                     <div class="nav-container" id="nav-container">
-                        <a href="public/song/add" class="nav-link">
+                        <a href="/public/song/add" class="nav-link">
                             Add song
                         </a>
                         <a href="/public/album/add" class="nav-link">
