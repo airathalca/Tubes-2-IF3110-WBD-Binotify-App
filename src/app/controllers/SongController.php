@@ -145,7 +145,40 @@ class SongController extends Controller implements ControllerInterface
                     $songModel = $this->model('SongModel');
                     $songModel->resetAlbum($songID);
 
-                    header("Location: /public/album/detail/$songID", true, 301);
+                    $albumID = $_POST['album_id'];
+
+                    header("Location: /public/album/detail/$albumID", true, 301);
+                    exit;
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }   
+    }
+
+    public function addtoalbum()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'POST':
+                    // Halaman hanya bisa diakses admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    $albumID = $_POST['album_id'];
+                    $songID = $_POST['song'];
+
+                    $songModel = $this->model('SongModel');
+                    $songModel->assignAlbum($songID, $albumID);
+
+                    header("Location: /public/album/detail/$albumID", true, 301);
                     exit;
                     break;
                 default:

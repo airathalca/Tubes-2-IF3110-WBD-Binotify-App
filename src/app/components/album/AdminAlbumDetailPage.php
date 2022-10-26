@@ -138,6 +138,7 @@
                                     <p class="song-genre"><?= $song->genre ?></p>
                                     <p class="song-dateduration"><?= $song->tanggal_terbit ?> - <?= round($song->duration/60) ?> min <?= $song->duration%60 ?> sec</p>
                                     <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>", method="post">
+                                        <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id">
                                         <button class="button red-button" type="submit">Delete song</button>
                                     </form>
                                 </div>
@@ -150,7 +151,8 @@
                         <p class="info">There are no songs available for you to add!</p>
                     <?php } ?>
                     <?php if ($this->data['songs_to_add']) { ?>
-                        <form action="" method="post" class="add-song-form">
+                        <form action="/public/song/addtoalbum?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" class="add-song-form">
+                            <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id_2">
                             <div class="dropdown">
                                 <select name="song" id="song">
                                     <?php foreach($this->data['songs_to_add'] as $song) { ?>
