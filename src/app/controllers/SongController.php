@@ -234,6 +234,9 @@ class SongController extends Controller implements ControllerInterface
                         $song_props = ["song_id" => $song->song_id, "judul" => $song->judul, "penyanyi" => $song->penyanyi, "duration" => $minutes . " min " . $seconds . " sec", 
                         "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $date, "genre" => $song->genre, "album" => $song->album_id];
                     }
+                    else {
+                        throw new LoggedException('Not Found', 404);
+                    }
                     // Keperluan navbar
                     if (isset($_SESSION['user_id'])) {
                         // Ada data user_id, coba fetch data username!
@@ -304,6 +307,48 @@ class SongController extends Controller implements ControllerInterface
 
                     // Refresh page!
                     header("Location: /public/song/detail/$songID", true, 301);
+                    exit;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
+    public function delete($params)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'POST':
+                    // Halaman hanya bisa diakses admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    // Hapus dari storage
+                    $storageAccessImage = new StorageAccess('images');
+                    $storageAccessImage->deleteFile($_POST['old_image_path']);
+
+                    $storageAccessAudio = new StorageAccess('songs');
+                    $storageAccessAudio->deleteFile($_POST['old_audio_path']);
+
+                    // Hapus dari database
+                    $songID = (int) $params;
+                    $songModel = $this->model('songModel');
+                    $songModel->deleteSong($songID);
+                    if ($_POST['album_id'] !== NULL) {
+                        $albumModel = $this->model('AlbumModel');
+                        $albumModel->substractDuration($_POST['album_id'], $_POST['duration']);
+                    }
+
+                    // Kirimkan response
+                    header('Content-Type: application/json');
+                    // Redirect ke album list
+                    echo json_encode(["redirect_url" => "/public/home"]);
                     exit;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
