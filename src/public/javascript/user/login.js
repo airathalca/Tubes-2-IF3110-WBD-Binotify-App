@@ -26,8 +26,13 @@ loginForm &&
         xhr.send(formData);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                const data = JSON.parse(xhr.responseText);
-                location.replace(data.redirect_url);
+                if (this.status === 201) {
+                    const data = JSON.parse(xhr.responseText);
+                    location.replace(data.redirect_url);
+                } else {
+                    // BISA DICEK KEMBALI DR SEMUA STATUS CODE YANG DIKIRIMKAN
+                    alert("An error occured, please try again!");
+                }
             }
         };
     });

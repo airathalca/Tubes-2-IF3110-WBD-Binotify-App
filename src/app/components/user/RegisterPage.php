@@ -36,21 +36,21 @@
                 <form class="registration-form">
                     <div class="form-group">
                         <label for="username">What's your username?</label>
-                        <input type="text" name="username" placeholder="johndoe" id="username">
-                        <p id="username-alert" class="alert-hide">Invalid username format!</p>
+                        <input type="text" name="username" placeholder="Enter your username." id="username">
+                        <p id="username-alert" class="alert-hide"></p>
                     </div>
                     <div class="form-group">
                         <label for="email">What's your email?</label>
-                        <input type="email" name="email" placeholder="john@doe.com" id="email">
-                        <p id="email-alert" class="alert-hide">Invalid email format!</p>
+                        <input type="email" name="email" placeholder="Enter your email." id="email">
+                        <p id="email-alert" class="alert-hide"></p>
                     </div>
                     <div class="form-group">
                         <label for="password">Pick a password!</label>
-                        <input type="password" name="password" placeholder="●●●●●●" id="password" autocomplete="on">
+                        <input type="password" name="password" placeholder="Enter your password." id="password" autocomplete="on">
                     </div>
                     <div class="form-group">
                         <label for="confirm-password">Confirm your password!</label>
-                        <input type="password" name="confirm-password" placeholder="●●●●●●" id="confirm-password" autocomplete="on">
+                        <input type="password" name="confirm-password" placeholder="Enter your password again." id="confirm-password" autocomplete="on">
                     </div>
                     <div class="form-button">
                         <button type="submit" class="button black-button">Sign up</button>
