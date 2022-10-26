@@ -88,6 +88,10 @@
     color: var(--white);
 }
 
+.info {
+    color: var(--white);
+}
+
 @media (min-width: 800px) {
     .single-album {
         width: calc(50% - 2rem);
