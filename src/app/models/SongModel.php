@@ -16,6 +16,16 @@ class SongModel
         $songArr = $this->database->fetchAll();
         return $songArr;
     }
+
+    public function getSongsFromAlbum($albumID)
+    {
+        $query = 'SELECT * FROM song WHERE album_id = :album_id ORDER BY song_id ASC';
+        $this->database->query($query);
+        $this->database->bind('album_id', $albumID);
+        $songsArr = $this->database->fetchAll();
+        return $songsArr;    
+    }
+
     public function getByQuery($q, $sort = 'judul', $filter ='all', $page = 1)
     {
         if ($filter === 'all') {

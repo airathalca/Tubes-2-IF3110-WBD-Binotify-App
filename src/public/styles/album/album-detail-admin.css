@@ -39,13 +39,13 @@
 .songs-list-header {
     color: var(--white);
     margin-top: 2.5rem;
-    margin-bottom: 1rem;
 }
 
 .songs-list {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-top: 1rem;
 }
 
 .single-song {
@@ -84,4 +84,5 @@
 
 .info {
     color: var(--white);
+    margin-top: 0.5rem;
 }
