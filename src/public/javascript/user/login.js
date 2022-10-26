@@ -70,9 +70,9 @@ loginForm &&
 
         xhr.send(formData);
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 201) {
-                    const data = JSON.parse(xhr.responseText);
+                    const data = JSON.parse(this.responseText);
                     location.replace(data.redirect_url);
                 } else {
                     alert("An error occured, please try again!");
