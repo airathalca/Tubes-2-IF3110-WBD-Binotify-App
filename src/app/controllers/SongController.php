@@ -202,4 +202,57 @@ class SongController extends Controller implements ControllerInterface
             exit;
         }   
     }
+
+    public function detail($params)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
+
+                    $songID = (int) $params;
+
+                    $songModel = $this->model('SongModel');
+                    $song = $songModel->getSong($songID);
+                    if ($song) {
+                        // Format duration
+                        $minutes = floor(((int) $song->duration) / 60);
+                        $seconds = ((int) $song->duration) % 60;
+                        $date = date('d F Y', strtotime($song->tanggal_terbit));
+                        $song->duration = $minutes . " min " . $seconds . " sec";
+                        $song_props = ["song_id" => $song->song_id, "judul" => $song->judul, "penyanyi" => $song->penyanyi, "duration" => $minutes . " min " . $seconds . " sec", 
+                        "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $date, "genre" => $song->genre, "album" => $song->album_id];
+                    }
+                    // Keperluan navbar
+                    if (isset($_SESSION['user_id'])) {
+                        // Ada data user_id, coba fetch data username!
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+                        $nav = ['username' => $user->username, 'is_admin' => $user->is_admin];
+                        if ($user->is_admin) {
+                            $songDetailView = $this->view('song', 'AdminSongDetailView', array_merge($song_props, $nav));
+                        }
+                        else {
+                            $songDetailView = $this->view('song', 'UserSongDetailView', array_merge($song_props, $nav));
+                        }
+                    } else {
+                        $nav = ['username' => null];
+                        $songDetailView = $this->view('song', 'UserSongDetailView', array_merge($song_props, $nav));
+                    }
+                    
+                    $songDetailView->render();
+
+                    exit;
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
 }

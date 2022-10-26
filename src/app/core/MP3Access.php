@@ -57,7 +57,7 @@ class MP3Access
                 return $this->estimateDuration($info['Bitrate'],$offset); 
             }
         }
-        return round($duration);
+        return floor($duration);
     }
  
     private function estimateDuration($bitrate,$offset)
