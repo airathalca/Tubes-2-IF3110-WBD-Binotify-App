@@ -6,7 +6,8 @@ class SongController extends Controller implements ControllerInterface
     {
         echo 'La la la';
     }
-    public function search() {
+    public function search()
+    {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
@@ -28,7 +29,7 @@ class SongController extends Controller implements ControllerInterface
                     if (isset($_SESSION['user_id'])) {
                         $userModel = $this->model('UserModel');
                         $user = $userModel->getUserFromID($_SESSION['user_id']);
-                        $searchView = $this->view('song', 'SearchView', array_merge(['is_admin' => $user->is_admin,'username' => $user->username, 'genre_arr' => $genreArr], $songArr) );
+                        $searchView = $this->view('song', 'SearchView', array_merge(['is_admin' => $user->is_admin, 'username' => $user->username, 'genre_arr' => $genreArr], $songArr));
                     } else {
                         $searchView = $this->view('song', 'SearchView', array_merge(['username' => null, 'genre_arr' => $genreArr], $songArr));
                     }
@@ -44,7 +45,8 @@ class SongController extends Controller implements ControllerInterface
         }
     }
 
-    public function fetch($page) {
+    public function fetch($page)
+    {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
@@ -68,7 +70,7 @@ class SongController extends Controller implements ControllerInterface
         }
     }
 
-    public function add() 
+    public function add()
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
@@ -83,6 +85,7 @@ class SongController extends Controller implements ControllerInterface
                     // Get Album ID
                     $albumModel = $this->model('AlbumModel');
                     $albumArr = $albumModel->getAllAlbum();
+
                     // Load AddSongView.php
                     $addAlbumView = $this->view('song', 'AddSongView', ['album_arr' => $albumArr]);
                     $addAlbumView->render();
@@ -106,7 +109,7 @@ class SongController extends Controller implements ControllerInterface
                     if ($_FILES['audio']['error'] === 4 || $_FILES['cover']['error'] === 4) {
                         throw new LoggedException('Bad Request', 400);
                     }
-                    
+
                     $storageAccessAudio = new StorageAccess('songs');
                     $uploadedAudio = $storageAccessAudio->saveAudio($_FILES['audio']['tmp_name']);
 
@@ -160,7 +163,7 @@ class SongController extends Controller implements ControllerInterface
         } catch (Exception $e) {
             http_response_code($e->getCode());
             exit;
-        }   
+        }
     }
 
     public function addtoalbum()
@@ -196,6 +199,6 @@ class SongController extends Controller implements ControllerInterface
         } catch (Exception $e) {
             http_response_code($e->getCode());
             exit;
-        }   
+        }
     }
 }

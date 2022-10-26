@@ -10,26 +10,27 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/images/icon/favicon-16x16.png">
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <!-- Global CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/globals.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/navbar.css">
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/album/album-detail-admin.css">
-    <!-- JavaScript DOM and AJAX -->
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/album/album-detail-admin.css">
+    <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
-        <?php if ($this->data) { ?>
+        <?php if ($this->data) : ?>
             const album_id = <?= $this->data['album_id'] ?>;
             const image_path = "<?= $this->data['image_path'] ?>";
-        <?php } ?>
+        <?php endif; ?>
     </script>
+    <!-- JavaScript DOM and AJAX -->
     <script src="<?= BASE_URL ?>/javascript/album/update-album-detail.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
-        <?php if ($this->data) { ?>
+        <?php if ($this->data) : ?>
             <?= $this->data['judul'] ?>
-        <?php } else { ?>
+        <?php else : ?>
             Album not found
-        <?php } ?>
+        <?php endif; ?>
     </title>
 </head>
 
@@ -49,7 +50,7 @@
                     </div>
                 </div>
                 <?php
-                if (!$this->data['username'] || !$this->data['is_admin']) { ?>
+                if (!$this->data['username'] || !$this->data['is_admin']) : ?>
                     <div class="nav-container" id="nav-container">
                         <div class="nav-search">
                             <form action="<?= BASE_URL ?>/song/search" METHOD="GET">
@@ -66,14 +67,13 @@
                             Album list
                         </a>
                         <?php
-                        if ($this->data['username']) { ?>
+                        if ($this->data['username']) : ?>
                             <a href="#" id="log-out" class="nav-link">
                                 Log out
                             </a>
-                        <?php }
-                        ?>
+                        <?php endif; ?>
                     </div>
-                <?php } else { ?>
+                <?php else : ?>
                     <div class="nav-container" id="nav-container">
                         <a href="/public/song/add" class="nav-link">
                             Add song
@@ -84,18 +84,21 @@
                         <a href="/public/album" class="nav-link">
                             Album list
                         </a>
+                        <a href="/public/user" class="nav-link">
+                            User List
+                        </a>
                         <a href="#" id="log-out" class="nav-link">
                             Log out
                         </a>
                     </div>
-                <?php } ?>
+                <?php endif; ?>
             </nav>
             <!-- Form -->
             <div class="pad-40">
                 <p class="details-header">Album details</p>
-                <?php if ($this->data) { ?>
+                <?php if ($this->data) : ?>
                     <!-- Album related info -->
-                    <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?php echo $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="album-form">
+                    <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="album-form">
                         <input type="hidden" name="album_id" value="<?= $this->data['album_id'] ?>">
                         <input type="hidden" name="old_path" value="<?= $this->data['image_path'] ?>">
                         <div class="form-group">
@@ -114,7 +117,7 @@
                         <div class="form-group">
                             <label for="date">Published date</label>
                             <input type="date" name="date" id="date" value="<?= $this->data['tanggal_terbit'] ?>">
-                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="genre">Genre</label>
                             <input type="text" name="genre" id="genre" placeholder="Rock" value="<?= $this->data['genre'] ?>">
@@ -124,48 +127,48 @@
                             <button class="button red-button" id="delete-button" type="button">Delete album</button>
                         </div>
                     </form>
-                    
+
                     <!-- Delete songs -->
                     <p class="songs-list-header">Songs inside this album:</p>
-                    <?php if (!$this->data['songs']) { ?>
+                    <?php if (!$this->data['songs']) : ?>
                         <p class="info">This album doesn't have any songs yet!</p>
-                    <?php } ?>
-                    <?php if ($this->data['songs']) { ?>
+                    <?php endif; ?>
+                    <?php if ($this->data['songs']) : ?>
                         <div class="songs-list">
-                            <?php foreach($this->data['songs'] as $song) { ?>
+                            <?php foreach ($this->data['songs'] as $song) : ?>
                                 <div class="single-song">
                                     <p class="song-title"><?= $song->judul ?></p>
                                     <p class="song-genre"><?= $song->genre ?></p>
-                                    <p class="song-dateduration"><?= $song->tanggal_terbit ?> - <?= round($song->duration/60) ?> min <?= $song->duration%60 ?> sec</p>
-                                    <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>", method="post">
+                                    <p class="song-dateduration"><?= $song->tanggal_terbit ?> - <?= round($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
+                                    <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" , method="post">
                                         <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id">
                                         <button class="button red-button" type="submit">Delete song</button>
                                     </form>
                                 </div>
-                            <?php } ?>
+                            <?php endforeach; ?>
                         </div>
-                    <?php } ?>
+                    <?php endif; ?>
                     <!-- Add song into album! -->
                     <p class="add-song-header">Add a song into this album!</p>
-                    <?php if (!$this->data['songs_to_add']) { ?>
+                    <?php if (!$this->data['songs_to_add']) : ?>
                         <p class="info">There are no songs available for you to add!</p>
-                    <?php } ?>
-                    <?php if ($this->data['songs_to_add']) { ?>
+                    <?php endif; ?>
+                    <?php if ($this->data['songs_to_add']) : ?>
                         <form action="/public/song/addtoalbum?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" class="add-song-form">
                             <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id_2">
                             <div class="dropdown">
                                 <select name="song" id="song">
-                                    <?php foreach($this->data['songs_to_add'] as $song) { ?>
+                                    <?php foreach ($this->data['songs_to_add'] as $song) : ?>
                                         <option value="<?= $song->song_id ?>">[ID <?= $song->song_id ?>] <?= $song->judul ?></option>
-                                    <?php } ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <button type="submit" class="button green-button">Add song to album</button>
                         </form>
-                    <?php } ?>
-                <?php } else { ?>
+                    <?php endif; ?>
+                <?php else : ?>
                     <p class="info">Cannot find the album you're looking for!</p>
-                <?php } ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

@@ -10,14 +10,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/images/icon/favicon-16x16.png">
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <!-- Global CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/album/add-album.css">
-    <!-- JavaScript DOM and AJAX -->
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/album/add-album.css">
+    <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
     </script>
+    <!-- JavaScript DOM and AJAX -->
     <script src="<?= BASE_URL ?>/javascript/album/add-album.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>Add Album</title>
@@ -73,6 +74,9 @@
                         </a>
                         <a href="/public/album" class="nav-link">
                             Album list
+                        </a>
+                        <a href="/public/user" class="nav-link">
+                            User List
                         </a>
                         <a href="#" id="log-out" class="nav-link">
                             Log out
