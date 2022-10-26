@@ -32,11 +32,11 @@
                 <form action="/public/song/add?csrf_token=<?=$_SESSION['csrf_token']?>" method="post" enctype="multipart/form-data" class="form">
                     <div class="form-group">
                         <label for="title">Song title</label>
-                        <input type="text" name="title" id="title" placeholder="Becak Tiguling">
+                        <input type="text" name="title" id="title" placeholder="LycoReco">
                     </div>
                     <div class="form-group">
                         <label for="artist">Artist</label>
-                        <input type="text" name="artist" id="artist" placeholder="aira">
+                        <input type="text" name="artist" id="artist" placeholder="Chisato">
                     </div>
                     <div class="form-group">
                         <label for="date">Published date</label>
