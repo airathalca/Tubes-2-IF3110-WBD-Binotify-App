@@ -1,0 +1,48 @@
+.details-header {
+    color: var(--white);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.song-cover {
+    width: 100%;
+    max-width: 300px;
+}
+
+.song-title {
+    color: var(--white);
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.song-artist {
+    color: var(--white);
+    margin-top: 0.5rem;
+}
+
+.song-genre {
+    color: var(--white);
+    margin-top: 0.5rem;
+}
+.song-dateduration {
+    color: var(--white);
+    margin-top: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.button-album {
+    margin-top: 1rem;
+    background: var(--lightgreen);
+    color: var(--black);
+    display: table;
+    margin-bottom: 1rem;
+}
+
+.info {
+    color: var(--white);
+    margin-top: 0.5rem;
+}
+
+.audio-player {
+    margin-top: 1rem;
+}

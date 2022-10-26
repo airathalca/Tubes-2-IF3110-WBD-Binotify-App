@@ -57,14 +57,14 @@ class MP3Access
                 return $this->estimateDuration($info['Bitrate'],$offset); 
             }
         }
-        return round($duration);
+        return floor($duration);
     }
  
     private function estimateDuration($bitrate,$offset)
     {
         $kbps = ($bitrate*1000)/8;
         $datasize = filesize($this->filename) - $offset;
-        return round($datasize / $kbps);
+        return floor($datasize / $kbps);
     }
  
     private function skipID3v2Tag(&$block)

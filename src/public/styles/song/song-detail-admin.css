@@ -1,0 +1,54 @@
+.details-header {
+    color: var(--white);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.song-cover {
+    width: 100%;
+    max-width: 300px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    color: var(--white);
+}
+
+.form-group input[type="file"] {
+    align-self: flex-start;
+    color: var(--white);
+    font-family: var(--roboto);
+}
+
+.form-group input[type="text"], .form-group input[type="date"] {
+    padding: 1rem;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.button-album {
+    margin-top: 1rem;
+    background: var(--lightgreen);
+    color: var(--black);
+    display: table;
+    margin-bottom: 1rem;
+}
+
+.info {
+    color: var(--white);
+    margin-top: 0.5rem;
+}
+
+.audio-player {
+    margin-top: 1rem;
+}
