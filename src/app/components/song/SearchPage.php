@@ -19,9 +19,9 @@
         const STORAGE_URL = "<?= STORAGE_URL ?>";
         const BASE_URL = "<?= BASE_URL ?>";
         let pages = 0;
-        <?php if ($this->data['pages']) { ?>
+        <?php if ($this->data['pages']) : ?>
             pages = "<?= $this->data['pages'] ?>"
-        <?php } ?>
+        <?php endif; ?>
     </script>
     <script src="<?= BASE_URL ?>/javascript/song/search.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <?php
-                if (!$this->data['username'] || !$this->data['is_admin']) { ?>
+                if (!$this->data['username'] || !$this->data['is_admin']) : ?>
                     <div class="nav-container" id="nav-container">
                         <div class="nav-search">
                             <form action="<?= BASE_URL ?>/song/search" METHOD="GET">
@@ -60,14 +60,13 @@
                             Album list
                         </a>
                         <?php
-                        if ($this->data['username']) { ?>
+                        if ($this->data['username']) : ?>
                             <a href="#" id="log-out" class="nav-link">
                                 Log out
                             </a>
-                        <?php }
-                        ?>
+                        <?php endif; ?>
                     </div>
-                <?php } else { ?>
+                <?php else : ?>
                     <div class="nav-container" id="nav-container">
                         <a href="/public/song/add" class="nav-link">
                             Add song
@@ -82,60 +81,32 @@
                             Log out
                         </a>
                     </div>
-                <?php } ?>
+                <?php endif; ?>
             </nav>
             <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="search-form">
                 <div class="form-group">
                     <label for="search">Searching for ...</label>
-                    <input type="text" name="q" placeholder="Title/year/artist/published date" id="search"
-                        <?php if ($_GET['q']) { ?>
-                            value="<?= $_GET['q'] ?>"
-                        <?php } ?>
-                    >
+                    <input type="text" name="q" placeholder="Title/year/artist/published date" id="search" <?php if ($_GET['q']) : ?> value="<?= $_GET['q'] ?>" <?php endif; ?>>
                 </div>
                 <div class="form-group">
                     <label for="sort">Sorted by ...</label>
                     <select name="sort" id="sort">
-                        <option value="judul"
-                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul') { ?>
-                                selected="selected"
-                            <?php } ?>
-                        >
+                        <option value="judul" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul') : ?> selected="selected" <?php endif; ?>>
                             Title (A-Z)
                         </option>
-                        <option value="judul desc"
-                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul desc') { ?>
-                                selected="selected"
-                            <?php } ?>
-                        >
+                        <option value="judul desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul desc') : ?> selected="selected" <?php endif; ?>>
                             Title (Z-A)
                         </option>
-                        <option value="penyanyi"
-                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi') { ?>
-                                selected="selected"
-                            <?php } ?>
-                        >
+                        <option value="penyanyi" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi') : ?> selected="selected" <?php endif; ?>>
                             Singer (A-Z)
                         </option>
-                        <option value="penyanyi desc"
-                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi desc') { ?>
-                                selected="selected"
-                            <?php } ?>
-                        >
+                        <option value="penyanyi desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi desc') : ?> selected="selected" <?php endif; ?>>
                             Singer (Z-A)
                         </option>
-                        <option value="tanggal_terbit"
-                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit') { ?>
-                                selected="selected"
-                            <?php } ?>
-                        >
+                        <option value="tanggal_terbit" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit') : ?> selected="selected" <?php endif; ?>>
                             Date (Newest First)
                         </option>
-                        <option value="tanggal_terbit desc"
-                            <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit desc') { ?>
-                                selected="selected"
-                            <?php } ?>
-                        >
+                        <option value="tanggal_terbit desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit desc') : ?> selected="selected" <?php endif; ?>>
                             Date (Latest First)
                         </option>
                     </select>
@@ -145,11 +116,7 @@
                     <select name="filter" id="filter">
                         <option value="all"></option>
                         <?php foreach ($this->data['genre_arr'] as $index => $genre) : ?>
-                            <option value=<?= $genre->genre ?>
-                                <?php if (isset($_GET['filter']) && $_GET['filter'] == $genre->genre) { ?>
-                                    selected="selected"
-                                <?php } ?>
-                            >
+                            <option value=<?= $genre->genre ?> <?php if (isset($_GET['filter']) && $_GET['filter'] == $genre->genre) : ?> selected="selected" <?php endif; ?>>
                                 <?= $genre->genre ?>
                             </option>
                         <?php endforeach; ?>
@@ -161,36 +128,36 @@
             </form>
             <div class="pad-40">
                 <p class="article-heading">Search Result</p>
-                <?php if (!$this->data['songs']) { ?>
+                <?php if (!$this->data['songs']) : ?>
                     <p class="no-result">Your search did not match any songs in our database!</p>
-                <?php } else { ?>
-                <div class="search-result-flex songs-result">
-                <?php foreach ($this->data['songs'] as $song) : ?>
-                    <a href="/public/song/detail/<?=$song->song_id?>" class="single-song">
-                        <img src="<?= STORAGE_URL ?>/images/<?=$song->image_path?>" alt=<?=$song->judul?>>
-                        <header class="song-header">
-                            <p class="title"><?= $song->judul ?></p>
-                            <p><?= $song->penyanyi ?></p>
-                        </header>
-                        <div class="song-dategenre">
-                            <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
-                            <p><?= $song->genre ?></p>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
-                </div>
-                <div class="pagination">
-                    <p id="pagination-text">Page <span id="page-number">1</span> out of <?= $this->data['pages'] ?> pages</p>
-                    <div class="pagination-buttons">
-                        <button id="previous" disabled>
-                            <img src="<?= BASE_URL ?>/images/assets/arrow-left.svg" alt="">
-                        </button>
-                        <button id="next" <?php if ($this->data['pages'] == 1) {?> disabled <? } ?>>
-                            <img src="<?= BASE_URL ?>/images/assets/arrow-right.svg" alt="">
-                        </button>
+                <?php else : ?>
+                    <div class="search-result-flex songs-result">
+                        <?php foreach ($this->data['songs'] as $song) : ?>
+                            <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
+                                <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt=<?= $song->judul ?>>
+                                <header class="song-header">
+                                    <p class="title"><?= $song->judul ?></p>
+                                    <p><?= $song->penyanyi ?></p>
+                                </header>
+                                <div class="song-dategenre">
+                                    <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
+                                    <p><?= $song->genre ?></p>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
-                </div>
-                <?php } ?>
+                    <div class="pagination">
+                        <p id="pagination-text">Page <span id="page-number">1</span> out of <?= $this->data['pages'] ?> pages</p>
+                        <div class="pagination-buttons">
+                            <button id="previous" disabled>
+                                <img src="<?= BASE_URL ?>/images/assets/arrow-left.svg" alt="">
+                            </button>
+                            <button id="next" <?php if ($this->data['pages'] == 1) : ?> disabled <? endif; ?>>
+                                <img src="<?= BASE_URL ?>/images/assets/arrow-right.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
