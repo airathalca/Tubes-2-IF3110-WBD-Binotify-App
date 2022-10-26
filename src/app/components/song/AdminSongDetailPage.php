@@ -45,13 +45,7 @@
             <div class="pad-40">
                 <p class="details-header">Song details</p>
                 <?php if ($this->data) { ?>
-                    <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
-                    <p class="song-title"><?= $this->data['judul'] ?></p>
-                    <p class="song-artist"><?= $this->data['penyanyi'] ?></p>
-                    <p class="song-genre"><?= $this->data['genre'] ?></p>
-                    <p class="song-dateduration"><?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> - 
-                    <?=floor(((int) $this->data['duration']) / 60) . " min " . ((int) $this->data['duration']) % 60 . " sec" ?></p>
-                    <!-- Album related info -->
+                    <!-- Song related info -->
                     <form action="/public/song/detail/<?= $this->data['song_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="song-form">
                         <input type="hidden" name="song_id" value="<?= $this->data['song_id'] ?>">
                         <input type="hidden" name="album_id" value="<?= $this->data['album'] ?>">
@@ -59,6 +53,7 @@
                         <input type="hidden" name="old_audio_path" value="<?= $this->data['audio_path'] ?>">
                         <input type="hidden" name="old_duration" value="<?= $this->data['duration'] ?>">
                         <div class="form-group">
+                            <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
                             <label for="cover">Upload new photo</label>
                             <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
                         </div>
