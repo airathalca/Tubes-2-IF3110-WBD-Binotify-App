@@ -13,6 +13,7 @@ loginForm &&
             window.alert(
                 "Please fill out the form properly before submitting!"
             );
+            return;
         }
 
         const xhr = new XMLHttpRequest();

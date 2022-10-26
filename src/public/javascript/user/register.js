@@ -15,6 +15,11 @@ const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const passwordRegex = /\w+/; // DAPAT DIGANTI MENJADI REGEX UTK STRONG PASSWORD
 
+let usernameValid = false;
+let emailValid = false;
+let passwordValid = false;
+let passwordConfirmedValid = false;
+
 usernameInput &&
     usernameInput.addEventListener(
         "keyup",
@@ -33,12 +38,15 @@ usernameInput &&
                     if (this.status === 200) {
                         usernameAlert.innerText = "Username already taken!";
                         usernameAlert.className = "alert-show";
+                        usernameValid = false;
                     } else if (!usernameRegex.test(username)) {
                         usernameAlert.innerText = "Invalid username format!";
                         usernameAlert.className = "alert-show";
+                        usernameValid = false;
                     } else {
                         usernameAlert.innerText = "";
                         usernameAlert.className = "alert-hide";
+                        usernameValid = true;
                     }
                 }
             };
@@ -63,12 +71,15 @@ emailInput &&
                     if (this.status === 200) {
                         emailAlert.innerText = "Email already registered!";
                         emailAlert.className = "alert-show";
+                        emailValid = false;
                     } else if (!emailRegex.test(email)) {
                         emailAlert.innerText = "Invalid email format!";
                         emailAlert.className = "alert-show";
+                        emailValid = false;
                     } else {
                         emailAlert.innerText = "";
                         emailAlert.className = "alert-hide";
+                        emailValid = true;
                     }
                 }
             };
@@ -80,13 +91,27 @@ passwordInput &&
         "keyup",
         debounce(() => {
             const password = passwordInput.value;
+            const passwordConfirmed = passwordConfirmedInput.value;
 
             if (!passwordRegex.test(password)) {
                 passwordAlert.innerText = "Invalid password format!";
                 passwordAlert.className = "alert-show";
+                passwordValid = false;
             } else {
                 passwordAlert.innerText = "";
                 passwordAlert.className = "alert-hide";
+                passwordValid = true;
+            }
+
+            if (password !== passwordConfirmed) {
+                passwordConfirmedAlert.innerText =
+                    "Confirmed password doesn't match!";
+                passwordConfirmedAlert.className = "alert-show";
+                passwordConfirmedValid = false;
+            } else {
+                passwordConfirmedAlert.innerText = "";
+                passwordConfirmedAlert.className = "alert-hide";
+                passwordConfirmedValid = true;
             }
         }, DEBOUNCE_TIMEOUT)
     );
@@ -102,9 +127,11 @@ passwordConfirmedInput &&
                 passwordConfirmedAlert.innerText =
                     "Confirmed password doesn't match!";
                 passwordConfirmedAlert.className = "alert-show";
+                passwordConfirmedValid = false;
             } else {
                 passwordConfirmedAlert.innerText = "";
                 passwordConfirmedAlert.className = "alert-hide";
+                passwordConfirmedValid = true;
             }
         }, DEBOUNCE_TIMEOUT)
     );
@@ -116,16 +143,17 @@ registrationForm &&
         const username = usernameInput.value;
         const email = emailInput.value;
         const password = passwordInput.value;
-        const passwordConfirmed = passwordConfirmedInput.value;
 
-        if (!username || !email || !password || !passwordConfirmed) {
+        if (
+            !usernameValid ||
+            !emailValid ||
+            !passwordValid ||
+            !passwordConfirmedValid
+        ) {
             window.alert(
                 "Please fill out the form properly before submitting!"
             );
-        }
-
-        if (password !== passwordConfirmed) {
-            window.alert("Password doesn't match confirmed password!");
+            return;
         }
 
         const xhr = new XMLHttpRequest();
