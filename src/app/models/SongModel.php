@@ -17,6 +17,15 @@ class SongModel
         return $songArr;
     }
 
+    public function getSong($songID)
+    {
+        $query = 'SELECT * FROM song WHERE song_id = :song_id LIMIT 1';
+        $this->database->query($query);
+        $this->database->bind('song_id', $songID);
+        $song = $this->database->fetch();
+        return $song;
+    }
+
     public function getSongsFromAlbum($albumID)
     {
         $query = 'SELECT * FROM song WHERE album_id = :album_id ORDER BY song_id ASC';

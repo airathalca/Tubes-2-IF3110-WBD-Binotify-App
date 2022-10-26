@@ -145,7 +145,11 @@ class SongController extends Controller implements ControllerInterface
                     $songModel = $this->model('SongModel');
                     $songModel->resetAlbum($songID);
 
+                    $song = $songModel->getSong($songID);
+
                     $albumID = $_POST['album_id'];
+                    $albumModel = $this->model('AlbumModel');
+                    $albumModel->substractDuration($albumID, $song->duration);
 
                     header("Location: /public/album/detail/$albumID", true, 301);
                     exit;
@@ -177,6 +181,11 @@ class SongController extends Controller implements ControllerInterface
 
                     $songModel = $this->model('SongModel');
                     $songModel->assignAlbum($songID, $albumID);
+
+                    $song = $songModel->getSong($songID);
+
+                    $albumModel = $this->model('AlbumModel');
+                    $albumModel->addDuration($albumID, $song->duration);
 
                     header("Location: /public/album/detail/$albumID", true, 301);
                     exit;

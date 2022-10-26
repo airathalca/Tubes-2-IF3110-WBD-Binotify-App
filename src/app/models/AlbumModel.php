@@ -113,4 +113,20 @@ class AlbumModel
         $this->database->bind('album_id', $albumID);
         $this->database->execute();
     }
+
+    public function addDuration($albumID, $duration) {
+        $query = 'UPDATE album SET total_duration = total_duration + :duration WHERE album_id = :album_id';
+        $this->database->query($query);
+        $this->database->bind('duration', (int) $duration);
+        $this->database->bind('album_id', (int) $albumID);
+        $this->database->execute();
+    }
+
+    public function substractDuration($albumID, $duration) {
+        $query = 'UPDATE album SET total_duration = total_duration - :duration WHERE album_id = :album_id';
+        $this->database->query($query);
+        $this->database->bind('duration', (int) $duration);
+        $this->database->bind('album_id', (int) $albumID);
+        $this->database->execute();
+    }
 }

@@ -162,7 +162,7 @@
             <div class="pad-40">
                 <p class="article-heading">Search Result</p>
                 <?php if (!$this->data['songs']) { ?>
-                    <p class="no-result">Your Search did not match any songs in our database!</p>
+                    <p class="no-result">Your search did not match any songs in our database!</p>
                 <?php } else { ?>
                 <div class="search-result-flex songs-result">
                 <?php foreach ($this->data['songs'] as $song) : ?>
