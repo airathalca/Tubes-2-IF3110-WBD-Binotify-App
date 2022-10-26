@@ -18,6 +18,7 @@
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
         const SONG_COUNT = "<?= $_SESSION['song_count'] ?? '' ?>";
+        const username = "<?= $this->data['username'] ?? '' ?>";
     </script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
