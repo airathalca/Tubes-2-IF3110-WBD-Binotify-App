@@ -47,10 +47,12 @@
                     <div class="form-group">
                         <label for="password">Pick a password!</label>
                         <input type="password" name="password" placeholder="Enter your password." id="password" autocomplete="on">
+                        <p id="password-alert" class="alert-hide"></p>
                     </div>
                     <div class="form-group">
                         <label for="confirm-password">Confirm your password!</label>
                         <input type="password" name="confirm-password" placeholder="Enter your password again." id="confirm-password" autocomplete="on">
+                        <p id="confirm-password-alert" class="alert-hide"></p>
                     </div>
                     <div class="form-button">
                         <button type="submit" class="button black-button">Sign up</button>

@@ -5,10 +5,15 @@ const passwordConfirmedInput = document.querySelector("#confirm-password");
 const registrationForm = document.querySelector(".registration-form");
 const usernameAlert = document.querySelector("#username-alert");
 const emailAlert = document.querySelector("#email-alert");
+const passwordAlert = document.querySelector("#password-alert");
+const passwordConfirmedAlert = document.querySelector(
+    "#confirm-password-alert"
+);
 
-const usernameRegex = /^\w+$/g;
+const usernameRegex = /^\w+$/;
 const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const passwordRegex = /\w+/; // DAPAT DIGANTI MENJADI REGEX UTK STRONG PASSWORD
 
 usernameInput &&
     usernameInput.addEventListener(
@@ -67,6 +72,40 @@ emailInput &&
                     }
                 }
             };
+        }, DEBOUNCE_TIMEOUT)
+    );
+
+passwordInput &&
+    passwordInput.addEventListener(
+        "keyup",
+        debounce(() => {
+            const password = passwordInput.value;
+
+            if (!passwordRegex.test(password)) {
+                passwordAlert.innerText = "Invalid password format!";
+                passwordAlert.className = "alert-show";
+            } else {
+                passwordAlert.innerText = "";
+                passwordAlert.className = "alert-hide";
+            }
+        }, DEBOUNCE_TIMEOUT)
+    );
+
+passwordConfirmedInput &&
+    passwordConfirmedInput.addEventListener(
+        "keyup",
+        debounce(() => {
+            const password = passwordInput.value;
+            const passwordConfirmed = passwordConfirmedInput.value;
+
+            if (password !== passwordConfirmed) {
+                passwordConfirmedAlert.innerText =
+                    "Confirmed password doesn't match!";
+                passwordConfirmedAlert.className = "alert-show";
+            } else {
+                passwordConfirmedAlert.innerText = "";
+                passwordConfirmedAlert.className = "alert-hide";
+            }
         }, DEBOUNCE_TIMEOUT)
     );
 
