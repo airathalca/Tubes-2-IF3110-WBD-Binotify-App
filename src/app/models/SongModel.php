@@ -194,4 +194,12 @@ class SongModel
         $this->database->bind('duration', $duration);
         $this->database->execute();
     }
+
+    public function deleteSong($songID) {
+        $query = 'DELETE FROM song WHERE song_id = :song_id';
+
+        $this->database->query($query);
+        $this->database->bind('song_id', $songID);
+        $this->database->execute();
+    }
 }

@@ -21,12 +21,11 @@
             const song_id = <?= $this->data['song_id'] ?>;
             const image_path = "<?= $this->data['image_path'] ?>";
             const audio_path = "<?= $this->data['audio_path'] ?>";
-            const singer = "<?= $this->data['penyanyi'] ?>";
             const duration = "<?= $this->data['duration'] ?>";
             const album_id = "<?= $this->data['album'] ?>";
         <?php } ?>
     </script>
-    <!-- <script src="<?= BASE_URL ?>/javascript/song/update-song-detail.js" defer></script> -->
+    <script src="<?= BASE_URL ?>/javascript/song/update-song.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
         <?php if ($this->data) { ?>
