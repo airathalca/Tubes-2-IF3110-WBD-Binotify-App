@@ -25,6 +25,7 @@
     </script>
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/user-list.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>User List</title>
 </head>
 
@@ -98,12 +99,12 @@
                     <div class="users-list">
                         <?php foreach ($this->data['users'] as $user) : ?>
                             <div class="single-user">
-                                <p><?= $user->email ?></p>
-                                <p><?= $user->username ?></p>
+                                <p>Email: <?= $user->email ?></p>
+                                <p>Username: <?= $user->username ?></p>
                                 <?php if ($user->is_admin) : ?>
-                                    <p>Admin</p>
+                                    <p>Type: Admin</p>
                                 <?php else : ?>
-                                    <p>User</p>
+                                    <p>Type: User</p>
                                 <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
