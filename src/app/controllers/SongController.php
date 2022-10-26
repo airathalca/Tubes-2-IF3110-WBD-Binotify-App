@@ -118,7 +118,7 @@ class SongController extends Controller implements ControllerInterface
                     $uploadedImage = $storageAccessImage->saveImage($_FILES['cover']['tmp_name']);
 
                     $songModel = $this->model('SongModel');
-                    $songID = $songModel->addSong($_POST['title'], $_POST['artist'], $_POST['date'], $_POST['genre'], $uploadedAudio, $uploadedImage, $_POST['album']);
+                    $songID = $songModel->addSong($_POST['title'], $_POST['artist'], $_POST['date'], $_POST['genre'], $duration, $uploadedAudio, $uploadedImage, $_POST['album']);
 
                     header("Location: /public/song/detail/$songID", true, 301);
                     exit;
