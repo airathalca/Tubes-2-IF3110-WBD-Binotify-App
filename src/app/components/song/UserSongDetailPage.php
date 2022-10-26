@@ -98,7 +98,7 @@
                     <?php if ($this->data['album'] === NULL) { ?>
                         <p class="info">This song doesn't belong to any album yet!</p>
                     <?php } else  { ?>
-                        <a href="<?= BASE_URL?>/album/detail/<?= $this->data['album']?>" class="button button-album">See Album!</a>
+                        <a href="<?= BASE_URL?>/album/detail/<?= $this->data['album']?>" class="button button-album">See album!</a>
                     <?php } ?>
                     <audio controls class="audio-player">
                         <source src="<?= STORAGE_URL?>/songs/<?=$this->data['audio_path']?>">

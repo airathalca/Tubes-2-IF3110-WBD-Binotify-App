@@ -74,6 +74,7 @@ p, label, a, button {
     padding: 1rem 2rem;
     transition: all 0.3s linear;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .button:hover {
