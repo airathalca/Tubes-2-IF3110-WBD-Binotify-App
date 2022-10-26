@@ -128,4 +128,32 @@ class SongController extends Controller implements ControllerInterface
             exit;
         }
     }
+
+    public function resetalbum($songID)
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'POST':
+                    // Halaman hanya bisa diakses admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    $songModel = $this->model('SongModel');
+                    $songModel->resetAlbum($songID);
+
+                    header("Location: /public/album/detail/$songID", true, 301);
+                    exit;
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }   
+    }
 }

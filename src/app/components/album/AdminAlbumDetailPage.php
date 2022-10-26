@@ -137,7 +137,9 @@
                                     <p class="song-title"><?= $song->judul ?></p>
                                     <p class="song-genre"><?= $song->genre ?></p>
                                     <p class="song-dateduration"><?= $song->tanggal_terbit ?> - <?= round($song->duration/60) ?> min <?= $song->duration%60 ?> sec</p>
-                                    <button class="button red-button">Delete song</button>
+                                    <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>", method="post">
+                                        <button class="button red-button" type="submit">Delete song</button>
+                                    </form>
                                 </div>
                             <?php } ?>
                         </div>
