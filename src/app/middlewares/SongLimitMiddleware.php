@@ -4,10 +4,6 @@ class SongLimitMiddleware
 {
     public function incrementSongCount()
     {
-        if (!isset($_SESSION['song_count'])) {
-            $_SESSION['song_count'] = 0;
-        }
-
         $_SESSION['song_count'] += 1;
     }
 
@@ -16,7 +12,10 @@ class SongLimitMiddleware
         $song_count = $_SESSION['song_count'];
 
         if ($song_count > MAX_SONG_COUNT) {
-            throw new LoggedException('Unauthorized', 401);
+            require_once __DIR__ . '/AuthenticationMiddleware.php';
+
+            $authMiddleware = new AuthenticationMiddleware();
+            $authMiddleware->isAuthenticated();
         }
     }
 }

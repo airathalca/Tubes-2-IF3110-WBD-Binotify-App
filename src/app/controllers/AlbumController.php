@@ -8,15 +8,14 @@ class AlbumController extends Controller implements ControllerInterface
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
                     // Prevent CSRF Attacks
-                    // $tokenMiddleware = $this->middleware('TokenMiddleware');
-                    // $tokenMiddleware->putToken();
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
 
                     // Load album-album di page 1
                     $albumModel = $this->model('AlbumModel');
                     $res = $albumModel->getAlbums(1);
 
                     // Keperluan navbar
-                    $nav;
                     if (isset($_SESSION['user_id'])) {
                         // Ada data user_id, coba fetch data username!
                         $userModel = $this->model('UserModel');
@@ -102,7 +101,6 @@ class AlbumController extends Controller implements ControllerInterface
                     }
 
                     // Keperluan navbar
-                    $nav;
                     if (isset($_SESSION['user_id'])) {
                         // Ada data user_id, coba fetch data username!
                         $userModel = $this->model('UserModel');
@@ -230,7 +228,6 @@ class AlbumController extends Controller implements ControllerInterface
                     $tokenMiddleware->putToken();
 
                     // Keperluan navbar
-                    $nav;
                     if (isset($_SESSION['user_id'])) {
                         // Ada data user_id, coba fetch data username!
                         $userModel = $this->model('UserModel');
