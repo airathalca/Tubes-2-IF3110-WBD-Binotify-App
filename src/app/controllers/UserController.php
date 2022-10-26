@@ -49,6 +49,7 @@ class UserController extends Controller implements ControllerInterface
                     $userArr = $userModel->getByPage($number);
 
                     header('Content-Type: application/json');
+                    http_response_code(200);
                     echo json_encode($userArr);
                     exit;
 
