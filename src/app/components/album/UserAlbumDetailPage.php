@@ -94,33 +94,20 @@
                     <p class="album-artist"><?= $this->data['penyanyi'] ?></p>
                     <p class="album-duration"><?= $this->data['total_duration'] ?></p>
                     <p class="songs-list-header">Songs inside this album:</p>
-                    <div class="songs-list">
-                        <a href="#" class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                        <a href="#" class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                        <a href="#" class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                        <a href="#" class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                        <a href="#" class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                        </a>
-                    </div>
+                    <?php if (!$this->data['songs']) { ?>
+                        <p class="info">This album doesn't have any songs yet!</p>
+                    <?php } ?>
+                    <?php if ($this->data['songs']) { ?>
+                        <div class="songs-list">
+                            <?php foreach($this->data['songs'] as $song) { ?>
+                                <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
+                                    <p class="song-title"><?= $song->judul ?></p>
+                                    <p class="song-genre"><?= $song->genre ?></p>
+                                    <p class="song-dateduration"><?= $song->tanggal_terbit ?> - <?= round($song->duration/60) ?> min <?= $song->duration%60 ?> sec</p>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
                 <?php } else { ?>
                     <p class="info">Cannot find the album you're looking for!</p>
                 <?php } ?>

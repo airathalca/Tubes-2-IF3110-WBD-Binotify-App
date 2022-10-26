@@ -127,27 +127,21 @@
                     
                     <!-- Delete songs -->
                     <p class="songs-list-header">Songs inside this album:</p>
-                    <div class="songs-list">
-                        <div class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                            <button class="button red-button">Delete song</button>
+                    <?php if (!$this->data['songs']) { ?>
+                        <p class="info">This album doesn't have any songs yet!</p>
+                    <?php } ?>
+                    <?php if ($this->data['songs']) { ?>
+                        <div class="songs-list">
+                            <?php foreach($this->data['songs'] as $song) { ?>
+                                <div class="single-song">
+                                    <p class="song-title"><?= $song->judul ?></p>
+                                    <p class="song-genre"><?= $song->genre ?></p>
+                                    <p class="song-dateduration"><?= $song->tanggal_terbit ?> - <?= round($song->duration/60) ?> min <?= $song->duration%60 ?> sec</p>
+                                    <button class="button red-button">Delete song</button>
+                                </div>
+                            <?php } ?>
                         </div>
-                        <div class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                            <button class="button red-button">Delete song</button>
-                        </div>
-                        <div class="single-song">
-                            <p class="song-title">Bidadari Surga</p>
-                            <p class="song-genre">Rock</p>
-                            <p class="song-dateduration">1 April 2016 - 3 min 59 sec</p>
-                            <button class="button red-button">Delete song</button>
-                        </div>
-                    </div>
-
+                    <?php } ?>
                     <!-- Add song into album! -->
                     <p class="add-song-header">Add a song into this album!</p>
                     <form action="" method="post" class="add-song-form">

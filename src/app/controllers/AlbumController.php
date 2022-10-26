@@ -83,6 +83,7 @@ class AlbumController extends Controller implements ControllerInterface
                     $albumModel = $this->model('AlbumModel');
                     $album = $albumModel->getAlbumFromID($albumID);
                     $album_props = [];
+                    $album_songs = ["songs" => []];
 
                     if ($album) {
                         // Format duration
@@ -90,6 +91,10 @@ class AlbumController extends Controller implements ControllerInterface
                         $seconds = ((int) $album->total_duration) % 60;
 
                         $album_props = ["album_id" => $album->album_id, "judul" => $album->judul, "penyanyi" => $album->penyanyi, "total_duration" => $minutes . " min " . $seconds . " sec", "image_path" => $album->image_path, "tanggal_terbit" => $album->tanggal_terbit, "genre" => $album->genre];
+
+                        // Get album songs
+                        $songModel = $this->model('SongModel');
+                        $album_songs = ["songs" => $songModel->getSongsFromAlbum($albumID)];
                     }
 
                     // Keperluan navbar
@@ -105,16 +110,16 @@ class AlbumController extends Controller implements ControllerInterface
 
                     // Decide if user view or not
                     if (!isset($_SESSION['user_id'])) {
-                        $albumDetailView = $this->view('album', 'UserAlbumDetailView', array_merge($album_props, $nav));
+                        $albumDetailView = $this->view('album', 'UserAlbumDetailView', array_merge($album_props, $nav, $album_songs));
                     } else {
                         $userModel = $this->model('UserModel');
                         $user = $userModel->getUserFromID($_SESSION['user_id']);
 
                         if (!$user || !$user->is_admin) {
-                            $albumDetailView = $this->view('album', 'UserAlbumDetailView', array_merge($album_props, $nav));
+                            $albumDetailView = $this->view('album', 'UserAlbumDetailView', array_merge($album_props, $nav, $album_songs));
                         } else {
                             /* View admin! */
-                            $albumDetailView = $this->view('album', 'AdminAlbumDetailView', array_merge($album_props, $nav));
+                            $albumDetailView = $this->view('album', 'AdminAlbumDetailView', array_merge($album_props, $nav, $album_songs));
                         }
                     }
 
