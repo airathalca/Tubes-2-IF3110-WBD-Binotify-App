@@ -85,13 +85,13 @@ class SongModel
         return $genreArr;
     }
 
-    public function addSong($title, $singer, $published_date, $genre, $audio_path, $image_path, $album_id) {
+    public function addSong($title, $singer, $published_date, $genre, $duration, $audio_path, $image_path, $album_id) {
         if ($album_id == "") {
             $query = "INSERT INTO song (judul, penyanyi, tanggal_terbit, genre, duration, audio_path, image_path) 
-            VALUES (:judul, :penyanyi, :tanggal_terbit, :genre, 180, :audio_path, :image_path)";
+            VALUES (:judul, :penyanyi, :tanggal_terbit, :genre, :duration, :audio_path, :image_path)";
         } else {
             $query = "INSERT INTO song (judul, penyanyi, tanggal_terbit, genre, duration, audio_path, image_path, album_id) 
-            VALUES (:judul, :penyanyi, :tanggal_terbit, :genre, 180, :audio_path, :image_path, :album_id)";
+            VALUES (:judul, :penyanyi, :tanggal_terbit, :genre, :duration, :audio_path, :image_path, :album_id)";
         }
         
         $this->database->query($query);
@@ -101,6 +101,7 @@ class SongModel
         $this->database->bind('image_path', $image_path);
         $this->database->bind('audio_path', $audio_path);
         $this->database->bind('genre', $genre);
+        $this->database->bind('duration', $duration);
         if ($album_id != "") {
             $this->database->bind('album_id', $album_id);
         }

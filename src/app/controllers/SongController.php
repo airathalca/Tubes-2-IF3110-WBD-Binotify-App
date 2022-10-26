@@ -110,6 +110,10 @@ class SongController extends Controller implements ControllerInterface
                         throw new LoggedException('Bad Request', 400);
                     }
 
+                    // Baca durasi file
+                    $mp3Access = new MP3Access($_FILES['audio']['tmp_name']);
+                    $duration = (int) $mp3Access->getDuration();
+
                     $storageAccessAudio = new StorageAccess('songs');
                     $uploadedAudio = $storageAccessAudio->saveAudio($_FILES['audio']['tmp_name']);
 
@@ -117,7 +121,7 @@ class SongController extends Controller implements ControllerInterface
                     $uploadedImage = $storageAccessImage->saveImage($_FILES['cover']['tmp_name']);
 
                     $songModel = $this->model('SongModel');
-                    $songID = $songModel->addSong($_POST['title'], $_POST['artist'], $_POST['date'], $_POST['genre'], $uploadedAudio, $uploadedImage, $_POST['album']);
+                    $songID = $songModel->addSong($_POST['title'], $_POST['artist'], $_POST['date'], $_POST['genre'], $duration, $uploadedAudio, $uploadedImage, $_POST['album']);
 
                     header("Location: /public/song/detail/$songID", true, 301);
                     exit;
