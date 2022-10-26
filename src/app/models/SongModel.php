@@ -113,4 +113,12 @@ class SongModel
         $songsArr = $this->database->fetchAll();
         return $songsArr;
     }
+
+    public function assignAlbum($songID, $albumID) {
+        $query = 'UPDATE song SET album_id = :album_id WHERE song_id = :song_id';
+        $this->database->query($query);
+        $this->database->bind('album_id', $albumID);
+        $this->database->bind('song_id', $songID);
+        $this->database->execute();
+    }
 }
