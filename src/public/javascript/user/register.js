@@ -6,6 +6,10 @@ const registrationForm = document.querySelector(".registration-form");
 const usernameAlert = document.querySelector("#username-alert");
 const emailAlert = document.querySelector("#email-alert");
 
+const usernameRegex = /^\w+$/g;
+const emailRegex =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 usernameInput &&
     usernameInput.addEventListener(
         "keyup",
@@ -21,10 +25,15 @@ usernameInput &&
             xhr.send();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (this.status !== 200) {
-                        usernameAlert.className = "alert-hide";
-                    } else {
+                    if (this.status === 200) {
+                        usernameAlert.innerText = "Username already taken!";
                         usernameAlert.className = "alert-show";
+                    } else if (!usernameRegex.test(username)) {
+                        usernameAlert.innerText = "Invalid username format!";
+                        usernameAlert.className = "alert-show";
+                    } else {
+                        usernameAlert.innerText = "";
+                        usernameAlert.className = "alert-hide";
                     }
                 }
             };
@@ -46,10 +55,15 @@ emailInput &&
             xhr.send();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (this.status !== 200) {
-                        emailAlert.className = "alert-hide";
-                    } else {
+                    if (this.status === 200) {
+                        emailAlert.innerText = "Email already registered!";
                         emailAlert.className = "alert-show";
+                    } else if (!emailRegex.test(email)) {
+                        emailAlert.innerText = "Invalid email format!";
+                        emailAlert.className = "alert-show";
+                    } else {
+                        emailAlert.innerText = "";
+                        emailAlert.className = "alert-hide";
                     }
                 }
             };
@@ -87,8 +101,13 @@ registrationForm &&
         xhr.send(formData);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                const data = JSON.parse(xhr.responseText);
-                location.replace(data.redirect_url);
+                if (this.status === 201) {
+                    const data = JSON.parse(xhr.responseText);
+                    location.replace(data.redirect_url);
+                } else {
+                    // BISA DICEK KEMBALI DR SEMUA STATUS CODE YANG DIKIRIMKAN
+                    alert("An error occured, please try again!");
+                }
             }
         };
     });

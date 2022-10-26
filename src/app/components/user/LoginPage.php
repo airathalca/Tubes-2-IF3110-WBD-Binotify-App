@@ -33,11 +33,11 @@
                 <form class="login-form">
                     <div class="form-group">
                         <label for="username">What's your username?</label>
-                        <input type="text" name="username" placeholder="johndoe" id="username">
+                        <input type="text" name="username" placeholder="Username" id="username">
                     </div>
                     <div class="form-group">
                         <label for="password">Enter your password!</label>
-                        <input type="password" name="password" placeholder="●●●●●●" id="password" autocomplete="on">
+                        <input type="password" name="password" placeholder="Password" id="password" autocomplete="on">
                     </div>
                     <div class="form-button">
                         <button type="submit" class="button black-button">Log in</button>
