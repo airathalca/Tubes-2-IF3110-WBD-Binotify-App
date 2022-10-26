@@ -285,6 +285,11 @@ class AlbumController extends Controller implements ControllerInterface
                     throw new LoggedException('Method Not Allowed', 405);
             }
         } catch (Exception $e) {
+            if ($e->getCode() == 401) {
+                /* Unauthorized */
+                $notFoundView = $this->view('not-found', 'NotFoundView');
+                $notFoundView->render();
+            }
             http_response_code($e->getCode());
             exit;
         }
