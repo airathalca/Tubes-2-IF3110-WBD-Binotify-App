@@ -17,9 +17,12 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
-        const SONG_COUNT = "<?= $_SESSION['song_count'] ?? '' ?>";
+        const SONG_COUNT = "<?= $_SESSION['song_count'] ?? 0 ?>";
+        const MAX_SONG_COUNT = "<?= MAX_SONG_COUNT ?>";
         const username = "<?= $this->data['username'] ?? '' ?>";
+        const songId = "<?= $this->data['song_id'] ?? '' ?>";
     </script>
+    <script src="<?= BASE_URL ?>/javascript/song/play-song.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
         <?php if ($this->data) { ?>

@@ -2,20 +2,23 @@
 
 class SongLimitMiddleware
 {
-    public function incrementSongCount()
+    public function checkSong($songID)
     {
-        $_SESSION['song_count'] += 1;
+        if ($songID !== $_SESSION['song_id'])
+        {
+            if($_SESSION['song_count'] >= MAX_SONG_COUNT) {
+                return false;
+            }
+            $_SESSION['song_id'] = $songID;
+            $_SESSION['song_count'] += 1;
+        }
+        return true;
     }
 
-    public function checkSongCount()
+    public function makeNewSession($songID)
     {
-        $song_count = $_SESSION['song_count'];
-
-        if ($song_count > MAX_SONG_COUNT) {
-            require_once __DIR__ . '/AuthenticationMiddleware.php';
-
-            $authMiddleware = new AuthenticationMiddleware();
-            $authMiddleware->isAuthenticated();
-        }
+        $_SESSION['song_count'] = 1;
+        $_SESSION['song_id'] = $songID;
+        $_SESSION['date'] = date('Y-m-d');
     }
 }

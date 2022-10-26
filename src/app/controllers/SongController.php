@@ -366,4 +366,33 @@ class SongController extends Controller implements ControllerInterface
             exit;
         }
     }
+
+    public function countLimit() {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'POST':
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+
+                    $songLimitMiddleware = $this->middleware('SongLimitMiddleware');
+                    date_default_timezone_set('Asia/Jakarta');
+                    $dateNow = date('Y-m-d');
+                    if ((isset($_SESSION['date']) && $_SESSION['date'] !== $dateNow) || !isset($_SESSION['date'])) {
+                        $songLimitMiddleware->makeNewSession($_POST['song_id']);
+                    }
+                    $success = $songLimitMiddleware->checkSong($_POST['song_id']);
+                    header('Content-Type: application/json');
+                    echo json_encode(["status" => $success, "count" => $_SESSION['song_count']]);
+                    http_response_code(200);
+                    exit;
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
 }
