@@ -68,6 +68,32 @@ class SongController extends Controller implements ControllerInterface
         }
     }
 
+    private function skipID3v2Tag(&$block)
+    {
+        if (substr($block, 0,3)=="ID3")
+        {
+            $id3v2_major_version = ord($block[3]);
+            $id3v2_minor_version = ord($block[4]);
+            $id3v2_flags = ord($block[5]);
+            $flag_unsynchronisation  = $id3v2_flags & 0x80 ? 1 : 0;
+            $flag_extended_header    = $id3v2_flags & 0x40 ? 1 : 0;
+            $flag_experimental_ind   = $id3v2_flags & 0x20 ? 1 : 0;
+            $flag_footer_present     = $id3v2_flags & 0x10 ? 1 : 0;
+            $z0 = ord($block[6]);
+            $z1 = ord($block[7]);
+            $z2 = ord($block[8]);
+            $z3 = ord($block[9]);
+            if ( (($z0&0x80)==0) && (($z1&0x80)==0) && (($z2&0x80)==0) && (($z3&0x80)==0) )
+            {
+                $header_size = 10;
+                $tag_size = (($z0&0x7f) * 2097152) + (($z1&0x7f) * 16384) + (($z2&0x7f) * 128) + ($z3&0x7f);
+                $footer_size = $flag_footer_present ? 10 : 0;
+                return $header_size + $tag_size + $footer_size;//bytes to skip
+            }
+        }
+        return 0;
+    }
+
     public function add() 
     {
         try {
@@ -106,6 +132,10 @@ class SongController extends Controller implements ControllerInterface
                     if ($_FILES['audio']['error'] === 4 || $_FILES['cover']['error'] === 4) {
                         throw new LoggedException('Bad Request', 400);
                     }
+
+                    // Baca durasi file
+                    $mp3Access = new MP3Access($_FILES['audio']['tmp_name']);
+                    $duration = (int) $mp3Access->getDuration();
                     
                     $storageAccessAudio = new StorageAccess('songs');
                     $uploadedAudio = $storageAccessAudio->saveAudio($_FILES['audio']['tmp_name']);
