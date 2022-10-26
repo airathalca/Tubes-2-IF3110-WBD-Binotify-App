@@ -15,7 +15,6 @@ prevButton &&
         currentPage -= 1;
 
         const xhr = new XMLHttpRequest();
-        xhr.responseType = "json";
         xhr.open(
             "GET",
             `/public/album/fetch/${currentPage}?csrf_token=${CSRF_TOKEN}`
@@ -25,7 +24,8 @@ prevButton &&
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) {
-                    updateData(this.response);
+                    const data = JSON.parse(this.responseText);
+                    updateData(data);
                 } else {
                     alert("An error occured, please try again!");
                 }
@@ -43,7 +43,6 @@ nextButton &&
         currentPage += 1;
 
         const xhr = new XMLHttpRequest();
-        xhr.responseType = "json";
         xhr.open(
             "GET",
             `/public/album/fetch/${currentPage}?csrf_token=${CSRF_TOKEN}`
@@ -53,7 +52,8 @@ nextButton &&
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 200) {
-                    updateData(this.response);
+                    const data = JSON.parse(this.responseText);
+                    updateData(data);
                 } else {
                     alert("An error occured, please try again!");
                 }

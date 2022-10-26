@@ -6,6 +6,7 @@ class SongController extends Controller implements ControllerInterface
     {
         echo 'La la la';
     }
+
     public function search()
     {
         try {
@@ -195,7 +196,7 @@ class SongController extends Controller implements ControllerInterface
 
                     $songModel = $this->model('SongModel');
                     $albumModel = $this->model('AlbumModel');
-                    
+
                     $songArtist = ($songModel->getSong($songID))->penyanyi;
                     $albumArtist = ($albumModel->getAlbumFromID($albumID)->penyanyi);
 
@@ -204,7 +205,7 @@ class SongController extends Controller implements ControllerInterface
                     }
 
                     $song = $songModel->getSong($songID);
-                    
+
                     $songModel->assignAlbum($songID, $albumID);
                     $albumModel->addDuration($albumID, $song->duration);
 
@@ -238,10 +239,11 @@ class SongController extends Controller implements ControllerInterface
                         $minutes = floor(((int) $song->duration) / 60);
                         $seconds = ((int) $song->duration) % 60;
                         $date = date('d F Y', strtotime($song->tanggal_terbit));
-                        $song_props = ["song_id" => $song->song_id, "judul" => $song->judul, "penyanyi" => $song->penyanyi, "duration" => $minutes . " min " . $seconds . " sec", 
-                        "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $date, "genre" => $song->genre, "album" => $song->album_id];
-                    }
-                    else {
+                        $song_props = [
+                            "song_id" => $song->song_id, "judul" => $song->judul, "penyanyi" => $song->penyanyi, "duration" => $minutes . " min " . $seconds . " sec",
+                            "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $date, "genre" => $song->genre, "album" => $song->album_id
+                        ];
+                    } else {
                         throw new LoggedException('Not Found', 404);
                     }
                     // Keperluan navbar
@@ -254,15 +256,14 @@ class SongController extends Controller implements ControllerInterface
                             $song_props['tanggal_terbit'] = $song->tanggal_terbit;
                             $song_props['duration'] = $song->duration;
                             $songDetailView = $this->view('song', 'AdminSongDetailView', array_merge($song_props, $nav));
-                        }
-                        else {
+                        } else {
                             $songDetailView = $this->view('song', 'UserSongDetailView', array_merge($song_props, $nav));
                         }
                     } else {
                         $nav = ['username' => null];
                         $songDetailView = $this->view('song', 'UserSongDetailView', array_merge($song_props, $nav));
                     }
-                    
+
                     $songDetailView->render();
 
                     exit;

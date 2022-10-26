@@ -20,8 +20,6 @@ const logOutButton = document.querySelector("#log-out");
 logOutButton &&
     logOutButton.addEventListener("click", async (e) => {
         e.preventDefault();
-        let data = {};
-
         const xhr = new XMLHttpRequest();
 
         xhr.open("POST", `/public/user/logout`);
@@ -32,7 +30,7 @@ logOutButton &&
 
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE) {
-                data = JSON.parse(this.responseText);
+                const data = JSON.parse(this.responseText);
                 location.replace(data.redirect_url);
             }
         };
