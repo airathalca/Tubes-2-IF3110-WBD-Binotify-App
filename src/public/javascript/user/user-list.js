@@ -14,12 +14,23 @@ prevButton &&
 
         currentPage -= 1;
 
-        const response = await fetch(
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = "json";
+        xhr.open(
+            "GET",
             `/public/user/fetch/${currentPage}?csrf_token=${CSRF_TOKEN}`
         );
-        const data = await response.json();
 
-        updateData(data);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) {
+                    updateData(this.response);
+                } else {
+                    alert("An error occured, please try again!");
+                }
+            }
+        };
     });
 
 nextButton &&
@@ -31,11 +42,23 @@ nextButton &&
 
         currentPage += 1;
 
-        const response = await fetch(
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = "json";
+        xhr.open(
+            "GET",
             `/public/user/fetch/${currentPage}?csrf_token=${CSRF_TOKEN}`
         );
-        const data = await response.json();
-        updateData(data);
+
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) {
+                    updateData(this.response);
+                } else {
+                    alert("An error occured, please try again!");
+                }
+            }
+        };
     });
 
 const updateData = (data) => {
