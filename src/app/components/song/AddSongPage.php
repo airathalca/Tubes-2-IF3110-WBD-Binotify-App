@@ -25,24 +25,7 @@
 <body>
     <div class="black-body">
         <div class="wrapper">
-            <nav class="black-navbar">
-                <div class="pad-40">
-                    <button class="toggle" id="toggle">
-                        <img src="<?= BASE_URL ?>/images/assets/bars.svg" alt="Bars">
-                    </button>
-                </div>
-                    <div class="nav-container" id="nav-container">
-                        <a href="<?= BASE_URL?>/album/add" class="nav-link">
-                            Add album
-                        </a>
-                        <a href="<?= BASE_URL?>/album" class="nav-link">
-                            Album list
-                        </a>
-                        <a href="#" id="log-out" class="nav-link">
-                            Log out
-                        </a>
-                    </div>
-                </nav>
+            <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <div class="pad-40">
                 <p class="form-header">Add a song</p>
                 <form action="/public/song/add?csrf_token=<?=$_SESSION['csrf_token']?>" method="post" enctype="multipart/form-data" class="form">
