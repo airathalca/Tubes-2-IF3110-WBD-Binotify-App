@@ -46,7 +46,7 @@
                 Album list
             </a>
             <a href="/public/user" class="nav-link">
-                User List
+                User list
             </a>
             <a href="#" id="log-out" class="nav-link">
                 Log out

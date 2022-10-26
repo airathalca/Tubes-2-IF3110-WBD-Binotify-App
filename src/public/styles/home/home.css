@@ -190,3 +190,7 @@
         gap: 2rem;
     }
 }
+
+.flex-between a {
+    display: none;
+}

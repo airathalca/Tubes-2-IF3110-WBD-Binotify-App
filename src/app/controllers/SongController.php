@@ -86,8 +86,18 @@ class SongController extends Controller implements ControllerInterface
                     $albumModel = $this->model('AlbumModel');
                     $albumArr = $albumModel->getAllAlbum();
 
+                    // Keperluan navbar
+                    if (isset($_SESSION['user_id'])) {
+                        // Ada data user_id, coba fetch data username!
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+                        $nav = ['username' => $user->username, 'is_admin' => $user->is_admin];
+                    } else {
+                        $nav = ['username' => null];
+                    }
+
                     // Load AddSongView.php
-                    $addAlbumView = $this->view('song', 'AddSongView', ['album_arr' => $albumArr]);
+                    $addAlbumView = $this->view('song', 'AddSongView', array_merge(['album_arr' => $albumArr], $nav));
                     $addAlbumView->render();
                     exit;
 

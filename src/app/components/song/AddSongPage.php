@@ -11,6 +11,7 @@
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <!-- Global CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/song/add-song.css">
     <!-- JavaScript DOM and AJAX -->
