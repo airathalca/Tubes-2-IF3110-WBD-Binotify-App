@@ -136,15 +136,15 @@
                     <?php if ($this->data['songs']) : ?>
                         <div class="songs-list">
                             <?php foreach ($this->data['songs'] as $song) : ?>
-                                <div class="single-song">
+                                <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
                                     <p class="song-title"><?= $song->judul ?></p>
                                     <p class="song-genre"><?= $song->genre ?></p>
-                                    <p class="song-dateduration"><?= $song->tanggal_terbit ?> - <?= round($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
+                                    <p class="song-dateduration"><?= substr($song->tanggal_terbit, 0, 4) ?> - <?= round($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
                                     <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" , method="post">
                                         <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id">
                                         <button class="button red-button" type="submit">Delete song</button>
                                     </form>
-                                </div>
+                                </a>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>

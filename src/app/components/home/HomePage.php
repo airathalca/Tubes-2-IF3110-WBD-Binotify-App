@@ -86,7 +86,7 @@
                             <?php endif; ?>
                             <div class="songs-container">
                                 <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
-                                    <a href="" class="single-song">
+                                    <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
                                         <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt="<?= $song->judul ?>">
                                         <header class="song-header">
                                             <p class="title"><?= $song->judul ?></p>

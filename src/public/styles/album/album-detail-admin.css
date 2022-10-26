@@ -52,6 +52,7 @@
     padding: 1rem;
     background: var(--black-lighter);
     border-radius: 0.5rem;
+    text-decoration: none;
 }
 
 .single-song p {
