@@ -16,7 +16,10 @@
     <!-- JavaScript Constant -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+        const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
     </script>
+    <!-- JavaScript Library -->
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/user/login.js" defer></script>
     <title>Login</title>
@@ -34,10 +37,12 @@
                     <div class="form-group">
                         <label for="username">What's your username?</label>
                         <input type="text" name="username" placeholder="Username" id="username">
+                        <p id="username-alert" class="alert-hide"></p>
                     </div>
                     <div class="form-group">
                         <label for="password">Enter your password!</label>
                         <input type="password" name="password" placeholder="Password" id="password" autocomplete="on">
+                        <p id="password-alert" class="alert-hide"></p>
                     </div>
                     <div class="form-button">
                         <button type="submit" class="button black-button">Log in</button>

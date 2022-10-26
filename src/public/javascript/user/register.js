@@ -13,7 +13,7 @@ const passwordConfirmedAlert = document.querySelector(
 const usernameRegex = /^\w+$/;
 const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const passwordRegex = /\w+/; // DAPAT DIGANTI MENJADI REGEX UTK STRONG PASSWORD
+const passwordRegex = /^\w+$/;
 
 let usernameValid = false;
 let emailValid = false;
