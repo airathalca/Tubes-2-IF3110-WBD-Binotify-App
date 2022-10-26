@@ -117,9 +117,10 @@ class SongModel
         $this->database->execute();
     }
 
-    public function getAlbumlessSongs() {
-        $query = 'SELECT * from song WHERE album_id is NULL';
+    public function getAlbumlessSongs($penyanyi) {
+        $query = 'SELECT * from song WHERE album_id is NULL AND penyanyi = :penyanyi';
         $this->database->query($query);
+        $this->database->bind('penyanyi', $penyanyi);
         $songsArr = $this->database->fetchAll();
         return $songsArr;
     }

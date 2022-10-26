@@ -187,11 +187,18 @@ class SongController extends Controller implements ControllerInterface
                     $songID = $_POST['song'];
 
                     $songModel = $this->model('SongModel');
-                    $songModel->assignAlbum($songID, $albumID);
+                    $albumModel = $this->model('AlbumModel');
+                    
+                    $songArtist = ($songModel->getSong($songID))->penyanyi;
+                    $albumArtist = ($albumModel->getAlbumFromID($albumID)->penyanyi);
+
+                    if ($songArtist !== $albumArtist) {
+                        throw new LoggedException(400, "Bad Request");
+                    }
 
                     $song = $songModel->getSong($songID);
-
-                    $albumModel = $this->model('AlbumModel');
+                    
+                    $songModel->assignAlbum($songID, $albumID);
                     $albumModel->addDuration($albumID, $song->duration);
 
                     header("Location: /public/album/detail/$albumID", true, 301);

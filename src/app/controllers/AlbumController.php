@@ -98,7 +98,7 @@ class AlbumController extends Controller implements ControllerInterface
                         $album_songs = ["songs" => $songModel->getSongsFromAlbum($albumID)];
 
                         // Get songs to add
-                        $songs_to_add = ["songs_to_add" => $songModel->getAlbumlessSongs()];
+                        $songs_to_add = ["songs_to_add" => $songModel->getAlbumlessSongs($album->penyanyi)];
                     }
 
                     // Keperluan navbar
