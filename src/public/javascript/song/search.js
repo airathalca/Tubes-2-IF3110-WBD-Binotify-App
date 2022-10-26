@@ -57,6 +57,7 @@ nextButton.addEventListener("click", async () => {
 buttonSearch.addEventListener("submit", async (e) => {
     currentPage = 1;
     e.preventDefault();
+    window.history.pushState("", "", `/public/song/search?q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`);
     const xhr = new XMLHttpRequest();
     xhr.open(
         "GET",
@@ -68,7 +69,6 @@ buttonSearch.addEventListener("submit", async (e) => {
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE) {
             data = JSON.parse(this.responseText);
-            console.log(data);
             newData(data);
         }
     };
@@ -79,7 +79,7 @@ const updateData = (data) => {
     data.songs.map((song) => {
         newHTML += `
         <a href="/public/song/detail/${song.song_id}" class="single-song">
-            <img src="${STORAGE_URL}/images/${song.image_path}.png" alt="${
+            <img src="${STORAGE_URL}/images/${song.image_path}" alt="${
             song.judul
         }">
             <header class="song-header">
@@ -110,7 +110,6 @@ const updateData = (data) => {
 
 const newData = (data) => {
     pages = data.pages;
-    console.log(pages);
     let newHTML = "";
     if (pages === 0) {
         newHTML += `
