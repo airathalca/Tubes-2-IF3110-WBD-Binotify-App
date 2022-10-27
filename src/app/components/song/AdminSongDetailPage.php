@@ -61,6 +61,9 @@
                             <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
                         </div>
                         <div class="form-group">
+                            <audio controls class="audio-player">
+                                <source src="<?= STORAGE_URL?>/songs/<?=$this->data['audio_path']?>" id="audio-source">
+                            </audio>
                             <label for="cover">Upload new audio</label>
                             <input type="file" name="audio" id="audio" accept="audio/mpeg">
                         </div>
@@ -89,9 +92,6 @@
                     <?php } else  { ?>
                         <a href="<?= BASE_URL?>/album/detail/<?= $this->data['album']?>" class="button button-album">See album!</a>
                     <?php } ?>
-                    <audio controls class="audio-player">
-                        <source src="<?= STORAGE_URL?>/songs/<?=$this->data['audio_path']?>">
-                    </audio>
                 <?php } else { ?>
                     <p class="info">Cannot find the song you're looking for!</p>
                 <?php } ?>

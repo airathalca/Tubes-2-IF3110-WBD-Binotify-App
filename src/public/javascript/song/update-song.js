@@ -4,6 +4,7 @@ const titleInput = document.querySelector("#title");
 const dateInput = document.querySelector("#date");
 const genreInput = document.querySelector("#genre");
 const coverInput = document.querySelector("#cover");
+const audioInput = document.querySelector("#audio");
 
 formElement.addEventListener("submit", (e) => {
     if (!titleInput.value) {
@@ -62,5 +63,19 @@ coverInput.addEventListener("change", (e) => {
 
     reader.addEventListener("load", () => {
         document.querySelector(".song-cover").src = reader.result;
+    })
+});
+
+audioInput.addEventListener("change", (e) => {
+    const file = audioInput.files[0];
+    const reader = new FileReader();
+    
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+
+    reader.addEventListener("load", () => {
+        document.querySelector("#audio-source").src = reader.result;
+        document.querySelector(".audio-player").load();
     })
 });
