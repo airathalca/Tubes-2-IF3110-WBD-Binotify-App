@@ -56,7 +56,17 @@
                         <input type="hidden" name="old_audio_path" value="<?= $this->data['audio_path'] ?>">
                         <input type="hidden" name="old_duration" value="<?= $this->data['duration'] ?>">
                         <div class="form-group">
-                            <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
+                            <div class ="flex-img">
+                                <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
+                                <div>
+                                    <p class="song-title"><?= $this->data['judul'] ?></p>
+                                    <p class="song-artist"><?= $this->data['penyanyi'] ?></p>
+                                    <p class="song-genre"><?= $this->data['genre'] ?></p>
+                                    <p class="song-date"><?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> </p>
+                                    <p class="song-duration"><?= $this->data['album'] ?><?=floor(((int) $this->data['duration']) / 60) . " min " . 
+                                    ((int) $this->data['duration']) % 60 . " sec" ?></p>
+                                 </div>
+                            </div>
                             <label for="cover">Upload new photo</label>
                             <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
                         </div>
