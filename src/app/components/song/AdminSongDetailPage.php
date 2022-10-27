@@ -64,14 +64,17 @@
                         <div class="form-group">
                             <label for="title">Song title</label>
                             <input type="text" name="title" id="title" value="<?= $this->data['judul'] ?>">
+                            <p class="alert-hide" id="title-alert">Please fill out the song title!</p>
                         </div>
                         <div class="form-group">
                             <label for="date">Published date</label>
                             <input type="date" name="date" id="date" value="<?= $this->data['tanggal_terbit'] ?>">
-                            </div>
+                            <p class="alert-hide" id="date-alert">Please fill out the published date!</p>
+                        </div>
                         <div class="form-group">
                             <label for="genre">Genre</label>
                             <input type="text" name="genre" id="genre" value="<?= $this->data['genre'] ?>">
+                            <p class="alert-hide" id="genre-alert">Please fill out the song genre!</p>
                         </div>
                         <div class="button-group">
                             <button class="button green-button" type="submit">Save changes</button>
