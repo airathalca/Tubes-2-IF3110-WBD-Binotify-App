@@ -12,7 +12,7 @@ const songsResult = document.querySelector(".songs-result");
 const pagination = document.querySelector(".pagination");
 
 let currentPage = 1;
-prevButton.addEventListener("click", async () => {
+prevButton && prevButton.addEventListener("click", async () => {
     if (currentPage === 1) {
         return;
     }
@@ -33,7 +33,7 @@ prevButton.addEventListener("click", async () => {
     };
 });
 
-nextButton.addEventListener("click", async () => {
+nextButton && nextButton.addEventListener("click", async () => {
     if (currentPage === pages) {
         return;
     }
@@ -54,7 +54,7 @@ nextButton.addEventListener("click", async () => {
     };
 });
 
-buttonSearch.addEventListener("submit", async (e) => {
+buttonSearch && buttonSearch.addEventListener("submit", async (e) => {
     currentPage = 1;
     e.preventDefault();
     window.history.pushState("", "", `/public/song/search?q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`);

@@ -26,10 +26,10 @@
     <script src="<?= BASE_URL ?>/javascript/song/play-song.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
-        <?php if ($this->data) { ?>
+        <?php if (isset($this->data['judul'])) { ?>
             <?= $this->data['judul'] ?>
         <?php } else { ?>
-            Song Not Found
+            Song not found
         <?php } ?>
     </title>
 </head>

@@ -5,7 +5,7 @@ const dateInput = document.querySelector("#date");
 const genreInput = document.querySelector("#genre");
 const coverInput = document.querySelector("#cover");
 
-formElement.addEventListener("submit", (e) => {
+formElement && formElement.addEventListener("submit", (e) => {
     if (!titleInput.value) {
         e.preventDefault();
         document.querySelector("#title-alert").className = "alert-show";
@@ -30,7 +30,7 @@ formElement.addEventListener("submit", (e) => {
 
 const deleteButton = document.querySelector("#delete-button");
 
-deleteButton.addEventListener("click", () => {
+deleteButton && deleteButton.addEventListener("click", () => {
     const xhr = new XMLHttpRequest();
 
     xhr.open("POST", `/public/album/delete/${album_id}`);
@@ -49,7 +49,7 @@ deleteButton.addEventListener("click", () => {
     };
 });
 
-coverInput.addEventListener("change", (e) => {
+coverInput && coverInput.addEventListener("change", (e) => {
     const file = coverInput.files[0];
     const reader = new FileReader();
     

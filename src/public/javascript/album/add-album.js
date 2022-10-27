@@ -5,7 +5,7 @@ const dateInput = document.querySelector("#date");
 const genreInput = document.querySelector("#genre");
 const coverInput = document.querySelector("#cover");
 
-formElement.addEventListener('submit', (e) => {
+formElement && formElement.addEventListener('submit', (e) => {
     if (!titleInput.value) {
         e.preventDefault();
         document.querySelector("#title-alert").className = "alert-show";
