@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="song-dategenre">
                                     <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
-                                    <p><?= $song->genre ?></p>
+                                    <p class="genre"><?= $song->genre ?></p>
                                 </div>
                             </a>
                         <?php endforeach; ?>

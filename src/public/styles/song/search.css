@@ -69,6 +69,11 @@
 
 .song-dategenre p {
     color: var(--white);
+    font-size: 0.8rem;
+}
+
+.song-dategenre .genre {
+    text-align: right;
 }
 
 .search-form {

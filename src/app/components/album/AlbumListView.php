@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="album-dategenre">
                                     <p><?= substr($album->tanggal_terbit, 0, 4) ?></p>
-                                    <p><?= $album->genre ?></p>
+                                    <p class="genre"><?= $album->genre ?></p>
                                 </div>
                             </a>
                         <?php endforeach; ?>
