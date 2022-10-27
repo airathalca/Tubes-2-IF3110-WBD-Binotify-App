@@ -1,8 +1,10 @@
 const usernameInput = document.querySelector("#username");
 const emailInput = document.querySelector("#email");
 const passwordInput = document.querySelector("#password");
+const fullnameInput = document.querySelector("#fullname");
 const passwordConfirmedInput = document.querySelector("#confirm-password");
 const registrationForm = document.querySelector(".registration-form");
+const fullnameAlert = document.querySelector("#fullname-alert");
 const usernameAlert = document.querySelector("#username-alert");
 const emailAlert = document.querySelector("#email-alert");
 const passwordAlert = document.querySelector("#password-alert");
@@ -143,16 +145,55 @@ registrationForm &&
         const username = usernameInput.value;
         const email = emailInput.value;
         const password = passwordInput.value;
+        const fullname = fullnameInput.value;
+
+        if (!fullname) {
+            e.preventDefault();
+            fullnameAlert.innerText = "Please fill out the fullname first!";
+            fullnameAlert.className = "alert-show";
+        } else {
+            fullnameAlert.className = "alert-hide";
+        }
+    
+        if (!username) {
+            e.preventDefault();
+            usernameAlert.innerText = "Please fill out the username first!";
+            usernameAlert.className = "alert-show";
+        } else {
+            usernameAlert.className = "alert-hide";
+        }
+    
+        if (!email) {
+            e.preventDefault();
+            emailAlert.innerText = "Please fill out the email first!";
+            emailAlert.className = "alert-show";
+        } else {
+            emailAlert.className = "alert-hide";
+        }
+    
+        if (!password) {
+            e.preventDefault();
+            passwordAlert.innerText = "Please fill out the password first!";
+            passwordAlert.className = "alert-show";
+        } else {
+            passwordAlert.className = "alert-hide";
+        }
+
+        if (!passwordConfirmedValid) {
+            e.preventDefault();
+            passwordConfirmedAlert.innerText = "Passsword didn't match!";
+            passwordConfirmedAlert.className = "alert-show";
+        } else {
+            passwordConfirmedAlert.className = "alert-hide";
+        }
 
         if (
             !usernameValid ||
             !emailValid ||
             !passwordValid ||
-            !passwordConfirmedValid
+            !passwordConfirmedValid || 
+            !fullname
         ) {
-            window.alert(
-                "Please fill out the form properly before submitting!"
-            );
             return;
         }
 
@@ -160,6 +201,7 @@ registrationForm &&
         xhr.open("POST", "/public/user/register");
 
         const formData = new FormData();
+        formData.append("fullname", fullname);
         formData.append("email", email);
         formData.append("username", username);
         formData.append("password", password);
