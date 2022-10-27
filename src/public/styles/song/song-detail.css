@@ -2,6 +2,29 @@
     color: var(--white);
     font-weight: bold;
     margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.song-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 800px) {
+    .song-flex {
+        flex-direction: row;
+        gap: 2rem;
+    }
+    .song-details {
+        align-self: flex-end;
+    }
+}
+
+.line-break {
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    margin: 2rem 0rem;
 }
 
 .song-cover {
@@ -14,6 +37,7 @@
     color: var(--white);
     font-weight: bold;
     margin-top: 1rem;
+    font-size: 2rem;
 }
 
 .song-artist {

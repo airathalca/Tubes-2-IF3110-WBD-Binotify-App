@@ -44,14 +44,22 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Form -->
             <div class="pad-40">
-                <p class="details-header">Album details</p>
+                <h1 class="details-header">Album details</h1>
+                <!-- Show album detail first -->
+                <div class="album-detail-flex">
+                    <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">
+                    <div class="album-details">
+                        <h1 class="album-title"><?= $this->data['judul'] ?></h1>
+                        <p class="album-artist"><?= $this->data['penyanyi'] ?> ● <?= count($this->data['songs']) ?> songs, <?= $this->data['total_duration'] ?></p>
+                    </div>
+                </div>
+                <div class="line-break"></div>
                 <?php if (isset($this->data['album_id'])) : ?>
                     <!-- Album related info -->
                     <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="album-form">
                         <input type="hidden" name="album_id" value="<?= $this->data['album_id'] ?>">
                         <input type="hidden" name="old_path" value="<?= $this->data['image_path'] ?>">
                         <div class="form-group">
-                            <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">
                             <label for="cover">Upload new photo</label>
                             <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
                         </div>
@@ -89,13 +97,18 @@
                         <div class="songs-list">
                             <?php foreach ($this->data['songs'] as $song) : ?>
                                 <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
-                                    <p class="song-title"><?= $song->judul ?></p>
-                                    <p class="song-genre"><?= $song->genre ?></p>
-                                    <p class="song-dateduration"><?= substr($song->tanggal_terbit, 0, 4) ?> - <?= floor($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
-                                    <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" , method="post">
-                                        <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id">
-                                        <button class="button red-button" type="submit">Delete song</button>
-                                    </form>
+                                    <div class="song-top-section">
+                                        <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt="<?= $song->judul ?>">
+                                        <p class="song-title"><?= $song->judul ?></p>
+                                        <p class="song-genre"><?= $song->genre ?></p>
+                                    </div>
+                                    <div class="song-bottom-section">
+                                        <p class="song-dateduration"><?= substr($song->tanggal_terbit, 0, 4) ?> - <?= floor($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
+                                        <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" , method="post">
+                                            <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id">
+                                            <button class="button red-button" type="submit">Delete song</button>
+                                        </form>
+                                    </div>
                                 </a>
                             <?php endforeach; ?>
                         </div>

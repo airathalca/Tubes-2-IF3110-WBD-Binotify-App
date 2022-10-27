@@ -43,14 +43,16 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Form -->
             <div class="pad-40">
-                <p class="details-header">Song details</p>
+                <h1 class="details-header">Song details</h1>
                 <?php if (isset($this->data['song_id'])) { ?>
-                    <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
-                    <p class="song-title"><?= $this->data['judul'] ?></p>
-                    <p class="song-artist"><?= $this->data['penyanyi'] ?></p>
-                    <p class="song-genre"><?= $this->data['genre'] ?></p>
-                    <p class="song-dateduration"><?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> - 
-                    <?=floor(((int) $this->data['duration']) / 60) . " min " . ((int) $this->data['duration']) % 60 . " sec" ?></p>
+                    <div class="song-flex">
+                        <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
+                        <div class="song-details">
+                            <h1 class="song-title"><?= $this->data['judul'] ?></h1>
+                            <p class="song-artist"><?= $this->data['penyanyi'] ?> ● <?= $this->data['genre'] ?> ● <?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> ● <?=floor(((int) $this->data['duration']) / 60) . " min " . ((int) $this->data['duration']) % 60 . " sec" ?></p>
+                        </div>
+                    </div>
+                    <div class="line-break"></div>
                     <?php if ($this->data['album'] === NULL) { ?>
                         <p class="info">This song doesn't belong to any album yet!</p>
                     <?php } else  { ?>

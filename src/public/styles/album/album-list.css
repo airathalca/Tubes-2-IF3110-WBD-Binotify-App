@@ -2,6 +2,7 @@
     color: var(--white);
     font-weight: bold;
     margin-bottom: 1rem;
+    font-size: 2rem;
 }
 
 .albums-list {
@@ -63,6 +64,11 @@
 
 .album-dategenre p {
     color: var(--white);
+    font-size: 0.8rem;
+}
+
+.album-dategenre .genre {
+    text-align: right;
 }
 
 .pagination {

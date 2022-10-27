@@ -79,9 +79,8 @@
                         <button type="submit" class="button green-button">Search!</button>
                     </div>
                 </form>
-            </div>
-            <div class="pad-40">
-                <p class="article-heading">Search Result</p>
+                <div class="line-break"></div>
+                <h1 class="article-heading">Search Result</h1>
                 <?php if (!$this->data['songs']) : ?>
                     <p class="no-result">Your search did not match any songs in our database!</p>
                 <?php else : ?>
@@ -97,7 +96,7 @@
                                 </div>
                                 <div class="song-dategenre">
                                     <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
-                                    <p><?= $song->genre ?></p>
+                                    <p class="genre"><?= $song->genre ?></p>
                                 </div>
                             </a>
                         <?php endforeach; ?>

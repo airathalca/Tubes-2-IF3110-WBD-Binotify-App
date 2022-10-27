@@ -46,7 +46,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Form -->
             <div class="pad-40">
-                <p class="details-header">Song details</p>
+                <h1 class="details-header">Song details</h1>
                 <?php if (isset($this->data['song_id'])) { ?>
                     <!-- Song related info -->
                     <form action="/public/song/detail/<?= $this->data['song_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="song-form">
@@ -55,18 +55,15 @@
                         <input type="hidden" name="old_image_path" value="<?= $this->data['image_path'] ?>">
                         <input type="hidden" name="old_audio_path" value="<?= $this->data['audio_path'] ?>">
                         <input type="hidden" name="old_duration" value="<?= $this->data['duration'] ?>">
+                        <div class ="flex-img">
+                            <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
+                            <div class="song-details">
+                                <h1 class="song-title"><?= $this->data['judul'] ?></h1>
+                                <p class="song-artist"><?= $this->data['penyanyi'] ?> ● <?= $this->data['genre'] ?> ● <?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> ● <?=floor(((int) $this->data['duration']) / 60) . " min " . ((int) $this->data['duration']) % 60 . " sec" ?></p>
+                             </div>
+                        </div>
+                        <div class="line-break"></div>
                         <div class="form-group">
-                            <div class ="flex-img">
-                                <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
-                                <div>
-                                    <p class="song-title"><?= $this->data['judul'] ?></p>
-                                    <p class="song-artist"><?= $this->data['penyanyi'] ?></p>
-                                    <p class="song-genre"><?= $this->data['genre'] ?></p>
-                                    <p class="song-date"><?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> </p>
-                                    <p class="song-duration"><?=floor(((int) $this->data['duration']) / 60) . " min " . 
-                                    ((int) $this->data['duration']) % 60 . " sec" ?></p>
-                                 </div>
-                            </div>
                             <label for="cover">Upload new photo</label>
                             <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
                         </div>

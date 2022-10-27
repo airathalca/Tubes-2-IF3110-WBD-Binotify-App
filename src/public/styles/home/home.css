@@ -1,6 +1,7 @@
 .article-heading {
     font-weight: bold;
     color: var(--white);
+    font-size: 2rem;
 }
 
 .songs-container {
@@ -64,6 +65,11 @@
 
 .song-dategenre p {
     color: var(--white);
+    font-size: 0.8rem;
+}
+
+.song-dategenre .genre {
+    text-align: right;
 }
 
 .right-side {

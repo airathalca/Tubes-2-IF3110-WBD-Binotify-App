@@ -20,7 +20,7 @@
     <div class="wrapper-small">
         <div class="pad-40">
             <div class="centered">
-                <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Spotipi Logo">
+                <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Binotify Logo">
                 <p class="main-text">Sorry, we couldn't find the page that you were looking for!</p>
                 <p>Go back to the <a href="<?= BASE_URL ?>/home">home page</a>.</p>
             </div>

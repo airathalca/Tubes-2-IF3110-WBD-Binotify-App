@@ -1,6 +1,6 @@
 <aside class="aside-wrapper">
     <a href="/public/home">
-        <img src="<?= BASE_URL ?>/images/assets/logo-light.svg" alt="Spotipi logo" class="aside-logo">
+        <img src="<?= BASE_URL ?>/images/assets/logo-light.svg" alt="Binotify logo" class="aside-logo">
     </a>
     <?php if (!$this->data['username'] || !$this->data['is_admin']) { ?>
         <a href="/public/album" class="aside-link">

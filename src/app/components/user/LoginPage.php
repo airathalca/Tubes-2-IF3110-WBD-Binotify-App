@@ -30,8 +30,8 @@
         <div class="wrapper-small">
             <main class="pad-40">
                 <header class="login-header">
-                    <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Spotipi Logo">
-                    <p>To continue, log in to Spotipi.</p>
+                    <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Binotify Logo">
+                    <p>To continue, log in to Binotify.</p>
                 </header>
                 <form class="login-form">
                     <div class="form-group">

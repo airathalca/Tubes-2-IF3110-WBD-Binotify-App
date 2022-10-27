@@ -2,6 +2,7 @@
     color: var(--white);
     font-weight: bold;
     margin-bottom: 1rem;
+    font-size: 2rem;
 }
 
 .form-group {
@@ -22,7 +23,8 @@
 }
 
 .form-group input[type="text"], .form-group input[type="date"] {
-    padding: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 10rem;
 }
 
 .song-cover {
@@ -35,6 +37,7 @@
     color: var(--white);
     font-weight: bold;
     margin-top: 1rem;
+    font-size: 2rem;
 }
 
 .song-artist {
@@ -58,8 +61,25 @@
 
 .flex-img {
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    flex-direction: column;
+}
+
+@media (min-width: 800px) {
+    .flex-img {
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .song-details {
+        align-self: flex-end;
+    }
+}
+
+.line-break {
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    margin: 2rem 0;
 }
 
 .button-group {

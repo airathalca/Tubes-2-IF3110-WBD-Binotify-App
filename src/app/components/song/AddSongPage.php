@@ -32,7 +32,7 @@
         <div class="wrapper">
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <div class="pad-40">
-                <p class="form-header">Add a song</p>
+                <h1 class="form-header">Add a song</h1>
                 <form action="/public/song/add?csrf_token=<?=$_SESSION['csrf_token']?>" method="post" enctype="multipart/form-data" class="form">
                     <div class="form-group">
                         <label for="title">Song title</label>

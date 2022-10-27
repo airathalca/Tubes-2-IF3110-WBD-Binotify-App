@@ -34,7 +34,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Form -->
             <div class="pad-40">
-                <p class="form-header">Add an album</p>
+                <h1 class="form-header">Add an album</h1>
                 <form action="/public/album/add?csrf_token=<?php echo $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="form">
                     <div class="form-group">
                         <label for="title">Album title</label>

@@ -3,7 +3,7 @@
         <div class="flex-between">
             <div class="nav-left-portion">
                 <a href="/public/home">
-                    <img src="<?= BASE_URL ?>/images/assets/logo-light.svg" alt="Logo Spotipi">
+                    <img src="<?= BASE_URL ?>/images/assets/logo-light.svg" alt="Logo Binotify">
                 </a>
                 <div class="nav-top-search">
                     <form action="<?= BASE_URL ?>/song/search" METHOD="GET">
