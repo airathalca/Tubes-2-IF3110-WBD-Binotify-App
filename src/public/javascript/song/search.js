@@ -114,7 +114,7 @@ const newData = (data) => {
     if (pages === 0) {
         newHTML += `
         <p class="no-result">
-            Your Search did not match any songs in our database!
+            Your search did not match any songs in our database!
         </p>
         `;
         songsResult.innerHTML = newHTML;
