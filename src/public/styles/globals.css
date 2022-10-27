@@ -3,6 +3,7 @@
 :root {
     /* Colors */
     --black: hsl(0, 0%, 8%);
+    --nav-black: hsl(0, 0%, 4%);
     --white: #ffffff;
     --darkgreen: #1db954;
     --lightgreen: #1ed760;
@@ -41,14 +42,27 @@ button {
     padding: 2.5rem;
 }
 
+.white-body, .black-body {
+    min-height: 100vh;
+}
+
 .white-body {
     background: var(--white);
-    min-height: 100vh;
 }
 
 .black-body {
     background: var(--black);
-    min-height: 100vh;
+}
+
+@media (min-width: 1024px) {
+    .white-body, .black-body {
+        display: flex;
+    }
+
+    .wrapper {
+        max-width: none;
+        width: 100%;
+    }
 }
 
 p, label, a, button {

@@ -50,6 +50,14 @@
         </div>
     <?php } else { ?>
         <div class="nav-container" id="nav-container">
+            <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="container-search">
+                <div class="nav-search-input">
+                    <input type="text" placeholder="YOASOBI" name="q">
+                    <button type="submit">
+                        <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
+                    </button>
+                </div>
+            </form>
             <a href="/public/song/add" class="nav-link">
                 Add song
             </a>

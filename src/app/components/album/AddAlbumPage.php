@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/aside.css">
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/album/add-album.css">
     <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
@@ -26,6 +27,8 @@
 
 <body>
     <div class="black-body">
+        <!-- Aside -->
+        <?php include(dirname(__DIR__) . '/template/Aside.php') ?>
         <div class="wrapper">
             <!-- Navigation bar -->
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>

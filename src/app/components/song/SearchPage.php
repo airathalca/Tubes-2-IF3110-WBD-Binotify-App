@@ -12,6 +12,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/aside.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/song/search.css">
     <script type="text/javascript" defer>
@@ -30,6 +31,8 @@
 
 <body>
     <div class="black-body">
+        <!-- Aside -->
+        <?php include(dirname(__DIR__) . '/template/Aside.php') ?>
         <div class="wrapper">
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="search-form">

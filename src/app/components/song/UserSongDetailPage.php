@@ -12,6 +12,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/aside.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/song/song-detail.css">
     <!-- JavaScript DOM and AJAX -->
@@ -35,6 +36,8 @@
 
 <body>
     <div class="black-body">
+        <!-- Aside -->
+        <?php include(dirname(__DIR__) . '/template/Aside.php') ?>
         <div class="wrapper">
             <!-- Navigation bar -->
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>

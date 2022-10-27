@@ -12,7 +12,7 @@
     <!-- Global CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
-    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/aside.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/song/add-song.css">
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" defer>
@@ -27,6 +27,8 @@
 
 <body>
     <div class="black-body">
+        <!-- Aside -->
+        <?php include(dirname(__DIR__) . '/template/Aside.php') ?>
         <div class="wrapper">
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <div class="pad-40">

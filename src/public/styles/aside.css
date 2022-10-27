@@ -1,0 +1,41 @@
+.aside-wrapper {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .aside-wrapper {
+        display: block;
+        background: var(--pure-black);
+        position: sticky;
+        top: 0;
+        width: 15rem;
+        padding:3rem;
+        height: 100vh;
+    }
+    
+    .aside-logo {
+        height: 3rem;
+        margin-bottom: 2rem;
+    }
+    
+    .aside-link {
+        display: flex;
+        gap: 0.5rem;
+        transition: all 0.3s linear;
+        margin-top: 1rem;
+    }
+    
+    .aside-link:hover {
+        padding-left: 0.5rem;
+    }
+    
+    .aside-link p {
+        color: var(--white);
+        text-decoration: none;
+    }
+    
+    .aside-link svg {
+        fill: var(--white);
+        height: 1rem;
+    }
+}
