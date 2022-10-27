@@ -3,7 +3,7 @@ const navContainer = document.querySelector("#nav-container");
 const logOutButton = document.querySelector("#log-out");
 let isToggled = false;
 
-toggleButton.addEventListener("click", () => {
+toggleButton && toggleButton.addEventListener("click", () => {
     if (!isToggled) {
         /* Show navbar! */
         isToggled = true;

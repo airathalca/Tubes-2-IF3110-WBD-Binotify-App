@@ -18,7 +18,7 @@
     <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
-        <?php if ($this->data) : ?>
+        <?php if (isset($this->data['album_id'])) : ?>
             const album_id = <?= $this->data['album_id'] ?>;
             const image_path = "<?= $this->data['image_path'] ?>";
         <?php endif; ?>
@@ -27,7 +27,7 @@
     <script src="<?= BASE_URL ?>/javascript/album/update-album-detail.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
-        <?php if ($this->data) : ?>
+        <?php if (isset($this->data['judul'])) : ?>
             <?= $this->data['judul'] ?>
         <?php else : ?>
             Album not found

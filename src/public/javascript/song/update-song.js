@@ -6,7 +6,7 @@ const genreInput = document.querySelector("#genre");
 const coverInput = document.querySelector("#cover");
 const audioInput = document.querySelector("#audio");
 
-formElement.addEventListener("submit", (e) => {
+formElement && formElement.addEventListener("submit", (e) => {
     if (!titleInput.value) {
         e.preventDefault();
         document.querySelector("#title-alert").className = "alert-show";
@@ -31,7 +31,7 @@ formElement.addEventListener("submit", (e) => {
 
 const deleteButton = document.querySelector("#delete-button");
 
-deleteButton.addEventListener("click", () => {
+deleteButton && deleteButton.addEventListener("click", () => {
     const xhr = new XMLHttpRequest();
 
     xhr.open("POST", `/public/song/delete/${song_id}`);
@@ -53,7 +53,7 @@ deleteButton.addEventListener("click", () => {
     };
 });
 
-coverInput.addEventListener("change", (e) => {
+coverInput && coverInput.addEventListener("change", (e) => {
     const file = coverInput.files[0];
     const reader = new FileReader();
     
@@ -66,7 +66,7 @@ coverInput.addEventListener("change", (e) => {
     })
 });
 
-audioInput.addEventListener("change", (e) => {
+audioInput && audioInput.addEventListener("change", (e) => {
     const file = audioInput.files[0];
     const reader = new FileReader();
     

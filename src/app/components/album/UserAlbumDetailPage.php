@@ -22,7 +22,7 @@
     <!-- JavaScript DOM and AJAX -->
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
-        <?php if ($this->data) : ?>
+        <?php if (isset($this->data['judul'])) : ?>
             <?= $this->data['judul'] ?>
         <?php else : ?>
             Album not found

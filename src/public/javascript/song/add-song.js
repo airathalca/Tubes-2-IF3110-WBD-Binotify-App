@@ -7,7 +7,7 @@ const coverInput = document.querySelector("#cover");
 const audioInput = document.querySelector("#audio");
 const albumInput = document.querySelector("#album");
 
-formElement.addEventListener('submit', (e) => {
+formElement && formElement.addEventListener('submit', (e) => {
     if (!titleInput.value) {
         e.preventDefault();
         document.querySelector("#title-alert").className = "alert-show";
@@ -51,7 +51,7 @@ formElement.addEventListener('submit', (e) => {
     }
 });
 
-artistInput.addEventListener("keyup", debounce(() => {
+artistInput && artistInput.addEventListener("keyup", debounce(() => {
     const artist = artistInput.value;
     xhr = new XMLHttpRequest();
     xhr.open('GET', 

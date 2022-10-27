@@ -2,7 +2,7 @@ const toggleButton = document.querySelector("#toggle");
 const navContainer = document.querySelector("#nav-container");
 let isToggled = false;
 
-toggleButton.addEventListener("click", () => {
+toggleButton && toggleButton.addEventListener("click", () => {
     if (!isToggled) {
         /* Show navbar! */
         isToggled = true;
