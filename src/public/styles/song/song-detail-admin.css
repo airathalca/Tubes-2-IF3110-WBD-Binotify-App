@@ -4,33 +4,6 @@
     margin-bottom: 1rem;
 }
 
-.song-cover {
-    width: 12.5rem;
-    height: 12.5rem;
-    object-fit: cover;
-}
-
-.song-title {
-    color: var(--white);
-    font-weight: bold;
-    margin-top: 1rem;
-}
-
-.song-artist {
-    color: var(--white);
-    margin-top: 0.5rem;
-}
-
-.song-genre {
-    color: var(--white);
-    margin-top: 0.5rem;
-}
-.song-dateduration {
-    color: var(--white);
-    margin-top: 0.25rem;
-    margin-bottom: 1.5rem;
-}
-
 .form-group {
     display: flex;
     flex-direction: column;
@@ -50,6 +23,43 @@
 
 .form-group input[type="text"], .form-group input[type="date"] {
     padding: 1rem;
+}
+
+.song-cover {
+    width: 12.5rem;
+    height: 12.5rem;
+    object-fit: cover;
+}
+
+.song-title {
+    color: var(--white);
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.song-artist {
+    color: var(--white);
+    margin-top: 0.75rem;
+}
+
+.song-genre {
+    color: var(--white);
+    margin-top: 0.75rem;
+}
+.song-date {
+    color: var(--white);
+    margin-top: 0.75rem;
+}
+
+.song-duration {
+    color: var(--white);
+    margin-top: 0.75rem;
+}
+
+.flex-img {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
 }
 
 .button-group {
