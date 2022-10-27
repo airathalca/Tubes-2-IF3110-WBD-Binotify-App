@@ -1,6 +1,7 @@
 .article-heading {
     font-weight: bold;
     color: var(--white);
+    font-size: 2rem;
 }
 
 .songs-container {

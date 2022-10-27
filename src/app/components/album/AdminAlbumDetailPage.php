@@ -44,7 +44,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Form -->
             <div class="pad-40">
-                <p class="details-header">Album details</p>
+                <h1 class="details-header">Album details</h1>
                 <!-- Show album detail first -->
                 <div class="album-detail-flex">
                     <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">

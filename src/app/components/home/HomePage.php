@@ -33,7 +33,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <article>
                 <div class="pad-40">
-                    <p class="article-heading">Songs for you</p>
+                    <h1 class="article-heading">Songs for you</h1>
                     <?php if (!$this->data['song_arr']) : ?>
                         <p class="info">There are currently no songs available on Spotipi!</p>
                     <?php endif; ?>

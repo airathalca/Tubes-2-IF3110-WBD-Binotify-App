@@ -41,7 +41,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Main -->
             <div class="pad-40">
-                <p class="album-list-header">Albums available on Spotipi</p>
+                <h1 class="album-list-header">Albums available on Spotipi</h1>
                 <?php if (!$this->data['albums']) : ?>
                     <p class="info">There are no albums yet available on Spotipi!</p>
                 <?php else : ?>

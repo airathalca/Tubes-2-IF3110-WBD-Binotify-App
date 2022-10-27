@@ -43,7 +43,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Form -->
             <div class="pad-40">
-                <p class="details-header">Song details</p>
+                <h1 class="details-header">Song details</h1>
                 <?php if (isset($this->data['song_id'])) { ?>
                     <div class="song-flex">
                         <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">

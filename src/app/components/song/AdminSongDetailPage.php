@@ -46,7 +46,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Form -->
             <div class="pad-40">
-                <p class="details-header">Song details</p>
+                <h1 class="details-header">Song details</h1>
                 <?php if (isset($this->data['song_id'])) { ?>
                     <!-- Song related info -->
                     <form action="/public/song/detail/<?= $this->data['song_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="song-form">

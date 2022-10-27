@@ -39,7 +39,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Main -->
             <div class="pad-40">
-                <p class="user-list-header">Users on Spotipi</p>
+                <h1 class="user-list-header">Users on Spotipi</h1>
                 <?php if (!$this->data['users']) : ?>
                     <p class="info">There are no users yet available on Spotipi!</p>
                 <?php else : ?>
