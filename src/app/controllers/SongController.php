@@ -247,7 +247,7 @@ class SongController extends Controller implements ControllerInterface
                             "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $song->tanggal_terbit, "genre" => $song->genre, "album" => $song->album_id, 
                         ];
                     } else {
-                        throw new LoggedException('Not Found', 404);
+                        $song_props = [];
                     }
                     // Keperluan navbar
                     if (isset($_SESSION['user_id'])) {
