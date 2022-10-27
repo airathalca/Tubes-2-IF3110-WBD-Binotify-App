@@ -35,7 +35,6 @@ formElement.addEventListener('submit', (e) => {
     }
 
     if (coverInput.files.length === 0) {
-        console.log("Terpanggil!");
         e.preventDefault();
         document.querySelector("#cover-alert").className = "alert-show";
     } else {
