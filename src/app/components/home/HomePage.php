@@ -11,6 +11,7 @@
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <!-- Global CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/styles/home/home.css">
     <!-- JavaScript Constant and Variables -->
@@ -25,45 +26,33 @@
 <body>
     <div class="black-body">
         <div class="wrapper">
-            <div class="big-flex-container">
-                <main class="left-side">
-                    <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
-                    <article>
-                        <div class="pad-40">
-                            <p class="article-heading">Songs for you</p>
-                            <?php if (!$this->data['song_arr']) : ?>
-                                <p class="info">There are currently no songs available on Spotipi!</p>
-                            <?php endif; ?>
-                            <div class="songs-container">
-                                <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
-                                    <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
-                                        <div class="top-section">
-                                            <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt="<?= $song->judul ?>">
-                                            <header class="song-header">
-                                                <p class="title"><?= $song->judul ?></p>
-                                                <p><?= $song->penyanyi ?></p>
-                                            </header>
-                                        </div>
-                                        <div class="song-dategenre">
-                                            <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
-                                            <p><?= $song->genre ?></p>
-                                        </div>
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </article>
-                </main>
-                <aside class="right-side">
-                    <img src="<?= BASE_URL ?>/images/assets/logo-notext-dark.svg" alt="Spotipi Logo">
-                    <?php
-                    if (!$this->data['username']) : ?>
-                        <p><a href="/public/user/login">Log in</a> or <a href="/public/user/register">Register</a> to fully experience Spotipi!</p>
-                    <?php else : ?>
-                        <p>Hello, <strong><?= $this->data['username'] ?></strong>!</p>
+            <!-- Navbar -->
+            <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
+            <article>
+                <div class="pad-40">
+                    <p class="article-heading">Songs for you</p>
+                    <?php if (!$this->data['song_arr']) : ?>
+                        <p class="info">There are currently no songs available on Spotipi!</p>
                     <?php endif; ?>
-                </aside>
-            </div>
+                    <div class="songs-container">
+                        <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
+                            <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
+                                <div class="top-section">
+                                    <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt="<?= $song->judul ?>">
+                                    <header class="song-header">
+                                        <p class="title"><?= $song->judul ?></p>
+                                        <p><?= $song->penyanyi ?></p>
+                                    </header>
+                                </div>
+                                <div class="song-dategenre">
+                                    <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
+                                    <p><?= $song->genre ?></p>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
 </body>

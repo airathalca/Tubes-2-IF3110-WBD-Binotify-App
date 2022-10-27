@@ -1,38 +1,52 @@
 <nav class="black-navbar">
-    <div class="pad-40">
+    <div class="pad-32">
         <div class="flex-between">
-            <button class="toggle" id="toggle">
-                <img src="<?= BASE_URL ?>/images/assets/bars.svg" alt="Bars">
-            </button>
-            <a href="/public/home">
-                <img src="<?= BASE_URL ?>/images/assets/logo-light.svg" alt="Logo Spotipi">
-            </a>
+            <div class="nav-left-portion">
+                <a href="/public/home">
+                    <img src="<?= BASE_URL ?>/images/assets/logo-light.svg" alt="Logo Spotipi">
+                </a>
+                <div class="nav-top-search">
+                    <form action="<?= BASE_URL ?>/song/search" METHOD="GET">
+                        <div class="top-search-input">
+                            <input type="text" placeholder="YOASOBI" name="q">
+                            <button type="submit">
+                                <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="nav-right-portion">     
+                <?php if  ($this->data['username']) { ?>
+                    <div class="nav-username">
+                        <img src="<?= BASE_URL ?>/images/assets/user-solid.svg" alt="profile icon" ?>
+                        <p><?= $this->data['username'] ?></p>
+                    </div>
+                <?php } ?>
+                <button class="toggle" id="toggle">
+                    <img src="<?= BASE_URL ?>/images/assets/bars.svg" alt="Bars">
+                </button>
+            </div>
         </div>
     </div>
     <?php
     if (!$this->data['username'] || !$this->data['is_admin']) { ?>
         <div class="nav-container" id="nav-container">
-            <div class="nav-search">
-                <form action="<?= BASE_URL ?>/song/search" METHOD="GET">
-                    <label for="search">Enter song/title/artist/published year to search!</label>
-                    <div class="search-input">
-                        <input type="text" placeholder="YOASOBI" name="q">
-                        <button type="submit">
-                            <img src="<?= BASE_URL ?>/images/assets/search.svg" alt="Search icon">
-                        </button>
-                    </div>
-                </form>
-            </div>
             <a href="/public/album" class="nav-link">
                 Album list
             </a>
-            <?php
-            if ($this->data['username']) { ?>
+            <?php if ($this->data['username']) { ?>
                 <a href="#" id="log-out" class="nav-link">
                     Log out
                 </a>
-            <?php }
-            ?>
+            <?php } else { ?>
+                <a href="/public/user/login" class="nav-link">
+                    Log in
+                </a>
+                <a href="/public/user/register" class="nav-link">
+                    Register
+                </a>
+            <?php } ?>
         </div>
     <?php } else { ?>
         <div class="nav-container" id="nav-container">

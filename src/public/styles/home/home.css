@@ -12,6 +12,10 @@
     z-index: 999;
 }
 
+.pad-32 {
+    padding: 2rem;
+}
+
 .black-navbar, .black-navbar img {
     background: var(--pure-black);
 }
@@ -189,8 +193,4 @@
 .info {
     color: var(--white);
     margin-top: 0.5rem;
-}
-
-.flex-between a {
-    display: none;
 }
