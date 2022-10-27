@@ -39,7 +39,7 @@
                 <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="search-form">
                     <div class="form-group">
                         <label for="search">Searching for ...</label>
-                        <input type="text" name="q" placeholder="Title/year/artist/published date" id="search" <?php if ($_GET['q']) : ?> value="<?= $_GET['q'] ?>" <?php endif; ?>>
+                        <input type="text" name="q" placeholder="Artists, songs, or published year" id="search" <?php if ($_GET['q']) : ?> value="<?= $_GET['q'] ?>" <?php endif; ?>>
                     </div>
                     <div class="form-group">
                         <label for="sort">Sorted by ...</label>
