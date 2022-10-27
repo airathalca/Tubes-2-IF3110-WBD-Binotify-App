@@ -150,7 +150,6 @@ class AlbumController extends Controller implements ControllerInterface
                     $albumModel = $this->model('AlbumModel');
                     $albumID = $_POST['album_id'];
 
-                    $oldAlbumArtist = ($albumModel->getAlbumFromID($albumID))->penyanyi;
 
                     $albumModel->changeAlbumTitle($albumID, $_POST['title']);
 
