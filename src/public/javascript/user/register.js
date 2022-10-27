@@ -159,6 +159,8 @@ registrationForm &&
             e.preventDefault();
             usernameAlert.innerText = "Please fill out the username first!";
             usernameAlert.className = "alert-show";
+        } else if (!usernameValid) {
+            usernameAlert.className = "alert-show";
         } else {
             usernameAlert.className = "alert-hide";
         }
@@ -167,6 +169,8 @@ registrationForm &&
             e.preventDefault();
             emailAlert.innerText = "Please fill out the email first!";
             emailAlert.className = "alert-show";
+        } else if (!emailValid) {
+            emailAlert.className = "alert-show";
         } else {
             emailAlert.className = "alert-hide";
         }
@@ -174,6 +178,8 @@ registrationForm &&
         if (!password) {
             e.preventDefault();
             passwordAlert.innerText = "Please fill out the password first!";
+            passwordAlert.className = "alert-show";
+        } else if (!passwordValid) {
             passwordAlert.className = "alert-show";
         } else {
             passwordAlert.className = "alert-hide";
