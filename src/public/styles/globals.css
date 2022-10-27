@@ -33,7 +33,7 @@ button {
     outline: none;
 }
 
-.wrapper {
+.wrapper, .wrapper-small {
     max-width: 1160px;
     margin: 0 auto;
 }

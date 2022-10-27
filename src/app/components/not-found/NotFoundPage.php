@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper-small">
         <div class="pad-40">
             <div class="centered">
                 <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Spotipi Logo">

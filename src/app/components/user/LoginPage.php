@@ -27,7 +27,7 @@
 
 <body>
     <div class="white-body">
-        <div class="wrapper">
+        <div class="wrapper-small">
             <main class="pad-40">
                 <header class="login-header">
                     <img src="<?= BASE_URL ?>/images/assets/logo-dark.svg" alt="Spotipi Logo">
