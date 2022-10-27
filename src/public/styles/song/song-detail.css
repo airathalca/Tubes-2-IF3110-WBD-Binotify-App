@@ -45,6 +45,21 @@
     margin-top: 0.5rem;
 }
 
-.audio-player {
+.audio-player-container {
     margin-top: 1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 2.5rem;
+    background: var(--nav-black);
+}
+
+.audio-player {
+    width: 100%;
+}
+
+.audio-info {
+    color: var(--white);
+    margin-bottom: 1rem;
 }

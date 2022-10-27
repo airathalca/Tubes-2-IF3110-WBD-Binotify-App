@@ -56,9 +56,12 @@
                     <?php } else  { ?>
                         <a href="<?= BASE_URL?>/album/detail/<?= $this->data['album']?>" class="button button-album">See album!</a>
                     <?php } ?>
-                    <audio controls class="audio-player">
-                        <source src="<?= STORAGE_URL?>/songs/<?=$this->data['audio_path']?>">
-                    </audio>
+                    <div class="audio-player-container">
+                        <p class="audio-info"><?= $this->data['judul'] ?> by <?= $this->data['penyanyi'] ?></p>
+                        <audio controls class="audio-player">
+                            <source src="<?= STORAGE_URL?>/songs/<?=$this->data['audio_path']?>">
+                        </audio>
+                    </div>
                 <?php } else { ?>
                     <p class="info">Cannot find the song you're looking for!</p>
                 <?php } ?>

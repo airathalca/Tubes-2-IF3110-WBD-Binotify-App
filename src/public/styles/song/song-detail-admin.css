@@ -75,3 +75,7 @@
 .audio-player {
     margin-top: 1rem;
 }
+
+audio {
+    width: 100%;
+}
