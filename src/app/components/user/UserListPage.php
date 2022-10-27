@@ -39,9 +39,9 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Main -->
             <div class="pad-40">
-                <h1 class="user-list-header">Users on Spotipi</h1>
+                <h1 class="user-list-header">Users on Binotify</h1>
                 <?php if (!$this->data['users']) : ?>
-                    <p class="info">There are no users yet available on Spotipi!</p>
+                    <p class="info">There are no users yet available on Binotify!</p>
                 <?php else : ?>
                     <div class="users-list">
                         <?php foreach ($this->data['users'] as $user) : ?>

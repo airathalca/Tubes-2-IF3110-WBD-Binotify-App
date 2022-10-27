@@ -41,9 +41,9 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <!-- Main -->
             <div class="pad-40">
-                <h1 class="album-list-header">Albums available on Spotipi</h1>
+                <h1 class="album-list-header">Albums available on Binotify</h1>
                 <?php if (!$this->data['albums']) : ?>
-                    <p class="info">There are no albums yet available on Spotipi!</p>
+                    <p class="info">There are no albums yet available on Binotify!</p>
                 <?php else : ?>
                     <div class="albums-list">
                         <?php foreach ($this->data['albums'] as $album) : ?>

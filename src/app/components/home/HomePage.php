@@ -35,7 +35,7 @@
                 <div class="pad-40">
                     <h1 class="article-heading">Songs for you</h1>
                     <?php if (!$this->data['song_arr']) : ?>
-                        <p class="info">There are currently no songs available on Spotipi!</p>
+                        <p class="info">There are currently no songs available on Binotify!</p>
                     <?php endif; ?>
                     <div class="songs-container">
                         <?php foreach ($this->data['song_arr'] as $index => $song) : ?>
