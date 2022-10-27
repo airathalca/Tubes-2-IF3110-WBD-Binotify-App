@@ -5,8 +5,9 @@
 }
 
 .album-cover {
-    width: 100%;
-    max-width: 300px;
+    width: 12.5rem;
+    height: 12.5rem;
+    object-fit: cover;
 }
 
 .album-title {

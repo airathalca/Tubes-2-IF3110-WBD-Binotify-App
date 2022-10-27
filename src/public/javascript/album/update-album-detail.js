@@ -3,6 +3,7 @@ const titleInput = document.querySelector("#title");
 // const artistInput = document.querySelector("#artist");
 const dateInput = document.querySelector("#date");
 const genreInput = document.querySelector("#genre");
+const coverInput = document.querySelector("#cover");
 
 formElement.addEventListener("submit", (e) => {
     if (!titleInput.value) {
@@ -46,4 +47,17 @@ deleteButton.addEventListener("click", () => {
             location.replace(data.redirect_url);
         }
     };
+});
+
+coverInput.addEventListener("change", (e) => {
+    const file = coverInput.files[0];
+    const reader = new FileReader();
+    
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+
+    reader.addEventListener("load", () => {
+        document.querySelector(".album-cover").src = reader.result;
+    })
 });
