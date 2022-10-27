@@ -48,11 +48,13 @@
                     <div class="albums-list">
                         <?php foreach ($this->data['albums'] as $album) : ?>
                             <a href="/public/album/detail/<?= $album->album_id ?>" class="single-album">
-                                <img src="<?= STORAGE_URL ?>/images/<?= $album->image_path ?>" alt="<?= $album->judul ?>">
-                                <header class="album-header">
-                                    <p class="title"><?= $album->judul ?></p>
-                                    <p><?= $album->penyanyi ?></p>
-                                </header>
+                                <div class="top-section">
+                                    <img src="<?= STORAGE_URL ?>/images/<?= $album->image_path ?>" alt="<?= $album->judul ?>">
+                                    <header class="album-header">
+                                        <p class="title"><?= $album->judul ?></p>
+                                        <p><?= $album->penyanyi ?></p>
+                                    </header>
+                                </div>
                                 <div class="album-dategenre">
                                     <p><?= substr($album->tanggal_terbit, 0, 4) ?></p>
                                     <p><?= $album->genre ?></p>
