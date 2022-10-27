@@ -12,7 +12,6 @@ if (audioPlayer) {
                 xhr.open('POST', '/public/song/countLimit');
     
                 const formData = new FormData();
-                formData.append("song_id", songId);
                 formData.append("csrf_token", CSRF_TOKEN);
                 xhr.send(formData);
     

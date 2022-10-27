@@ -377,9 +377,9 @@ class SongController extends Controller implements ControllerInterface
                     date_default_timezone_set('Asia/Jakarta');
                     $dateNow = date('Y-m-d');
                     if ((isset($_SESSION['date']) && $_SESSION['date'] !== $dateNow) || !isset($_SESSION['date'])) {
-                        $songLimitMiddleware->makeNewSession($_POST['song_id']);
+                        $songLimitMiddleware->makeNewSession($_POST['csrf_token']);
                     }
-                    $success = $songLimitMiddleware->checkSong($_POST['song_id']);
+                    $success = $songLimitMiddleware->checkSong($_POST['csrf_token']);
                     header('Content-Type: application/json');
                     echo json_encode(["status" => $success]);
                     http_response_code(200);
