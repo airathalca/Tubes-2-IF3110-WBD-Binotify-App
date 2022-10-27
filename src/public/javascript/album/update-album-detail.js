@@ -5,14 +5,25 @@ const dateInput = document.querySelector("#date");
 const genreInput = document.querySelector("#genre");
 
 formElement.addEventListener("submit", (e) => {
-    if (
-        !titleInput.value ||
-        // !artistInput.value ||
-        !dateInput.value ||
-        !genreInput.value
-    ) {
+    if (!titleInput.value) {
         e.preventDefault();
-        window.alert("Please fill out the form properly before updating!");
+        document.querySelector("#title-alert").className = "alert-show";
+    } else {
+        document.querySelector("#title-alert").className = "alert-hide";
+    }
+
+    if (!dateInput.value) {
+        e.preventDefault();
+        document.querySelector("#date-alert").className = "alert-show";
+    } else {
+        document.querySelector("#date-alert").className = "alert-hide";
+    }
+
+    if (!genreInput.value) {
+        e.preventDefault();
+        document.querySelector("#genre-alert").className = "alert-show";
+    } else {
+        document.querySelector("#genre-alert").className = "alert-hide";
     }
 });
 
