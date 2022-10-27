@@ -53,16 +53,32 @@ loginForm &&
         const username = usernameInput.value;
         const password = passwordInput.value;
 
-        if (!usernameValid) {
-            document.querySelector('#username-alert').className = "alert-show";
+        if (!username) {
+            usernameAlert.innerText = "Please fill out your username first!";
+            usernameAlert.className = "alert-show";
+            usernameValid = false;
+        } else if (!usernameRegex.test(username)) {
+            usernameAlert.innerText = "Invalid username format!";
+            usernameAlert.className = "alert-show";
+            usernameValid = false;
         } else {
-            document.querySelector('#username-alert').className = "alert-hide";
+            usernameAlert.innerText = "";
+            usernameAlert.className = "alert-hide";
+            usernameValid = true;
         }
 
-        if (!passwordValid) {
-            document.querySelector('#password-alert').className = "alert-show";
+        if (!password) {
+            passwordAlert.innerText = "Please fill out your password first!";
+            passwordAlert.className = "alert-show";
+            passwordValid = false;
+        } else if (!passwordRegex.test(password)) {
+            passwordAlert.innerText = "Invalid password format!";
+            passwordAlert.className = "alert-show";
+            passwordValid = false;
         } else {
-            document.querySelector('#password-alert').className = "alert-hide";
+            passwordAlert.innerText = "";
+            passwordAlert.className = "alert-hide";
+            passwordValid = true;
         }
 
         if (!usernameValid || !passwordValid) {
