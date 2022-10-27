@@ -85,7 +85,7 @@
                                 <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
                                     <p class="song-title"><?= $song->judul ?></p>
                                     <p class="song-genre"><?= $song->genre ?></p>
-                                    <p class="song-dateduration"><?= substr($song->tanggal_terbit, 0, 4) ?> - <?= round($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
+                                    <p class="song-dateduration"><?= substr($song->tanggal_terbit, 0, 4) ?> - <?= floor($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
                                     <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" , method="post">
                                         <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id">
                                         <button class="button red-button" type="submit">Delete song</button>
