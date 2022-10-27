@@ -33,18 +33,22 @@
                     <div class="form-group">
                         <label for="title">Song title</label>
                         <input type="text" name="title" id="title" placeholder="LycoReco">
+                        <p class="alert-hide" id="title-alert">Please fill out the song title first!</p>
                     </div>
                     <div class="form-group">
                         <label for="artist">Artist</label>
                         <input type="text" name="artist" id="artist" placeholder="Chisato">
+                        <p class="alert-hide" id="artist-alert">Please fill out the song artist first!</p>
                     </div>
                     <div class="form-group">
                         <label for="date">Published date</label>
                         <input type="date" name="date" id="date">
+                        <p class="alert-hide" id="date-alert">Please fill out the published date first!</p>
                     </div>
                     <div class="form-group">
                         <label for="genre">Genre</label>
                         <input type="text" name="genre" id="genre" placeholder="Rock">
+                        <p class="alert-hide" id="genre-alert">Please fill out the song genre first!</p>
                     </div>
                     <div class="form-group">
                         <label for="album">Album</label>
@@ -56,12 +60,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="cover">Song File</label>
+                        <label for="audio">Song File</label>
                         <input type="file" name="audio" id="audio" accept="audio/mpeg">
+                        <p class="alert-hide" id="audio-alert">Please upload a valid song file first!</p>
                     </div>
                     <div class="form-group">
                         <label for="cover">Cover photo</label>
                         <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
+                        <p class="alert-hide" id="cover-alert">Please upload a valid cover image first!</p>
                     </div>
                     <button class="button green-button">Add song to database</button>
                 </form>
