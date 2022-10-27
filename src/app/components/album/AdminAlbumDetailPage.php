@@ -45,7 +45,7 @@
             <!-- Form -->
             <div class="pad-40">
                 <p class="details-header">Album details</p>
-                <?php if ($this->data) : ?>
+                <?php if (isset($this->data['album_id'])) : ?>
                     <!-- Album related info -->
                     <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="album-form">
                         <input type="hidden" name="album_id" value="<?= $this->data['album_id'] ?>">

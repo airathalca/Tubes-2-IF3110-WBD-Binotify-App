@@ -40,7 +40,7 @@
             <!-- Form -->
             <div class="pad-40">
                 <p class="details-header">Album details</p>
-                <?php if ($this->data) : ?>
+                <?php if (isset($this->data['album_id'])) : ?>
                     <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">
                     <p class="album-title"><?= $this->data['judul'] ?></p>
                     <p class="album-artist"><?= $this->data['penyanyi'] ?></p>

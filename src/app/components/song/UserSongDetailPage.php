@@ -44,7 +44,7 @@
             <!-- Form -->
             <div class="pad-40">
                 <p class="details-header">Song details</p>
-                <?php if ($this->data) { ?>
+                <?php if (isset($this->data['song_id'])) { ?>
                     <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
                     <p class="song-title"><?= $this->data['judul'] ?></p>
                     <p class="song-artist"><?= $this->data['penyanyi'] ?></p>
