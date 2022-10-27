@@ -35,49 +35,51 @@
         <?php include(dirname(__DIR__) . '/template/Aside.php') ?>
         <div class="wrapper">
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
-            <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="search-form">
-                <div class="form-group">
-                    <label for="search">Searching for ...</label>
-                    <input type="text" name="q" placeholder="Title/year/artist/published date" id="search" <?php if ($_GET['q']) : ?> value="<?= $_GET['q'] ?>" <?php endif; ?>>
-                </div>
-                <div class="form-group">
-                    <label for="sort">Sorted by ...</label>
-                    <select name="sort" id="sort">
-                        <option value="judul" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul') : ?> selected="selected" <?php endif; ?>>
-                            Title (A-Z)
-                        </option>
-                        <option value="judul desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul desc') : ?> selected="selected" <?php endif; ?>>
-                            Title (Z-A)
-                        </option>
-                        <option value="penyanyi" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi') : ?> selected="selected" <?php endif; ?>>
-                            Singer (A-Z)
-                        </option>
-                        <option value="penyanyi desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi desc') : ?> selected="selected" <?php endif; ?>>
-                            Singer (Z-A)
-                        </option>
-                        <option value="tanggal_terbit" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit') : ?> selected="selected" <?php endif; ?>>
-                            Date (Newest First)
-                        </option>
-                        <option value="tanggal_terbit desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit desc') : ?> selected="selected" <?php endif; ?>>
-                            Date (Latest First)
-                        </option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="filter">Select a genre</label>
-                    <select name="filter" id="filter">
-                        <option value="all"></option>
-                        <?php foreach ($this->data['genre_arr'] as $index => $genre) : ?>
-                            <option value=<?= $genre->genre ?> <?php if (isset($_GET['filter']) && $_GET['filter'] == $genre->genre) : ?> selected="selected" <?php endif; ?>>
-                                <?= $genre->genre ?>
+            <div class="pad-40">
+                <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="search-form">
+                    <div class="form-group">
+                        <label for="search">Searching for ...</label>
+                        <input type="text" name="q" placeholder="Title/year/artist/published date" id="search" <?php if ($_GET['q']) : ?> value="<?= $_GET['q'] ?>" <?php endif; ?>>
+                    </div>
+                    <div class="form-group">
+                        <label for="sort">Sorted by ...</label>
+                        <select name="sort" id="sort">
+                            <option value="judul" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul') : ?> selected="selected" <?php endif; ?>>
+                                Title (A-Z)
                             </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="form-button">
-                    <button type="submit" class="button green-button">Search!</button>
-                </div>
-            </form>
+                            <option value="judul desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'judul desc') : ?> selected="selected" <?php endif; ?>>
+                                Title (Z-A)
+                            </option>
+                            <option value="penyanyi" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi') : ?> selected="selected" <?php endif; ?>>
+                                Singer (A-Z)
+                            </option>
+                            <option value="penyanyi desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'penyanyi desc') : ?> selected="selected" <?php endif; ?>>
+                                Singer (Z-A)
+                            </option>
+                            <option value="tanggal_terbit" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit') : ?> selected="selected" <?php endif; ?>>
+                                Date (Newest First)
+                            </option>
+                            <option value="tanggal_terbit desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit desc') : ?> selected="selected" <?php endif; ?>>
+                                Date (Latest First)
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter">Select a genre</label>
+                        <select name="filter" id="filter">
+                            <option value="all"></option>
+                            <?php foreach ($this->data['genre_arr'] as $index => $genre) : ?>
+                                <option value=<?= $genre->genre ?> <?php if (isset($_GET['filter']) && $_GET['filter'] == $genre->genre) : ?> selected="selected" <?php endif; ?>>
+                                    <?= $genre->genre ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-button">
+                        <button type="submit" class="button green-button">Search!</button>
+                    </div>
+                </form>
+            </div>
             <div class="pad-40">
                 <p class="article-heading">Search Result</p>
                 <?php if (!$this->data['songs']) : ?>
