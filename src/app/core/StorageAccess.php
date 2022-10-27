@@ -72,7 +72,7 @@ class StorageAccess
     public function deleteFile($filename)
     {
         if (!$this->doesFileExist($filename)) {
-            throw new LoggedException('Not Found', 404);
+            return;
         }
 
         $success = unlink($this->storageDir . $filename);
