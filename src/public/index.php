@@ -18,6 +18,7 @@ if (session_status() === PHP_SESSION_ACTIVE) {
 }
 
 if (session_status() === PHP_SESSION_NONE) {
+    session_set_cookie_params(86400);
     session_start();
 
     $current_time = time();
