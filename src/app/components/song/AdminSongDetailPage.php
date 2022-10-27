@@ -63,7 +63,7 @@
                                     <p class="song-artist"><?= $this->data['penyanyi'] ?></p>
                                     <p class="song-genre"><?= $this->data['genre'] ?></p>
                                     <p class="song-date"><?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> </p>
-                                    <p class="song-duration"><?= $this->data['album'] ?><?=floor(((int) $this->data['duration']) / 60) . " min " . 
+                                    <p class="song-duration"><?=floor(((int) $this->data['duration']) / 60) . " min " . 
                                     ((int) $this->data['duration']) % 60 . " sec" ?></p>
                                  </div>
                             </div>
