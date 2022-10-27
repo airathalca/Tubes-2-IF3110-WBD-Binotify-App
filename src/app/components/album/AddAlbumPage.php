@@ -36,22 +36,27 @@
                     <div class="form-group">
                         <label for="title">Album title</label>
                         <input type="text" name="title" id="title" placeholder="Lycoris Recoil OST">
+                        <p class="alert-hide" id="title-alert">Please fill out the album title first!</p>
                     </div>
                     <div class="form-group">
                         <label for="artist">Artist</label>
                         <input type="text" name="artist" id="artist" placeholder="Chisato">
+                        <p class="alert-hide" id="artist-alert">Please fill out the artist name first!</p>
                     </div>
                     <div class="form-group">
                         <label for="date">Published date</label>
                         <input type="date" name="date" id="date">
+                        <p class="alert-hide" id="date-alert">Please fill out the published date first!</p>
                     </div>
                     <div class="form-group">
                         <label for="genre">Genre</label>
                         <input type="text" name="genre" id="genre" placeholder="Rock">
+                        <p class="alert-hide" id="genre-alert">Please fill out the album genre first!</p>
                     </div>
                     <div class="form-group">
                         <label for="cover">Cover photo</label>
                         <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
+                        <p class="alert-hide" id="cover-alert">Please upload a valid cover photo first!</p>
                     </div>
                     <button class="button green-button">Add album to database</button>
                 </form>

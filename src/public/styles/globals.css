@@ -94,3 +94,12 @@ p, label, a, button {
     padding: 1.5rem 2.5rem;
     margin: 0 auto;
 }
+
+.alert-hide {
+    display: none;
+}
+
+.alert-show {
+    display: block;
+    color: var(--red);
+}
