@@ -56,10 +56,10 @@
                             <label for="title">Album title</label>
                             <input type="text" name="title" id="title" value="<?= $this->data['judul'] ?>">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="artist">Artist</label>
                             <input type="text" name="artist" id="artist" value="<?= $this->data['penyanyi'] ?>">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="date">Published date</label>
                             <input type="date" name="date" id="date" value="<?= $this->data['tanggal_terbit'] ?>">

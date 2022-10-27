@@ -1,13 +1,13 @@
 const formElement = document.querySelector(".album-form");
 const titleInput = document.querySelector("#title");
-const artistInput = document.querySelector("#artist");
+// const artistInput = document.querySelector("#artist");
 const dateInput = document.querySelector("#date");
 const genreInput = document.querySelector("#genre");
 
 formElement.addEventListener("submit", (e) => {
     if (
         !titleInput.value ||
-        !artistInput.value ||
+        // !artistInput.value ||
         !dateInput.value ||
         !genreInput.value
     ) {

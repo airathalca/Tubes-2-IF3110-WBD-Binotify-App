@@ -142,7 +142,7 @@ class AlbumController extends Controller implements ControllerInterface
 
                     /* Lakukan validasi */
                     // Form ada yang kosong
-                    if (!$_POST['title'] || !$_POST['artist'] || !$_POST['date'] || !$_POST['genre']) {
+                    if (!$_POST['title'] || !$_POST['date'] || !$_POST['genre']) {
                         throw new LoggedException('Bad Request', 400);
                     }
 
@@ -154,11 +154,11 @@ class AlbumController extends Controller implements ControllerInterface
 
                     $albumModel->changeAlbumTitle($albumID, $_POST['title']);
 
-                    $albumModel->changeAlbumArtist($albumID, $_POST['artist']);
-                    if ($_POST['artist'] !== $oldAlbumArtist) {
-                        $songModel = $this->model('SongModel');
-                        $songModel->bulkResetAlbum($albumID);
-                    }
+                    // $albumModel->changeAlbumArtist($albumID, $_POST['artist']);
+                    // if ($_POST['artist'] !== $oldAlbumArtist) {
+                    //     $songModel = $this->model('SongModel');
+                    //     $songModel->bulkResetAlbum($albumID);
+                    // }
 
                     $albumModel->changeAlbumDate($albumID, $_POST['date']);
                     $albumModel->changeAlbumGenre($albumID, $_POST['genre']);
