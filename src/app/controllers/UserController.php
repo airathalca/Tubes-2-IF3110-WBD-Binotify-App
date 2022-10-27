@@ -165,7 +165,7 @@ class UserController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     $userModel = $this->model('UserModel');
-                    $userModel->register($_POST['email'], $_POST['username'], $_POST['password']);
+                    $userModel->register($_POST['email'], $_POST['username'], $_POST['password'], $_POST['fullname']);
 
                     // Kembalikan redirect_url
                     header('Content-Type: application/json');

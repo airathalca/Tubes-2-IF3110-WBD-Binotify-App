@@ -35,6 +35,11 @@
                 </header>
                 <form class="registration-form">
                     <div class="form-group">
+                        <label for="full-name">What's your full name?</label>
+                        <input type="text" name="fullname" placeholder="Enter your fullname." id="fullname">
+                        <p id="fullname-alert" class="alert-hide"></p>
+                    </div>
+                    <div class="form-group">
                         <label for="username">What's your username?</label>
                         <input type="text" name="username" placeholder="Enter your username." id="username">
                         <p id="username-alert" class="alert-hide"></p>

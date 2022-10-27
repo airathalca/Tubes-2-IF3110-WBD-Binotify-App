@@ -7,6 +7,7 @@ class Tables
         user_id             INT             AUTO_INCREMENT      PRIMARY KEY,
         email               VARCHAR(256)    UNIQUE NOT NULL,
         username            VARCHAR(256)    UNIQUE NOT NULL,
+        fullname            VARCHAR(256)    NOT NULL,
         password            VARCHAR(256)    NOT NULL,
         is_admin            BOOLEAN         NOT NULL
     );";
