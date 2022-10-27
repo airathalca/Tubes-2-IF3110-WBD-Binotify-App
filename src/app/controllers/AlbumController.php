@@ -306,7 +306,7 @@ class AlbumController extends Controller implements ControllerInterface
 
                     // Prevent CSRF Attacks
                     $tokenMiddleware = $this->middleware('TokenMiddleware');
-                    $tokenMiddleware->putToken();
+                    $tokenMiddleware->checkToken();
 
                     $albumModel = $this->model('AlbumModel');
                     $album = $albumModel->getAlbumFromPenyanyi($_GET['artist']);

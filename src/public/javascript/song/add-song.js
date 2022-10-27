@@ -55,8 +55,10 @@ artistInput.addEventListener("keyup", debounce(() => {
     const artist = artistInput.value;
     xhr = new XMLHttpRequest();
     xhr.open('GET', 
-    `/public/album/penyanyi?artist=${artist}&csrf_token=${CSRF_TOKEN}`)
-    xhr.send()
+    `/public/album/penyanyi?artist=${artist}&csrf_token=${CSRF_TOKEN}`);
+
+    xhr.send();
+
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
@@ -66,7 +68,7 @@ artistInput.addEventListener("keyup", debounce(() => {
                 alert("An error occured, please try again!");
             }
         }
-    }
+    };
 }, DEBOUNCE_TIMEOUT));
 
 const updateData = (data) => {
