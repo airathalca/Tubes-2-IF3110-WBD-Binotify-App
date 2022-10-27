@@ -151,7 +151,7 @@
     }
     
     .top-search-input input {
-        padding: 1rem;
+        padding: 1rem 2rem;
         width: 100%;
         border: none;
         border-top-left-radius: 10rem;
@@ -163,7 +163,7 @@
         background: var(--white);
         border: none;
         outline: none;
-        padding: 0.5rem 1rem;
+        padding: 1rem 2rem;
         cursor: pointer;
         transition: all 0.3s linear;
         border-top-right-radius: 10rem;
@@ -172,6 +172,7 @@
     
     .top-search-input button img {
         background: var(--white);
+        height: 1rem;
     }
 }
 
