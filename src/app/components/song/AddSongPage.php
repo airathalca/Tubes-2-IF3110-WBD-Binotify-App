@@ -17,8 +17,10 @@
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
+        const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
     </script>
     <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
+    <script src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>
     <script src="<?= BASE_URL ?>/javascript/song/add-song.js" defer></script>
     <title>Add Song</title>
 </head>
@@ -54,9 +56,6 @@
                         <label for="album">Album</label>
                         <select name="album" id="album">
                             <option value="">N/A</option>
-                            <?php foreach ($this->data['album_arr'] as $index => $album ) : ?>
-                                <option value=<?= $album->album_id ?>><?= $album->judul ?></option>
-                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">

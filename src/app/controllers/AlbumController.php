@@ -294,4 +294,35 @@ class AlbumController extends Controller implements ControllerInterface
             exit;
         }
     }
+    
+    public function penyanyi()
+    {
+        try {
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    // Halaman hanya bisa diakses admin
+                    $authMiddleware = $this->middleware('AuthenticationMiddleware');
+                    $authMiddleware->isAdmin();
+
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
+
+                    $albumModel = $this->model('AlbumModel');
+                    $album = $albumModel->getAlbumFromPenyanyi($_GET['artist']);
+
+                    header('Content-Type: application/json');
+                    http_response_code(200);
+                    echo json_encode($album);
+                    exit;
+
+                    break;
+                default:
+                    throw new LoggedException('Method Not Allowed', 405);
+            }
+        } catch (Exception $e) {
+            http_response_code($e->getCode());
+            exit;
+        }
+    }
 }

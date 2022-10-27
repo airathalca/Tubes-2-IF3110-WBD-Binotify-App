@@ -38,6 +38,16 @@ class AlbumModel
         return $albumArr;
     }
 
+    public function getAlbumFromPenyanyi($penyanyi)
+    {
+        $query = 'SELECT * from album WHERE penyanyi = :penyanyi';
+
+        $this->database->query($query);
+        $this->database->bind('penyanyi', $penyanyi);
+        $album = $this->database->fetchAll();
+
+        return $album;
+    }
     public function getAlbumFromID($albumID)
     {
         $query = 'SELECT album_id, judul, penyanyi, total_duration, image_path, tanggal_terbit, genre FROM album WHERE album_id = :album_id LIMIT 1';

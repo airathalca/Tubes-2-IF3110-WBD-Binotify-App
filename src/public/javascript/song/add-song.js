@@ -5,6 +5,7 @@ const dateInput = document.querySelector("#date");
 const genreInput = document.querySelector("#genre");
 const coverInput = document.querySelector("#cover");
 const audioInput = document.querySelector("#audio");
+const albumInput = document.querySelector("#album");
 
 formElement.addEventListener('submit', (e) => {
     if (!titleInput.value) {
@@ -49,3 +50,32 @@ formElement.addEventListener('submit', (e) => {
         document.querySelector("#audio-alert").   className = "alert-hide";
     }
 });
+
+artistInput.addEventListener("keyup", debounce(() => {
+    const artist = artistInput.value;
+    xhr = new XMLHttpRequest();
+    xhr.open('GET', 
+    `/public/album/penyanyi?artist=${artist}&csrf_token=${CSRF_TOKEN}`)
+    xhr.send()
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (this.status === 200) {
+                const data = JSON.parse(this.responseText);
+                updateData(data);
+            } else {
+                alert("An error occured, please try again!");
+            }
+        }
+    }
+}, DEBOUNCE_TIMEOUT));
+
+const updateData = (data) => {
+    let generatedHTML = `<option value="">N/A</option>`;
+    if(data.length > 0) {
+        data.map((album) => {
+            generatedHTML += `
+            <option value=${album.album_id}>${album.judul}</option>`;
+        });
+    }
+    albumInput.innerHTML = generatedHTML;
+}

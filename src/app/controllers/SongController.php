@@ -112,7 +112,14 @@ class SongController extends Controller implements ControllerInterface
                     if ($_FILES['audio']['error'] === 4 || $_FILES['cover']['error'] === 4) {
                         throw new LoggedException('Bad Request', 400);
                     }
-
+                    //validasi album
+                    if ($_POST['album'] !== "") {
+                        $albumModel = $this->model('AlbumModel');
+                        $album = $albumModel->getAlbumFromID($_POST['album']);
+                        if ($album->penyanyi !== $_POST['artist']) {
+                            throw new LoggedException('Bad Request', 400);
+                        }
+                    }
                     // Baca durasi file
                     $mp3Access = new MP3Access($_FILES['audio']['tmp_name']);
                     $duration = (int) $mp3Access->getDuration();
@@ -374,7 +381,7 @@ class SongController extends Controller implements ControllerInterface
                     }
                     $success = $songLimitMiddleware->checkSong($_POST['song_id']);
                     header('Content-Type: application/json');
-                    echo json_encode(["status" => $success, "count" => $_SESSION['song_count']]);
+                    echo json_encode(["status" => $success]);
                     http_response_code(200);
                     exit;
 
