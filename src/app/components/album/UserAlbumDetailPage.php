@@ -41,10 +41,14 @@
             <div class="pad-40">
                 <p class="details-header">Album details</p>
                 <?php if (isset($this->data['album_id'])) : ?>
-                    <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">
-                    <p class="album-title"><?= $this->data['judul'] ?></p>
-                    <p class="album-artist"><?= $this->data['penyanyi'] ?></p>
-                    <p class="album-duration"><?= $this->data['total_duration'] ?></p>
+                    <div class="album-detail-flex">
+                        <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Album cover" class="album-cover">
+                        <div class="album-details">
+                            <h1 class="album-title"><?= $this->data['judul'] ?></h1>
+                            <p class="album-artist"><?= $this->data['penyanyi'] ?> ● <?= count($this->data['songs']) ?> songs, <?= $this->data['total_duration'] ?></p>
+                        </div>
+                    </div>
+                    <div class="line-break"></div>
                     <p class="songs-list-header">Songs inside this album:</p>
                     <?php if (!$this->data['songs']) : ?>
                         <p class="info">This album doesn't have any songs yet!</p>
@@ -53,9 +57,14 @@
                         <div class="songs-list">
                             <?php foreach ($this->data['songs'] as $song) : ?>
                                 <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
-                                    <p class="song-title"><?= $song->judul ?></p>
-                                    <p class="song-genre"><?= $song->genre ?></p>
-                                    <p class="song-dateduration"><?= substr($song->tanggal_terbit, 0, 4) ?> - <?= floor($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
+                                    <div class="song-top-section">
+                                        <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt="<?= $song->judul ?>">
+                                        <p class="song-title"><?= $song->judul ?></p>
+                                        <p class="song-genre"><?= $song->genre ?></p>
+                                    </div>
+                                    <div class="song-bottom-section">
+                                        <p class="song-dateduration"><?= substr($song->tanggal_terbit, 0, 4) ?> - <?= floor($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
+                                    </div>
                                 </a>
                             <?php endforeach; ?>
                         </div>
