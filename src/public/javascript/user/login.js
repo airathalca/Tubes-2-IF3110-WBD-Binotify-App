@@ -53,10 +53,19 @@ loginForm &&
         const username = usernameInput.value;
         const password = passwordInput.value;
 
+        if (!usernameValid) {
+            document.querySelector('#username-alert').className = "alert-show";
+        } else {
+            document.querySelector('#username-alert').className = "alert-hide";
+        }
+
+        if (!passwordValid) {
+            document.querySelector('#password-alert').className = "alert-show";
+        } else {
+            document.querySelector('#password-alert').className = "alert-hide";
+        }
+
         if (!usernameValid || !passwordValid) {
-            window.alert(
-                "Please fill out the form properly before submitting!"
-            );
             return;
         }
 
@@ -72,10 +81,11 @@ loginForm &&
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 201) {
+                    document.querySelector('#login-alert').className = "alert-hide";
                     const data = JSON.parse(this.responseText);
                     location.replace(data.redirect_url);
                 } else {
-                    alert("An error occured, please try again!");
+                    document.querySelector('#login-alert').className = "alert-show";
                 }
             }
         };

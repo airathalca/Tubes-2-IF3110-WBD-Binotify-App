@@ -22,7 +22,11 @@
 }
 
 .form-button {
-    margin-top: 3rem;
+    margin-top: 2rem;
+}
+
+.form-button button {
+    margin-top: 1rem;
 }
 
 .form-hyperlink {

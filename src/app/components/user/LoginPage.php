@@ -37,14 +37,15 @@
                     <div class="form-group">
                         <label for="username">What's your username?</label>
                         <input type="text" name="username" placeholder="Username" id="username">
-                        <p id="username-alert" class="alert-hide"></p>
+                        <p id="username-alert" class="alert-hide">Please fill out your username first!</p>
                     </div>
                     <div class="form-group">
                         <label for="password">Enter your password!</label>
                         <input type="password" name="password" placeholder="Password" id="password" autocomplete="on">
-                        <p id="password-alert" class="alert-hide"></p>
+                        <p id="password-alert" class="alert-hide">Please fill out your password first!</p>
                     </div>
                     <div class="form-button">
+                        <p id="login-alert" class="alert-hide">Wrong username/password!</p>
                         <button type="submit" class="button black-button">Log in</button>
                     </div>
                 </form>
