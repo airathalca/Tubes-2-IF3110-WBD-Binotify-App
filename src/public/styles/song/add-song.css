@@ -89,16 +89,9 @@
     color: var(--white);
 }
 
-.form-group input[type="text"] {
-    padding: 1rem;
-}
-
-.form-group input[type="date"] {
-    padding: 1rem;
-}
-
-.form-group select {
-    padding: 1rem;
+.form-group input[type="text"], .form-group input[type="date"], .form-group select {
+    padding: 1rem 2rem;
+    border-radius: 10rem;
 }
 
 .form-group input[type="file"] {

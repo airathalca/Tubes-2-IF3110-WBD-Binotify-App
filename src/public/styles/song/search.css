@@ -103,7 +103,8 @@
 
 .form-group input, .form-group select, .form-group option {
     font-size: medium;
-    padding: 1rem 
+    padding: 1rem 2rem;
+    border-radius: 10rem;
 }
 
 select {
