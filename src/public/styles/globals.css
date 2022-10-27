@@ -2,11 +2,11 @@
 
 :root {
     /* Colors */
-    --black: #313131;
+    --black: hsl(0, 0%, 8%);
     --white: #ffffff;
     --darkgreen: #1db954;
     --lightgreen: #1ed760;
-    --black-lighter: #616161;
+    --black-lighter: hsl(0, 0%, 20%);
     --pure-black: #000000;
     --disabled: #c2c2c2;
     --red: #ff7575;

@@ -83,11 +83,13 @@
                     <div class="search-result-flex songs-result">
                         <?php foreach ($this->data['songs'] as $song) : ?>
                             <a href="/public/song/detail/<?= $song->song_id ?>" class="single-song">
-                                <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt=<?= $song->judul ?>>
-                                <header class="song-header">
-                                    <p class="title"><?= $song->judul ?></p>
-                                    <p><?= $song->penyanyi ?></p>
-                                </header>
+                                <div class="top-section">
+                                    <img src="<?= STORAGE_URL ?>/images/<?= $song->image_path ?>" alt=<?= $song->judul ?>>
+                                    <header class="song-header">
+                                        <p class="title"><?= $song->judul ?></p>
+                                        <p><?= $song->penyanyi ?></p>
+                                    </header>
+                                </div>
                                 <div class="song-dategenre">
                                     <p><?= substr($song->tanggal_terbit, 0, 4) ?></p>
                                     <p><?= $song->genre ?></p>
