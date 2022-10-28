@@ -18,9 +18,9 @@
     <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
-        const SONG_COUNT = "<?= $_SESSION['song_count'] ?? 0 ?>";
-        const MAX_SONG_COUNT = "<?= MAX_SONG_COUNT ?>";
-        const username = "<?= $this->data['username'] ?? '' ?>";
+        const SONG_COUNT = parseInt("<?= $_SESSION['song_count'] ?? 0 ?>");
+        const MAX_SONG_COUNT = parseInt("<?= MAX_SONG_COUNT ?>");
+        const USERNAME = "<?= $this->data['username'] ?? '' ?>";
     </script>
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/song/play-song.js" defer></script>

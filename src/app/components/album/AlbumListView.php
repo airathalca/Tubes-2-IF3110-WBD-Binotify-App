@@ -19,10 +19,7 @@
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
         const STORAGE_URL = "<?= STORAGE_URL ?>";
-        let pages = 0;
-        <?php if ($this->data['pages']) : ?>
-            pages = parseInt("<?= $this->data['pages'] ?>");
-        <?php endif; ?>
+        const PAGES = parseInt("<?= $this->data['pages'] ?? 0 ?>");
     </script>
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/album/album-list.js" defer></script>

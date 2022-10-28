@@ -20,10 +20,7 @@
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
         const STORAGE_URL = "<?= STORAGE_URL ?>";
         const BASE_URL = "<?= BASE_URL ?>";
-        let pages = 0;
-        <?php if ($this->data['pages']) : ?>
-            pages = "<?= $this->data['pages'] ?>"
-        <?php endif; ?>
+        const PAGES = parseInt("<?= $this->data['pages'] ?? 0 ?>");
     </script>
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/song/search.js" defer></script>
