@@ -56,7 +56,7 @@
                                 Singer (Z-A)
                             </option>
                             <option value="tanggal_terbit" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit') : ?> selected="selected" <?php endif; ?>>
-                                Date (Newest First)
+                                Date (Oldest First)
                             </option>
                             <option value="tanggal_terbit desc" <?php if (isset($_GET['sort']) && $_GET['sort'] == 'tanggal_terbit desc') : ?> selected="selected" <?php endif; ?>>
                                 Date (Latest First)
