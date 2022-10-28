@@ -26,6 +26,7 @@ define('ALLOWED_IMAGES', [
 define('BCRYPT_COST', 10);
 
 // Session
+define('COOKIES_LIFETIME', 24 * 60 * 60);
 define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);
 define('SESSION_REGENERATION_TIME', 30 * 60);
 define('MAX_SONG_COUNT', 3); // Application Logic
