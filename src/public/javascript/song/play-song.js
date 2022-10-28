@@ -12,10 +12,14 @@ function padDigits(number, digits) {
 
 if (audioPlayer) {
     playButton.addEventListener('click', () => {
+        pauseButton.style.display = 'grid';
+        playButton.style.display = 'none';
         audioPlayer.play();
     })
 
     pauseButton.addEventListener('click', () => {
+        pauseButton.style.display = 'none';
+        playButton.style.display = 'grid';
         audioPlayer.pause();
     })
 

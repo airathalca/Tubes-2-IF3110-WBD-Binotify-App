@@ -75,7 +75,7 @@
     bottom: 0;
     left: 0;
     width: 100vw;
-    padding: 2.5rem;
+    padding: 2rem;
     background: var(--nav-black);
 }
 
@@ -126,6 +126,10 @@
     place-items: center;
     transition: all 0.3s linear;
     cursor: pointer;
+}
+
+.button-pause {
+    display: none;
 }
 
 .button-play:hover, .button-pause:hover {
