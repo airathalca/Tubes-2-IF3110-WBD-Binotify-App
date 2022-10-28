@@ -68,7 +68,7 @@
                         <select name="filter" id="filter">
                             <option value="all">N/A</option>
                             <?php foreach ($this->data['genre_arr'] as $index => $genre) : ?>
-                                <option value=<?= $genre->genre ?> <?php if (isset($_GET['filter']) && $_GET['filter'] == $genre->genre) : ?> selected="selected" <?php endif; ?>>
+                                <option value="<?= $genre->genre ?>" <?php if (isset($_GET['filter']) && $_GET['filter'] == $genre->genre) : ?> selected="selected" <?php endif; ?>>
                                     <?= $genre->genre ?>
                                 </option>
                             <?php endforeach; ?>
