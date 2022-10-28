@@ -243,28 +243,45 @@
 
 ## Screenshot Tampilan Aplikasi
 
-1. Login
-   ![Login Page](./screenshots/login.png)
-2. Register
-   ![Register Page](./screenshots/register-1.png)
-   ![Register Page](./screenshots/register-2.png)
-3. Home
-4. Daftar Album
-5. Search, Sort, dan Filter
-6. Edit Lagu
-   ![Edit Song Page](./screenshots/edit-song-1.png)
-   ![Edit Song Page](./screenshots/edit-song-2.png)
-7. Detail Lagu
-   ![Detail Song Page](./screenshots/detail-song.png)
-8. Edit Album
-9. Detail Album
-10. Tambah Lagu
+### Login
+
+![Login Page](./screenshots/login.png)
+
+### Register
+
+![Register Page](./screenshots/register-1.png)
+![Register Page](./screenshots/register-2.png)
+
+### Home
+
+### Daftar Album
+
+### Search, Sort, dan Filter
+
+### Edit Lagu
+
+![Edit Song Page](./screenshots/edit-song-1.png)
+![Edit Song Page](./screenshots/edit-song-2.png)
+
+### Detail Lagu
+
+![Detail Song Page](./screenshots/detail-song.png)
+
+### Edit Album
+
+### Detail Album
+
+### Tambah Lagu
+
     ![Add Song Page](./screenshots/add-song-1.png)
     ![Add Song Page](./screenshots/add-song-2.png)
-11. Tambah Album
+
+### Tambah Album
+
     ![Add Album Page](./screenshots/add-album-1.png)
     ![Add Album Page](./screenshots/add-album-2.png)
-12. Daftar User
+
+### Daftar User
 
 ## _Entity Relationship Diagram_
 
