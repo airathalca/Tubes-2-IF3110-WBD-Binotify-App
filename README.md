@@ -307,6 +307,25 @@
 
 ## Pembagian Tugas
 
+### _Server Side_
+
+| Fitur                    | NIM      |
+| ------------------------ | -------- |
+| Login                    | 13520065 |
+| Register                 | 13520065 |
+| Home                     | 13520119 |
+| Daftar Album             | 13520119 |
+| Search, Sort, dan Filter | 13520101 |
+| Edit Lagu                | 13520101 |
+| Detail Lagu              | 13520101 |
+| Edit Album               | 13520119 |
+| Detail Album             | 13520119 |
+| Tambah Lagu              | 13520101 |
+| Tambah Album             | 13520119 |
+| Daftar User              | 13520065 |
+
+### _Client Side_
+
 | Fitur                    | NIM      |
 | ------------------------ | -------- |
 | Login                    | 13520065 |

@@ -56,7 +56,7 @@
                 <div class="line-break"></div>
                 <?php if (isset($this->data['album_id'])) : ?>
                     <!-- Album related info -->
-                    <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="album-form">
+                    <form action="/public/album/detail/<?= $this->data['album_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="POST" enctype="multipart/form-data" class="album-form">
                         <input type="hidden" name="album_id" value="<?= $this->data['album_id'] ?>">
                         <input type="hidden" name="old_path" value="<?= $this->data['image_path'] ?>">
                         <div class="form-group">
@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="song-bottom-section">
                                         <p class="song-dateduration"><?= substr($song->tanggal_terbit, 0, 4) ?> - <?= floor($song->duration / 60) ?> min <?= $song->duration % 60 ?> sec</p>
-                                        <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" , method="post">
+                                        <form action="/public/song/resetalbum/<?= $song->song_id ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" , method="POST">
                                             <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id">
                                             <button class="button red-button" type="submit">Delete song</button>
                                         </form>
@@ -119,7 +119,7 @@
                         <p class="info">There are no songs available for you to add!</p>
                     <?php endif; ?>
                     <?php if ($this->data['songs_to_add']) : ?>
-                        <form action="/public/song/addtoalbum?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" class="add-song-form">
+                        <form action="/public/song/addtoalbum?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="POST" class="add-song-form">
                             <input type="hidden" value="<?= $this->data['album_id'] ?>" name="album_id" id="hidden_album_id_2">
                             <div class="dropdown">
                                 <select name="song" id="song">

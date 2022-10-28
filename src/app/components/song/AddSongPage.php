@@ -36,7 +36,7 @@
             <?php include(dirname(__DIR__) . '/template/Navbar.php') ?>
             <div class="pad-40">
                 <h1 class="form-header">Add a song</h1>
-                <form action="/public/song/add?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="form">
+                <form action="/public/song/add?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="POST" enctype="multipart/form-data" class="form">
                     <div class="form-group">
                         <label for="title">Song title</label>
                         <input type="text" name="title" id="title" placeholder="LycoReco">

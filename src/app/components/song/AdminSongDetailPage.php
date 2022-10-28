@@ -50,7 +50,7 @@
                 <h1 class="details-header">Song details</h1>
                 <?php if (isset($this->data['song_id'])) : ?>
                     <!-- Song related info -->
-                    <form action="/public/song/detail/<?= $this->data['song_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="song-form">
+                    <form action="/public/song/detail/<?= $this->data['song_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="POST" enctype="multipart/form-data" class="song-form">
                         <input type="hidden" name="song_id" value="<?= $this->data['song_id'] ?>">
                         <input type="hidden" name="album_id" value="<?= $this->data['album'] ?>">
                         <input type="hidden" name="old_image_path" value="<?= $this->data['image_path'] ?>">

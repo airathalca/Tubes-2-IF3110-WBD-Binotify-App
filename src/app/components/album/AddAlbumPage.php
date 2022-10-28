@@ -35,7 +35,7 @@
             <!-- Form -->
             <div class="pad-40">
                 <h1 class="form-header">Add an album</h1>
-                <form action="/public/album/add?csrf_token=<?php echo $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="form">
+                <form action="/public/album/add?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="POST" enctype="multipart/form-data" class="form">
                     <div class="form-group">
                         <label for="title">Album title</label>
                         <input type="text" name="title" id="title" placeholder="Lycoris Recoil OST">
