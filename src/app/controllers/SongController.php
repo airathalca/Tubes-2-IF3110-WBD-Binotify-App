@@ -134,7 +134,7 @@ class SongController extends Controller implements ControllerInterface
                     $songModel = $this->model('SongModel');
                     $songID = $songModel->addSong($_POST['title'], $_POST['artist'], $_POST['date'], $_POST['genre'], $duration, $uploadedAudio, $uploadedImage, $_POST['album']);
 
-                    if ($album) {
+                    if (isset($album)) {
                         $albumModel->addDuration($_POST['album'], $duration);
                     }
                     header("Location: /public/song/detail/$songID", true, 301);
