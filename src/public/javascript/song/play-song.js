@@ -1,3 +1,6 @@
+let hasPlayed = false;
+let banned = false;
+
 const audioPlayer = document.querySelector(".audio-player");
 
 const playButton = document.querySelector(".button-play");
@@ -14,9 +17,16 @@ function padDigits(number, digits) {
 
 if (audioPlayer) {
     playButton.addEventListener("click", () => {
-        pauseButton.style.display = "grid";
-        playButton.style.display = "none";
-        audioPlayer.play();
+        if (!banned) {
+            pauseButton.style.display = "grid";
+            playButton.style.display = "none";
+            audioPlayer.play();
+        } else {
+            audioPlayer.pause();
+            alert(
+                "You have reached the limit of 3 songs per day. Please try again tomorrow."
+            );
+        }
     });
 
     pauseButton.addEventListener("click", () => {
@@ -49,33 +59,37 @@ if (audioPlayer) {
     });
 
     audioPlayer.addEventListener("play", () => {
-        if (USERNAME === "") {
-            if (SONG_COUNT >= MAX_SONG_COUNT) {
-                audioPlayer.pause();
-                alert(
-                    "You have reached the limit of 3 songs per day. Please try again tomorrow."
-                );
-            } else {
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", "/public/song/countLimit");
-
-                const formData = new FormData();
-                formData.append("csrf_token", CSRF_TOKEN);
-                xhr.send(formData);
-
-                xhr.onreadystatechange = function () {
-                    if (this.readyState === XMLHttpRequest.DONE) {
-                        if (this.status === 200) {
-                            const data = JSON.parse(this.responseText);
-                            if (data.status !== true) {
-                                audioPlayer.pause();
-                                window.alert(
-                                    "You have reached the limit of 3 songs per day. Please try again tomorrow."
-                                );
+        if (!hasPlayed) {
+            hasPlayed = true;
+            if (USERNAME === "") {
+                if (SONG_COUNT >= MAX_SONG_COUNT) {
+                    audioPlayer.pause();
+                    alert(
+                        "You have reached the limit of 3 songs per day. Please try again tomorrow."
+                    );
+                    banned = true;
+                } else {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/public/song/countLimit");
+    
+                    const formData = new FormData();
+                    formData.append("csrf_token", CSRF_TOKEN);
+                    xhr.send(formData);
+    
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState === XMLHttpRequest.DONE) {
+                            if (this.status === 200) {
+                                const data = JSON.parse(this.responseText);
+                                if (data.status !== true) {
+                                    audioPlayer.pause();
+                                    window.alert(
+                                        "You have reached the limit of 3 songs per day. Please try again tomorrow."
+                                    );
+                                }
                             }
                         }
-                    }
-                };
+                    };
+                }
             }
         }
     });

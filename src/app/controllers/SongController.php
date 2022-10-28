@@ -386,7 +386,7 @@ class SongController extends Controller implements ControllerInterface
                     }
                     $success = $songLimitMiddleware->checkSong($_POST['csrf_token']);
                     header('Content-Type: application/json');
-                    echo json_encode(["status" => $success]);
+                    echo json_encode(["status" => $success, "session" => $_SESSION]);
                     http_response_code(200);
                     exit;
 
