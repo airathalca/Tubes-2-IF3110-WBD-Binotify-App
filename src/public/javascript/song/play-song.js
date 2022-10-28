@@ -71,7 +71,9 @@ if (audioPlayer) {
                 } else {
                     const xhr = new XMLHttpRequest();
                     xhr.open("POST", "/public/song/countLimit");
-                    xhr.send();
+                    const formData = new FormData();
+                    formData.append("csrf_token", CSRF_TOKEN);
+                    xhr.send(formData);
 
                     xhr.onreadystatechange = function () {
                         if (this.readyState === XMLHttpRequest.DONE) {
