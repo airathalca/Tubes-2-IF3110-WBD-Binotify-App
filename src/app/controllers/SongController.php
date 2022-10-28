@@ -4,7 +4,8 @@ class SongController extends Controller implements ControllerInterface
 {
     public function index()
     {
-        echo 'La la la';
+        $notFoundView = $this->view('not-found', 'NotFoundView');
+        $notFoundView->render();
     }
 
     public function search()
@@ -244,7 +245,7 @@ class SongController extends Controller implements ControllerInterface
                     if ($song) {
                         $song_props = [
                             "song_id" => $song->song_id, "judul" => $song->judul, "penyanyi" => $song->penyanyi, "duration" => $song->duration,
-                            "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $song->tanggal_terbit, "genre" => $song->genre, "album" => $song->album_id, 
+                            "image_path" => $song->image_path, "audio_path" => $song->audio_path, "tanggal_terbit" => $song->tanggal_terbit, "genre" => $song->genre, "album" => $song->album_id,
                         ];
                     } else {
                         $song_props = [];
@@ -366,7 +367,8 @@ class SongController extends Controller implements ControllerInterface
         }
     }
 
-    public function countLimit() {
+    public function countLimit()
+    {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
