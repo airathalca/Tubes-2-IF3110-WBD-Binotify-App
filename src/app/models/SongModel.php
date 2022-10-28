@@ -11,7 +11,7 @@ class SongModel
 
     public function get10Songs()
     {
-        $query = 'SELECT * FROM song ORDER BY song_id DESC LIMIT 10';
+        $query = 'SELECT * FROM (SELECT * FROM song ORDER BY song_id DESC LIMIT 10) newest_songs ORDER BY judul ASC; ';
         $this->database->query($query);
         $songArr = $this->database->fetchAll();
         return $songArr;
