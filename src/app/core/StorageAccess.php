@@ -4,8 +4,8 @@ class StorageAccess
 {
     private $storageDir;
 
-    public const IMAGE_PATH = 'image';
-    public const SONG_PATH = 'song';
+    public const IMAGE_PATH = 'images';
+    public const SONG_PATH = 'songs';
 
     public function __construct($foldername)
     {
@@ -35,7 +35,7 @@ class StorageAccess
             $valid = !$this->doesFileExist($filename);
         }
 
-        $success = move_uploaded_file($tempname, $this->storageDir. $filename);
+        $success = move_uploaded_file($tempname, $this->storageDir . $filename);
         if (!$success) {
             throw new LoggedException('Internal Server Error', 500);
         }

@@ -23,7 +23,7 @@ class UserModel
 
     public function getUsers($page)
     {
-        $query = 'SELECT email, username, is_admin FROM user LIMIT :limit OFFSET :offset';
+        $query = 'SELECT fullname, email, username, is_admin FROM user LIMIT :limit OFFSET :offset';
 
         $this->database->query($query);
         $this->database->bind('limit', ROWS_PER_PAGE);

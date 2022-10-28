@@ -164,7 +164,7 @@ class AlbumController extends Controller implements ControllerInterface
 
                     if ($_FILES['cover']['error'] !== 4) {
                         // Perlu memperbarui file!
-                        $storageAccess = new StorageAccess('images');
+                        $storageAccess = new StorageAccess(StorageAccess::IMAGE_PATH);
 
                         $storageAccess->deleteFile($_POST['old_path']);
 
@@ -200,7 +200,7 @@ class AlbumController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     // Hapus dari storage
-                    $storageAccess = new StorageAccess('images');
+                    $storageAccess = new StorageAccess(StorageAccess::IMAGE_PATH);
                     $storageAccess->deleteFile($_POST['old_path']);
 
                     // Hapus dari database
@@ -270,7 +270,7 @@ class AlbumController extends Controller implements ControllerInterface
                         throw new LoggedException('Bad Request', 400);
                     }
 
-                    $storageAccess = new StorageAccess('images');
+                    $storageAccess = new StorageAccess(StorageAccess::IMAGE_PATH);
                     $uploadedFile = $storageAccess->saveImage($_FILES['cover']['tmp_name']);
 
                     $albumModel = $this->model('AlbumModel');
@@ -293,7 +293,7 @@ class AlbumController extends Controller implements ControllerInterface
             exit;
         }
     }
-    
+
     public function penyanyi()
     {
         try {

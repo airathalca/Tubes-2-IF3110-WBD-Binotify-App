@@ -43,12 +43,13 @@
                     <div class="users-list">
                         <?php foreach ($this->data['users'] as $user) : ?>
                             <div class="single-user">
-                                <p>Email: <?= $user->email ?></p>
-                                <p>Username: <?= $user->username ?></p>
+                                <p>Name:&emsp;"<?= $user->fullname ?>"</p>
+                                <p>Email:&emsp;"<?= $user->email ?>"</p>
+                                <p>Username:&emsp;"<?= $user->username ?>"</p>
                                 <?php if ($user->is_admin) : ?>
-                                    <p>Type: Admin</p>
+                                    <p>Type:&emsp;"Admin"</p>
                                 <?php else : ?>
-                                    <p>Type: User</p>
+                                    <p>Type:&emsp;"User"</p>
                                 <?php endif; ?>
                             </div>
                         <?php endforeach; ?>

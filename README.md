@@ -254,9 +254,17 @@
 
 ### Home
 
+![Home Page](./screenshots/home.png)
+
 ### Daftar Album
 
+![Album List Page](./screenshots/list-album-1.png)
+![Album List Page](./screenshots/list-album-2.png)
+
 ### Search, Sort, dan Filter
+
+![Search, Sort, dan Filter Page](./screenshots/search-sort-filter-1.png)
+![Search, Sort, dan Filter Page](./screenshots/search-sort-filter-2.png)
 
 ### Edit Lagu
 
@@ -269,23 +277,33 @@
 
 ### Edit Album
 
+![Edit Album Page](./screenshots/edit-album-1.png)
+![Edit Album Page](./screenshots/edit-album-2.png)
+![Edit Album Page](./screenshots/edit-album-3.png)
+
 ### Detail Album
+
+![Detail Album Page](./screenshots/detail-album-1.png)
+![Detail Album Page](./screenshots/detail-album-2.png)
 
 ### Tambah Lagu
 
-    ![Add Song Page](./screenshots/add-song-1.png)
-    ![Add Song Page](./screenshots/add-song-2.png)
+![Add Song Page](./screenshots/add-song-1.png)
+![Add Song Page](./screenshots/add-song-2.png)
 
 ### Tambah Album
 
-    ![Add Album Page](./screenshots/add-album-1.png)
-    ![Add Album Page](./screenshots/add-album-2.png)
+![Add Album Page](./screenshots/add-album-1.png)
+![Add Album Page](./screenshots/add-album-2.png)
 
 ### Daftar User
 
+![User List Page](./screenshots/list-user-1.png)
+![User List Page](./screenshots/list-user-2.png)
+
 ## _Entity Relationship Diagram_
 
-![ERD](./screenshots/tubeswbd.png)
+![Entity Relationship Diagram](./screenshots/tubeswbd.png)
 
 ## Pembagian Tugas
 

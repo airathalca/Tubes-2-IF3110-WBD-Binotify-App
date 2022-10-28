@@ -125,10 +125,10 @@ class SongController extends Controller implements ControllerInterface
                     $mp3Access = new MP3Access($_FILES['audio']['tmp_name']);
                     $duration = (int) $mp3Access->getDuration();
 
-                    $storageAccessAudio = new StorageAccess('songs');
+                    $storageAccessAudio = new StorageAccess(StorageAccess::SONG_PATH);
                     $uploadedAudio = $storageAccessAudio->saveAudio($_FILES['audio']['tmp_name']);
 
-                    $storageAccessImage = new StorageAccess('images');
+                    $storageAccessImage = new StorageAccess(StorageAccess::IMAGE_PATH);
                     $uploadedImage = $storageAccessImage->saveImage($_FILES['cover']['tmp_name']);
 
                     $songModel = $this->model('SongModel');
@@ -293,7 +293,7 @@ class SongController extends Controller implements ControllerInterface
                     $songModel->changeSongGenre($songID, $_POST['genre']);
 
                     if ($_FILES['cover']['error'] !== 4) {
-                        $storageAccessImage = new StorageAccess('images');
+                        $storageAccessImage = new StorageAccess(StorageAccess::IMAGE_PATH);
                         $storageAccessImage->deleteFile($_POST['old_image_path']);
                         $uploadedImage = $storageAccessImage->saveImage($_FILES['cover']['tmp_name']);
                         $songModel->changeCoverPath($songID, $uploadedImage);
@@ -301,7 +301,7 @@ class SongController extends Controller implements ControllerInterface
 
                     if ($_FILES['audio']['error'] !== 4) {
                         $diffDuration = 0;
-                        $storageAccessAudio = new StorageAccess('songs');
+                        $storageAccessAudio = new StorageAccess(StorageAccess::SONG_PATH);
                         $storageAccessAudio->deleteFile($_POST['old_audio_path']);
                         $mp3Access = new MP3Access($_FILES['audio']['tmp_name']);
                         $duration = (int) $mp3Access->getDuration();
@@ -341,10 +341,10 @@ class SongController extends Controller implements ControllerInterface
                     $tokenMiddleware->checkToken();
 
                     // Hapus dari storage
-                    $storageAccessImage = new StorageAccess('images');
+                    $storageAccessImage = new StorageAccess(StorageAccess::IMAGE_PATH);
                     $storageAccessImage->deleteFile($_POST['old_image_path']);
 
-                    $storageAccessAudio = new StorageAccess('songs');
+                    $storageAccessAudio = new StorageAccess(StorageAccess::SONG_PATH);
                     $storageAccessAudio->deleteFile($_POST['old_audio_path']);
 
                     // Hapus dari database
