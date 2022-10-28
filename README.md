@@ -79,7 +79,7 @@
     │   │       Database.php
     │   │       MP3Access.php
     │   │       StorageAccess.php
-    │   │       tables.php
+    │   │       Tables.php
     │   │
     │   ├───exceptions
     │   │       LoggedException.php
@@ -114,7 +114,7 @@
     │       ├───song
     │       │       AddSongView.php
     │       │       AdminSongDetailView.php
-    │       │       searchView.php
+    │       │       SearchView.php
     │       │       SongDetailView.php
     │       │       UserSongDetailView.php
     │       │
