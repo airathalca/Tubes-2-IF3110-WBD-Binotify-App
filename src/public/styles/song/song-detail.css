@@ -75,7 +75,7 @@
     bottom: 0;
     left: 0;
     width: 100vw;
-    padding: 2.5rem;
+    padding: 2rem;
     background: var(--nav-black);
 }
 
@@ -86,4 +86,57 @@
 .audio-info {
     color: var(--white);
     margin-bottom: 1rem;
+    text-align: center;
+}
+
+.hide-player {
+    display: none;
+}
+
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.progress-bar-container p {
+    color: var(--white);
+}
+
+.progress-bar-container input {
+    width: 80%;
+}
+
+.player-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.button-play, .button-pause {
+    width: 3rem;
+    height: 3rem;
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 100%;
+    display: grid;
+    place-items: center;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.button-pause {
+    display: none;
+}
+
+.button-play:hover, .button-pause:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+.button-play svg, .button-pause svg {
+    width: 100%;
 }
