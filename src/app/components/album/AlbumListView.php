@@ -10,23 +10,20 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/images/icon/favicon-16x16.png">
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <!-- Global CSS -->
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/globals.css">
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/navbar.css">
-    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/aside.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/template/globals.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/template/navbar.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/template/aside.css">
     <!-- Page-specific CSS -->
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/album/album-list.css">
     <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
         const STORAGE_URL = "<?= STORAGE_URL ?>";
-        let pages = 0;
-        <?php if ($this->data['pages']) : ?>
-            pages = parseInt("<?= $this->data['pages'] ?>");
-        <?php endif; ?>
+        const PAGES = parseInt("<?= $this->data['pages'] ?? 0 ?>");
     </script>
     <!-- JavaScript DOM and AJAX -->
-    <script src="<?= BASE_URL ?>/javascript/album/album-list.js" defer></script>
-    <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/album/album-list.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
         Album List
     </title>

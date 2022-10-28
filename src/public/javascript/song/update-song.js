@@ -6,76 +6,80 @@ const genreInput = document.querySelector("#genre");
 const coverInput = document.querySelector("#cover");
 const audioInput = document.querySelector("#audio");
 
-formElement && formElement.addEventListener("submit", (e) => {
-    if (!titleInput.value) {
-        e.preventDefault();
-        document.querySelector("#title-alert").className = "alert-show";
-    } else {
-        document.querySelector("#title-alert").className = "alert-hide";
-    }
+formElement &&
+    formElement.addEventListener("submit", (e) => {
+        if (!titleInput.value) {
+            e.preventDefault();
+            document.querySelector("#title-alert").className = "alert-show";
+        } else {
+            document.querySelector("#title-alert").className = "alert-hide";
+        }
 
-    if (!dateInput.value) {
-        e.preventDefault();
-        document.querySelector("#date-alert").className = "alert-show";
-    } else {
-        document.querySelector("#date-alert").className = "alert-hide";
-    }
+        if (!dateInput.value) {
+            e.preventDefault();
+            document.querySelector("#date-alert").className = "alert-show";
+        } else {
+            document.querySelector("#date-alert").className = "alert-hide";
+        }
 
-    if (!genreInput.value) {
-        e.preventDefault();
-        document.querySelector("#genre-alert").className = "alert-show";
-    } else {
-        document.querySelector("#genre-alert").className = "alert-hide";
-    }
-});
+        if (!genreInput.value) {
+            e.preventDefault();
+            document.querySelector("#genre-alert").className = "alert-show";
+        } else {
+            document.querySelector("#genre-alert").className = "alert-hide";
+        }
+    });
 
 const deleteButton = document.querySelector("#delete-button");
 
-deleteButton && deleteButton.addEventListener("click", () => {
-    const xhr = new XMLHttpRequest();
+deleteButton &&
+    deleteButton.addEventListener("click", () => {
+        const xhr = new XMLHttpRequest();
 
-    xhr.open("POST", `/public/song/delete/${song_id}`);
+        xhr.open("POST", `/public/song/delete/${song_id}`);
 
-    const formData = new FormData();
-    formData.append("old_image_path", image_path);
-    formData.append("old_audio_path", audio_path);
-    formData.append("album_id", album_id);
-    formData.append("duration", duration);
-    formData.append("csrf_token", CSRF_TOKEN);
+        const formData = new FormData();
+        formData.append("old_image_path", image_path);
+        formData.append("old_audio_path", audio_path);
+        formData.append("album_id", album_id);
+        formData.append("duration", duration);
+        formData.append("csrf_token", CSRF_TOKEN);
 
-    xhr.send(formData);
+        xhr.send(formData);
 
-    xhr.onreadystatechange = function () {
-        if (this.readyState === XMLHttpRequest.DONE) {
-            data = JSON.parse(this.responseText);
-            location.replace(data.redirect_url);
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                data = JSON.parse(this.responseText);
+                location.replace(data.redirect_url);
+            }
+        };
+    });
+
+coverInput &&
+    coverInput.addEventListener("change", (e) => {
+        const file = coverInput.files[0];
+        const reader = new FileReader();
+
+        if (file) {
+            reader.readAsDataURL(file);
         }
-    };
-});
 
-coverInput && coverInput.addEventListener("change", (e) => {
-    const file = coverInput.files[0];
-    const reader = new FileReader();
-    
-    if (file) {
-        reader.readAsDataURL(file);
-    }
+        reader.addEventListener("load", () => {
+            document.querySelector(".song-cover").src = reader.result;
+        });
+    });
 
-    reader.addEventListener("load", () => {
-        document.querySelector(".song-cover").src = reader.result;
-    })
-});
+audioInput &&
+    audioInput.addEventListener("change", (e) => {
+        const file = audioInput.files[0];
+        const reader = new FileReader();
 
-audioInput && audioInput.addEventListener("change", (e) => {
-    const file = audioInput.files[0];
-    const reader = new FileReader();
-    
-    if (file) {
-        reader.readAsDataURL(file);
-    }
+        if (file) {
+            reader.readAsDataURL(file);
+        }
 
-    reader.addEventListener("load", () => {
-        document.querySelector("#audio-source").src = reader.result;
-        document.querySelector(".audio-player").load();
-    })
-});
+        reader.addEventListener("load", () => {
+            document.querySelector("#audio-source").src = reader.result;
+            document.querySelector(".audio-player").load();
+        });
+    });

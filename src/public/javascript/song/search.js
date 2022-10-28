@@ -12,67 +12,74 @@ const songsResult = document.querySelector(".songs-result");
 const pagination = document.querySelector(".pagination");
 
 let currentPage = 1;
-prevButton && prevButton.addEventListener("click", async () => {
-    if (currentPage === 1) {
-        return;
-    }
-    currentPage -= 1;
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-        "GET",
-        `/public/song/fetch/${currentPage}?csrf_token=${CSRF_TOKEN}&q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`
-    );
-
-    xhr.send();
-
-    xhr.onreadystatechange = function () {
-        if (this.readyState === XMLHttpRequest.DONE) {
-            data = JSON.parse(this.responseText);
-            updateData(data);
+prevButton &&
+    prevButton.addEventListener("click", async () => {
+        if (currentPage === 1) {
+            return;
         }
-    };
-});
+        currentPage -= 1;
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+            "GET",
+            `/public/song/fetch/${currentPage}?csrf_token=${CSRF_TOKEN}&q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`
+        );
 
-nextButton && nextButton.addEventListener("click", async () => {
-    if (currentPage === pages) {
-        return;
-    }
-    currentPage += 1;
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-        "GET",
-        `/public/song/fetch/${currentPage}?csrf_token=${CSRF_TOKEN}&q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`
-    );
+        xhr.send();
 
-    xhr.send();
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                data = JSON.parse(this.responseText);
+                updateData(data);
+            }
+        };
+    });
 
-    xhr.onreadystatechange = function () {
-        if (this.readyState === XMLHttpRequest.DONE) {
-            data = JSON.parse(this.responseText);
-            updateData(data);
+nextButton &&
+    nextButton.addEventListener("click", async () => {
+        if (currentPage === PAGES) {
+            return;
         }
-    };
-});
+        currentPage += 1;
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+            "GET",
+            `/public/song/fetch/${currentPage}?csrf_token=${CSRF_TOKEN}&q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`
+        );
 
-buttonSearch && buttonSearch.addEventListener("submit", async (e) => {
-    currentPage = 1;
-    e.preventDefault();
-    window.history.pushState("", "", `/public/song/search?q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`);
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-        "GET",
-        `/public/song/fetch/1?csrf_token=${CSRF_TOKEN}&q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`
-    );
+        xhr.send();
 
-    xhr.send();
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                data = JSON.parse(this.responseText);
+                updateData(data);
+            }
+        };
+    });
 
-    xhr.onreadystatechange = function () {
-        if (this.readyState === XMLHttpRequest.DONE) {
-            data = JSON.parse(this.responseText);
-            newData(data);
-        }
-    };
-});
+buttonSearch &&
+    buttonSearch.addEventListener("submit", async (e) => {
+        currentPage = 1;
+        e.preventDefault();
+        window.history.pushState(
+            "",
+            "",
+            `/public/song/search?q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`
+        );
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+            "GET",
+            `/public/song/fetch/1?csrf_token=${CSRF_TOKEN}&q=${searchInput.value}&filter=${filterInput.value}&sort=${sortInput.value}`
+        );
+
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                data = JSON.parse(this.responseText);
+                newData(data);
+            }
+        };
+    });
 
 const updateData = (data) => {
     let newHTML = "";
@@ -101,7 +108,7 @@ const updateData = (data) => {
         prevButton.disabled = false;
     }
 
-    if (currentPage == pages) {
+    if (currentPage == PAGES) {
         nextButton.disabled = true;
     } else {
         nextButton.disabled = false;
@@ -122,8 +129,7 @@ const newData = (data) => {
         prevButton.disabled = true;
         nextButton.disabled = true;
         pagination.style.display = "none";
-    }
-    else {
+    } else {
         pagination.style.display = "block";
         currentPage = 1;
         pageText.innerHTML = `Page <span id="page-number">1</span> out of ${data.pages} pages`;

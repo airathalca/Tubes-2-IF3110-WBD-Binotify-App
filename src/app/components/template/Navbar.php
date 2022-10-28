@@ -16,13 +16,13 @@
                     </form>
                 </div>
             </div>
-            <div class="nav-right-portion">     
-                <?php if  ($this->data['username']) { ?>
+            <div class="nav-right-portion">
+                <?php if ($this->data['username']) : ?>
                     <div class="nav-username">
                         <img src="<?= BASE_URL ?>/images/assets/user-solid.svg" alt="profile icon" ?>
                         <p><?= $this->data['username'] ?></p>
                     </div>
-                <?php } ?>
+                <?php endif; ?>
                 <button class="toggle" id="toggle">
                     <img src="<?= BASE_URL ?>/images/assets/bars.svg" alt="Bars">
                 </button>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <?php
-    if (!$this->data['username'] || !$this->data['is_admin']) { ?>
+    if (!$this->data['username'] || !$this->data['is_admin']) : ?>
         <div class="nav-container" id="nav-container">
             <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="container-search">
                 <div class="nav-search-input">
@@ -43,20 +43,20 @@
             <a href="/public/album" class="nav-link">
                 Album list
             </a>
-            <?php if ($this->data['username']) { ?>
+            <?php if ($this->data['username']) : ?>
                 <a href="#" id="log-out" class="nav-link">
                     Log out
                 </a>
-            <?php } else { ?>
+            <?php else : ?>
                 <a href="/public/user/login" class="nav-link">
                     Log in
                 </a>
                 <a href="/public/user/register" class="nav-link">
                     Register
                 </a>
-            <?php } ?>
+            <?php endif; ?>
         </div>
-    <?php } else { ?>
+    <?php else : ?>
         <div class="nav-container" id="nav-container">
             <form action="<?= BASE_URL ?>/song/search" METHOD="GET" class="container-search">
                 <div class="nav-search-input">
@@ -82,5 +82,5 @@
                 Log out
             </a>
         </div>
-    <?php } ?>
+    <?php endif; ?>
 </nav>

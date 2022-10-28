@@ -97,11 +97,13 @@ loginForm &&
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE) {
                 if (this.status === 201) {
-                    document.querySelector('#login-alert').className = "alert-hide";
+                    document.querySelector("#login-alert").className =
+                        "alert-hide";
                     const data = JSON.parse(this.responseText);
                     location.replace(data.redirect_url);
                 } else {
-                    document.querySelector('#login-alert').className = "alert-show";
+                    document.querySelector("#login-alert").className =
+                        "alert-show";
                 }
             }
         };

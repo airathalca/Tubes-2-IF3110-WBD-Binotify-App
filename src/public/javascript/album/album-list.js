@@ -35,7 +35,7 @@ prevButton &&
 
 nextButton &&
     nextButton.addEventListener("click", async () => {
-        if (currentPage === pages) {
+        if (currentPage === PAGES) {
             /* Tidak bisa next */
             return;
         }
@@ -87,7 +87,7 @@ const updateData = (data) => {
         prevButton.disabled = false;
     }
 
-    if (currentPage === pages) {
+    if (currentPage === PAGES) {
         nextButton.disabled = true;
     } else {
         nextButton.disabled = false;
