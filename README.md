@@ -5,6 +5,7 @@
 ## Daftar Isi
 
 -   [Deskripsi Aplikasi Web](#deskripsi-aplikasi-web)
+-   [Struktur Program](#struktur-program)
 -   [Daftar Requirement](#daftar-requirement)
 -   [Cara Instalasi](#cara-instalasi)
 -   [Cara Menjalankan Server](#cara-menjalankan-server)
@@ -12,6 +13,204 @@
 -   [Pembagian Tugas](#pembagian-tugas)
 
 ## Deskripsi Aplikasi _Web_
+
+**BNMO** (dibaca: Binomo) dan Doni sedang tergila-gila dengan musik toktok yang berjudul "[Tiba-Tiba](https://youtu.be/sJc1EwOrgM0?t=38)". Musik tersebut dijalankan oleh BNMO dan Doni melalui aplikasi bernama _youcub_ yang dinyalakan pada ponsel pintar milik Indra. Aplikasi _youcub_ tersebut harus tetap dibuka agar lagu tetap berjalan dan Indra kesal karena ponselnya dipinjam terus menerus oleh BNMO dan Doni. Oleh karena itu, Indra memiliki ide untuk membuatkan **Binotify**, aplikasi musik berbasis web pada BNMO. Namun, permasalahannya, BNMO adalah mesin yang kuno sehingga hanya kuat untuk menjalankan sebuah DBMS (PostgreSQL/MariaDB/MySQL) dan PHP murni beserta HTML, CSS, dan Javascript vanilla. Karena Indra tidak paham mengenai hal tersebut, Indra meminta tolong mahasiswa Informatika angkatan 2020 untuk membuatkan aplikasi tersebut.
+
+## Struktur Program
+
+```
+.
+│   .env.example
+│   .gitignore
+│   docker-compose.yml
+│   Dockerfile
+│   README.md
+│
+├───scripts
+│       build-image.sh
+│
+└───src
+    ├───app
+    │   │   .htaccess
+    │   │   init.php
+    │   │
+    │   ├───components
+    │   │   ├───album
+    │   │   │       AddAlbumPage.php
+    │   │   │       AdminAlbumDetailPage.php
+    │   │   │       AlbumListView.php
+    │   │   │       UserAlbumDetailPage.php
+    │   │   │
+    │   │   ├───home
+    │   │   │       HomePage.php
+    │   │   │
+    │   │   ├───not-found
+    │   │   │       NotFoundPage.php
+    │   │   │
+    │   │   ├───song
+    │   │   │       AddSongPage.php
+    │   │   │       AdminSongDetailPage.php
+    │   │   │       SearchPage.php
+    │   │   │       UserSongDetailPage.php
+    │   │   │
+    │   │   ├───template
+    │   │   │       Aside.php
+    │   │   │       Navbar.php
+    │   │   │
+    │   │   └───user
+    │   │           LoginPage.php
+    │   │           RegisterPage.php
+    │   │           UserListPage.php
+    │   │
+    │   ├───config
+    │   │       config.php
+    │   │
+    │   ├───controllers
+    │   │       AlbumController.php
+    │   │       HomeController.php
+    │   │       NotFoundController.php
+    │   │       SongController.php
+    │   │       UserController.php
+    │   │
+    │   ├───core
+    │   │       App.php
+    │   │       Controller.php
+    │   │       Database.php
+    │   │       MP3Access.php
+    │   │       StorageAccess.php
+    │   │       tables.php
+    │   │
+    │   ├───exceptions
+    │   │       LoggedException.php
+    │   │
+    │   ├───interfaces
+    │   │       ControllerInterface.php
+    │   │       ViewInterface.php
+    │   │
+    │   ├───middlewares
+    │   │       AuthenticationMiddleware.php
+    │   │       SongLimitMiddleware.php
+    │   │       TokenMiddleware.php
+    │   │
+    │   ├───models
+    │   │       AlbumModel.php
+    │   │       SongModel.php
+    │   │       UserModel.php
+    │   │
+    │   └───views
+    │       ├───album
+    │       │       AddAlbumView.php
+    │       │       AdminAlbumDetailView.php
+    │       │       AlbumListView.php
+    │       │       UserAlbumDetailView.php
+    │       │
+    │       ├───home
+    │       │       MainView.php
+    │       │
+    │       ├───not-found
+    │       │       NotFoundView.php
+    │       │
+    │       ├───song
+    │       │       AddSongView.php
+    │       │       AdminSongDetailView.php
+    │       │       searchView.php
+    │       │       SongDetailView.php
+    │       │       UserSongDetailView.php
+    │       │
+    │       └───user
+    │               LoginView.php
+    │               RegisterView.php
+    │               UserListView.php
+    │
+    ├───public
+    │   │   .htaccess
+    │   │   index.php
+    │   │
+    │   ├───images
+    │   │   ├───assets
+    │   │   │       arrow-left.svg
+    │   │   │       arrow-right-white.svg
+    │   │   │       arrow-right.svg
+    │   │   │       bars.svg
+    │   │   │       dropdown-arrow.svg
+    │   │   │       logo-dark.svg
+    │   │   │       logo-light.svg
+    │   │   │       logo-notext-dark.svg
+    │   │   │       sample.png
+    │   │   │       search.svg
+    │   │   │       user-solid.svg
+    │   │   │
+    │   │   └───icon
+    │   │           android-chrome-192x192.png
+    │   │           android-chrome-512x512.png
+    │   │           apple-touch-icon.png
+    │   │           favicon-16x16.png
+    │   │           favicon-32x32.png
+    │   │           favicon.ico
+    │   │           site.webmanifest
+    │   │
+    │   ├───javascript
+    │   │   ├───album
+    │   │   │       add-album.js
+    │   │   │       album-list.js
+    │   │   │       update-album-detail.js
+    │   │   │
+    │   │   ├───component
+    │   │   │       navbar.js
+    │   │   │
+    │   │   ├───home
+    │   │   │       home.js
+    │   │   │
+    │   │   ├───lib
+    │   │   │       debounce.js
+    │   │   │
+    │   │   ├───song
+    │   │   │       add-song.js
+    │   │   │       play-song.js
+    │   │   │       search.js
+    │   │   │       update-song.js
+    │   │   │
+    │   │   └───user
+    │   │           login.js
+    │   │           register.js
+    │   │           user-list.js
+    │   │
+    │   └───styles
+    │       ├───album
+    │       │       add-album.css
+    │       │       album-detail-admin.css
+    │       │       album-detail.css
+    │       │       album-list.css
+    │       │
+    │       ├───home
+    │       │       home.css
+    │       │
+    │       ├───not-found
+    │       │       not-found.css
+    │       │
+    │       ├───song
+    │       │       add-song.css
+    │       │       search.css
+    │       │       song-detail-admin.css
+    │       │       song-detail.css
+    │       │
+    │       ├───template
+    │       │       aside.css
+    │       │       globals.css
+    │       │       navbar.css
+    │       │
+    │       └───user
+    │               login.css
+    │               register.css
+    │               user-list.css
+    │
+    └───storage
+        ├───images
+        │       .gitkeep
+        │
+        └───songs
+                .gitkeep
+```
 
 ## Daftar _Requirement_
 
