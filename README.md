@@ -4,12 +4,13 @@
 
 ## Daftar Isi
 
--   [Deskripsi Aplikasi Web](#deskripsi-aplikasi-web)
+-   [Deskripsi Aplikasi _Web_](#deskripsi-aplikasi-web)
 -   [Struktur Program](#struktur-program)
--   [Daftar Requirement](#daftar-requirement)
+-   [Daftar _Requirement_](#daftar-requirement)
 -   [Cara Instalasi](#cara-instalasi)
--   [Cara Menjalankan Server](#cara-menjalankan-server)
+-   [Cara Menjalankan _Server_](#cara-menjalankan-server)
 -   [Screenshot Tampilan Aplikasi](#screenshot-tampilan-aplikasi)
+-   [Entity Relationship Diagram](#entity-relationship-diagram)
 -   [Pembagian Tugas](#pembagian-tugas)
 
 ## Deskripsi Aplikasi _Web_
@@ -241,6 +242,33 @@
 3. Aplikasi web dapat dihentikan dengan menjalankan perintah perintah `docker-compose down` pada terminal _directory_ aplikasi web.
 
 ## Screenshot Tampilan Aplikasi
+
+1. Login
+   ![Login Page](./screenshots/login.png)
+2. Register
+   ![Register Page](./screenshots/register-1.png)
+   ![Register Page](./screenshots/register-2.png)
+3. Home
+4. Daftar Album
+5. Search, Sort, dan Filter
+6. Edit Lagu
+   ![Edit Song Page](./screenshots/edit-song-1.png)
+   ![Edit Song Page](./screenshots/edit-song-2.png)
+7. Detail Lagu
+   ![Detail Song Page](./screenshots/detail-song.png)
+8. Edit Album
+9. Detail Album
+10. Tambah Lagu
+    ![Add Song Page](./screenshots/add-song-1.png)
+    ![Add Song Page](./screenshots/add-song-2.png)
+11. Tambah Album
+    ![Add Album Page](./screenshots/add-album-1.png)
+    ![Add Album Page](./screenshots/add-album-2.png)
+12. Daftar User
+
+## _Entity Relationship Diagram_
+
+![ERD](./screenshots/tubeswbd.png)
 
 ## Pembagian Tugas
 
