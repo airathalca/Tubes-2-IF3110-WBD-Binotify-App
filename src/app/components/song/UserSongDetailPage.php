@@ -53,11 +53,13 @@
                         </div>
                     </div>
                     <div class="line-break"></div>
-                    <?php if ($this->data['album'] === NULL) : ?>
-                        <p class="info">This song doesn't belong to any album yet!</p>
-                    <?php else : ?>
-                        <a href="<?= BASE_URL ?>/album/detail/<?= $this->data['album'] ?>" class="button button-album">See album!</a>
-                    <?php endif; ?>
+                    <div class="extra-padding">
+                        <?php if ($this->data['album'] === NULL) : ?>
+                            <p class="info">This song doesn't belong to any album yet!</p>
+                        <?php else : ?>
+                            <a href="<?= BASE_URL ?>/album/detail/<?= $this->data['album'] ?>" class="button button-album">See album!</a>
+                        <?php endif; ?>
+                    </div>
                     <div class="audio-player-container">
                         <!-- <p class="audio-info"><?= $this->data['judul'] ?> by <?= $this->data['penyanyi'] ?></p> -->
                         <div class="player-button">

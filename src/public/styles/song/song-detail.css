@@ -140,3 +140,7 @@
 .button-play svg, .button-pause svg {
     width: 100%;
 }
+
+.extra-padding {
+    padding-bottom: 9.375rem;
+}
