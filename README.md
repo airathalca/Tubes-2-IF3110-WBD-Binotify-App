@@ -115,7 +115,6 @@
     │       │       AddSongView.php
     │       │       AdminSongDetailView.php
     │       │       SearchView.php
-    │       │       SongDetailView.php
     │       │       UserSongDetailView.php
     │       │
     │       └───user
