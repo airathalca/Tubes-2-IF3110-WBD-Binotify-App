@@ -42,6 +42,18 @@
     object-fit: cover;
 }
 
+@media (min-width: 1366px) {
+    .single-album {
+        width: calc(100% / 5 - 1rem);
+    }
+
+    .single-album img {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        height: inherit;
+    }
+}
+
 .album-header {
     margin-top: 16px;
 }
