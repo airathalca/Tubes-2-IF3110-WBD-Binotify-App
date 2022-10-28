@@ -4,7 +4,9 @@ class TokenMiddleware
 {
     public function putToken()
     {
-        $_SESSION['csrf_token'] = md5(uniqid(mt_rand(), true));
+        if (!isset($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = md5(uniqid(mt_rand(), true));
+        }
     }
 
     public function checkToken()
