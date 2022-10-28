@@ -29,7 +29,7 @@
 }
 
 .album-cover {
-    max-width: 12.5rem;
+    width: 12.5rem;
     height: 12.5rem;
     object-fit: cover;
 }
