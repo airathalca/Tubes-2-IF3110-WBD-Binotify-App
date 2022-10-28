@@ -33,6 +33,7 @@
 1. Lakukan pengunduhan _repository_ ini dengan menggunakan perintah `git clone https://gitlab.informatika.org/rayhankinan/if-3110-2022-k-02-01-01.git` pada terminal komputer Anda.
 2. Pastikan komputer Anda telah menginstalasi dan menjalankan aplikasi Docker.
 3. Lakukan pembuatan _image_ Docker yang akan digunakan oleh aplikasi ini dengan menjalankan perintah `docker build -t tubes-1:latest .` pada terminal _directory_ aplikasi web.
+4. Buatlah sebuah file `.env` yang bersesuaian dengan penggunaan (contoh file tersebut dapat dilihat pada `.env.example`).
 
 ## Cara Menjalankan _Server_
 
