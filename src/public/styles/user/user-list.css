@@ -72,3 +72,8 @@
         gap: 2rem;
     }
 }
+
+.single-user {
+    display: flex;
+    gap: 1rem;
+}
