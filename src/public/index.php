@@ -9,6 +9,9 @@ if (session_status() === PHP_SESSION_ACTIVE) {
         // Prevent Session Fixation Attacks
         session_regenerate_id(true);
         $_SESSION['updated_at'] = $current_time;
+
+        // Prevent CSRF Attacks
+        unset($_SESSION['csrf_token']);
     }
 
     if ($current_time - $_SESSION['created_at'] > SESSION_EXPIRATION_TIME) {
@@ -18,7 +21,7 @@ if (session_status() === PHP_SESSION_ACTIVE) {
 }
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_set_cookie_params(86400);
+    session_set_cookie_params(COOKIES_LIFETIME);
     session_start();
 
     $current_time = time();
