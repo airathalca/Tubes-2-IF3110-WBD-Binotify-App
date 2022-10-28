@@ -10,9 +10,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/images/icon/favicon-16x16.png">
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <!-- Global CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/globals.css">
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/not-found/not-found.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/not-found/not-found.css">
     <title>Page not found!</title>
 </head>
 

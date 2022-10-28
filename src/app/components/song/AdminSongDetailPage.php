@@ -10,30 +10,31 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/images/icon/favicon-16x16.png">
     <link rel="manifest" href="<?= BASE_URL ?>/images/icon/site.webmanifest">
     <!-- Global CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/globals.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/navbar.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/aside.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/globals.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/aside.css">
     <!-- Page-specific CSS -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>/styles/song/song-detail-admin.css">
-    <!-- JavaScript DOM and AJAX -->
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/song/song-detail-admin.css">
+    <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
-        <?php if (isset($this->data['song_id'])) { ?>
+        <?php if (isset($this->data['song_id'])) : ?>
             const song_id = <?= $this->data['song_id'] ?>;
             const image_path = "<?= $this->data['image_path'] ?>";
             const audio_path = "<?= $this->data['audio_path'] ?>";
             const duration = "<?= $this->data['duration'] ?>";
             const album_id = "<?= $this->data['album'] ?>";
-        <?php } ?>
+        <?php endif; ?>
     </script>
-    <script src="<?= BASE_URL ?>/javascript/song/update-song.js" defer></script>
-    <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
+    <!-- JavaScript DOM and AJAX -->
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/song/update-song.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
-        <?php if (isset($this->data['judul'])) { ?>
+        <?php if (isset($this->data['judul'])) : ?>
             <?= $this->data['judul'] ?>
-        <?php } else { ?>
+        <?php else : ?>
             Song not found
-        <?php } ?>
+        <?php endif; ?>
     </title>
 </head>
 
@@ -47,7 +48,7 @@
             <!-- Form -->
             <div class="pad-40">
                 <h1 class="details-header">Song details</h1>
-                <?php if (isset($this->data['song_id'])) { ?>
+                <?php if (isset($this->data['song_id'])) : ?>
                     <!-- Song related info -->
                     <form action="/public/song/detail/<?= $this->data['song_id'] ?>?csrf_token=<?= $_SESSION['csrf_token'] ?>" method="post" enctype="multipart/form-data" class="song-form">
                         <input type="hidden" name="song_id" value="<?= $this->data['song_id'] ?>">
@@ -55,12 +56,12 @@
                         <input type="hidden" name="old_image_path" value="<?= $this->data['image_path'] ?>">
                         <input type="hidden" name="old_audio_path" value="<?= $this->data['audio_path'] ?>">
                         <input type="hidden" name="old_duration" value="<?= $this->data['duration'] ?>">
-                        <div class ="flex-img">
+                        <div class="flex-img">
                             <img src="<?= STORAGE_URL ?>/images/<?= $this->data['image_path'] ?>" alt="Song cover" class="song-cover">
                             <div class="song-details">
                                 <h1 class="song-title"><?= $this->data['judul'] ?></h1>
-                                <p class="song-artist"><?= $this->data['penyanyi'] ?> ● <?= $this->data['genre'] ?> ● <?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> ● <?=floor(((int) $this->data['duration']) / 60) . " min " . ((int) $this->data['duration']) % 60 . " sec" ?></p>
-                             </div>
+                                <p class="song-artist"><?= $this->data['penyanyi'] ?> ● <?= $this->data['genre'] ?> ● <?= date('d F Y', strtotime($this->data['tanggal_terbit'])) ?> ● <?= floor(((int) $this->data['duration']) / 60) . " min " . ((int) $this->data['duration']) % 60 . " sec" ?></p>
+                            </div>
                         </div>
                         <div class="line-break"></div>
                         <div class="form-group">
@@ -69,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <audio controls class="audio-player">
-                                <source src="<?= STORAGE_URL?>/songs/<?=$this->data['audio_path']?>" id="audio-source">
+                                <source src="<?= STORAGE_URL ?>/songs/<?= $this->data['audio_path'] ?>" id="audio-source">
                             </audio>
                             <label for="cover">Upload new audio</label>
                             <input type="file" name="audio" id="audio" accept="audio/mpeg">
@@ -94,14 +95,14 @@
                             <button class="button red-button" id="delete-button" type="button">Delete song</button>
                         </div>
                     </form>
-                    <?php if ($this->data['album'] === NULL) { ?>
+                    <?php if ($this->data['album'] === NULL) : ?>
                         <p class="info">This song doesn't belong to any album yet!</p>
-                    <?php } else  { ?>
-                        <a href="<?= BASE_URL?>/album/detail/<?= $this->data['album']?>" class="button button-album">See album!</a>
-                    <?php } ?>
-                <?php } else { ?>
+                    <?php else : ?>
+                        <a href="<?= BASE_URL ?>/album/detail/<?= $this->data['album'] ?>" class="button button-album">See album!</a>
+                    <?php endif; ?>
+                <?php else : ?>
                     <p class="info">Cannot find the song you're looking for!</p>
-                <?php } ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

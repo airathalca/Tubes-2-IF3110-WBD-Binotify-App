@@ -22,7 +22,6 @@ define('ALLOWED_IMAGES', [
     'image/png' => '.png'
 ]);
 
-
 // Bcrypt
 define('BCRYPT_COST', 10);
 

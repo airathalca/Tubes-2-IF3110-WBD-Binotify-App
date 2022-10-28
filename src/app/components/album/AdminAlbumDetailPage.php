@@ -24,8 +24,8 @@
         <?php endif; ?>
     </script>
     <!-- JavaScript DOM and AJAX -->
-    <script src="<?= BASE_URL ?>/javascript/album/update-album-detail.js" defer></script>
-    <script src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/album/update-album-detail.js" defer></script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>
     <title>
         <?php if (isset($this->data['judul'])) : ?>
             <?= $this->data['judul'] ?>
