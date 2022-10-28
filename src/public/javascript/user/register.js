@@ -12,15 +12,35 @@ const passwordConfirmedAlert = document.querySelector(
     "#confirm-password-alert"
 );
 
+const fullnameRegex = /^[a-zA-Z ]+$/;
 const usernameRegex = /^\w+$/;
 const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const passwordRegex = /^\w+$/;
 
+let fullnameValid = false;
 let usernameValid = false;
 let emailValid = false;
 let passwordValid = false;
 let passwordConfirmedValid = false;
+
+fullnameInput &&
+    fullnameInput.addEventListener(
+        "keyup",
+        debounce(() => {
+            const fullname = fullnameInput.value;
+
+            if (!fullnameRegex.test(fullname)) {
+                fullnameAlert.innerText = "Invalid fullname format!";
+                fullnameAlert.className = "alert-show";
+                fullnameValid = false;
+            } else {
+                fullnameAlert.innerText = "";
+                fullnameAlert.className = "alert-hide";
+                fullnameValid = true;
+            }
+        })
+    );
 
 usernameInput &&
     usernameInput.addEventListener(
@@ -147,37 +167,37 @@ registrationForm &&
         const password = passwordInput.value;
         const fullname = fullnameInput.value;
 
-        if (!fullname) {
+        if (!fullnameValid) {
             e.preventDefault();
-            fullnameAlert.innerText = "Please fill out the fullname first!";
+            fullnameAlert.innerText = "Please fill out a valid fullname first!";
             fullnameAlert.className = "alert-show";
         } else {
             fullnameAlert.className = "alert-hide";
         }
-    
-        if (!username) {
+
+        if (!usernameValid) {
             e.preventDefault();
-            usernameAlert.innerText = "Please fill out the username first!";
+            usernameAlert.innerText = "Please fill out a valid username first!";
             usernameAlert.className = "alert-show";
         } else if (!usernameValid) {
             usernameAlert.className = "alert-show";
         } else {
             usernameAlert.className = "alert-hide";
         }
-    
-        if (!email) {
+
+        if (!emailValid) {
             e.preventDefault();
-            emailAlert.innerText = "Please fill out the email first!";
+            emailAlert.innerText = "Please fill out a valid email first!";
             emailAlert.className = "alert-show";
         } else if (!emailValid) {
             emailAlert.className = "alert-show";
         } else {
             emailAlert.className = "alert-hide";
         }
-    
-        if (!password) {
+
+        if (!passwordValid) {
             e.preventDefault();
-            passwordAlert.innerText = "Please fill out the password first!";
+            passwordAlert.innerText = "Please fill out a valid password first!";
             passwordAlert.className = "alert-show";
         } else if (!passwordValid) {
             passwordAlert.className = "alert-show";
@@ -187,18 +207,19 @@ registrationForm &&
 
         if (!passwordConfirmedValid) {
             e.preventDefault();
-            passwordConfirmedAlert.innerText = "Passsword didn't match!";
+            passwordConfirmedAlert.innerText =
+                "Confirmed password doesn't match!";
             passwordConfirmedAlert.className = "alert-show";
         } else {
             passwordConfirmedAlert.className = "alert-hide";
         }
 
         if (
+            !fullnameValid ||
             !usernameValid ||
             !emailValid ||
             !passwordValid ||
-            !passwordConfirmedValid || 
-            !fullname
+            !passwordConfirmedValid
         ) {
             return;
         }
