@@ -1,6 +1,6 @@
 const toggleButton = document.querySelector("#toggle");
 const navContainer = document.querySelector("#nav-container");
-const logOutButton = document.querySelector("#log-out");
+const logOutButton = document.querySelectorAll("#log-out");
 let isToggled = false;
 
 toggleButton &&

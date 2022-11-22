@@ -16,7 +16,7 @@ toggleButton &&
         }
     });
 
-const logOutButton = document.querySelector("#log-out");
+const logOutButton = document.querySelectorAll("#log-out");
 
 logOutButton &&
     logOutButton.addEventListener("click", async (e) => {
