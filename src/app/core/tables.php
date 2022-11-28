@@ -36,4 +36,13 @@ class Tables
         album_id            INT,
         FOREIGN KEY (album_id) REFERENCES album (album_id) ON UPDATE CASCADE ON DELETE SET NULL 
     );";
+
+    public const SUBS_TABLE = 
+    "CREATE TABLE IF NOT EXISTS subscription (
+        creator_id          INT                                     NOT NULL,
+        subscriber_id       INT                                     NOT NULL,
+        status              ENUM('PENDING', 'ACCEPTED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
+        PRIMARY KEY (creator_id, subscriber_id),
+        FOREIGN KEY (subscriber_id) REFERENCES user (user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    );";
 }
