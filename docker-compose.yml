@@ -11,7 +11,7 @@ services:
   mysql:
     image: mysql:latest
     ports:
-      - 3307:3306
+      - 3308:3306
     hostname: db-tubes-1
     env_file: .env
     volumes:

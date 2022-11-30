@@ -41,8 +41,9 @@ class Tables
     "CREATE TABLE IF NOT EXISTS subscription (
         creator_id          INT                                     NOT NULL,
         subscriber_id       INT                                     NOT NULL,
+        creator_name        VARCHAR(256)                            NOT NULL,   
         status              ENUM('PENDING', 'ACCEPTED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
         PRIMARY KEY (creator_id, subscriber_id),
-        FOREIGN KEY (subscriber_id) REFERENCES user (user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY (subscriber_id) REFERENCES user (user_id) ON UPDATE CASCADE ON DELETE CASCADE
     );";
 }

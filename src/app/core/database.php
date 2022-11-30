@@ -29,6 +29,7 @@ class Database
             $this->db_connection->exec(Tables::USER_TABLE);
             $this->db_connection->exec(Tables::ALBUM_TABLE);
             $this->db_connection->exec(Tables::SONG_TABLE);
+            $this->db_connection->exec(Tables::SUBS_TABLE);
         } catch (PDOException) {
             throw new LoggedException('Internal Server Error', 500);
         }
