@@ -3,6 +3,7 @@
 // URL
 define('BASE_URL', 'http://localhost:8080/public');
 define('STORAGE_URL', 'http://localhost:8080/storage');
+define('REST_URL', 'http://localhost:3000/api');
 
 // Database
 define('HOST', $_ENV['MYSQL_HOST']);
