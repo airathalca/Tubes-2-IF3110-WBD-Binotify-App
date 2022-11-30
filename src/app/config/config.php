@@ -11,6 +11,8 @@ define('DBNAME', $_ENV['MYSQL_DATABASE']);
 define('USER', $_ENV['MYSQL_USER'] ?? 'root');
 define('PASSWORD', $_ENV['MYSQL_PASSWORD']);
 define('PORT', $_ENV['MYSQL_PORT']);
+define('SOAP_HOST', $_ENV['SOAP_HOST']);
+define('SOAP_PORT', $_ENV['SOAP_PORT']);
 define('ROWS_PER_PAGE', 10); // Application Logic
 
 // File
