@@ -39,4 +39,12 @@ class SubsModel
         $this->database->execute();
         return 'Submission Updated';
     }
+
+    public function getSubsFromID($subscriber_id)
+    {
+        $query = 'SELECT * FROM subscription WHERE subscriber_id = :subscriber_id';
+        $this->database->query($query);
+        $this->database->bind('subscriber_id', $subscriber_id);
+        return $this->database->fetchAll();
+    }
 }

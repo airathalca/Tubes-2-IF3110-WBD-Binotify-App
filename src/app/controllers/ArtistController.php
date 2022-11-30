@@ -7,8 +7,25 @@ class ArtistController extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
-                    // TODO: Render list penyanyi @Aira
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->putToken();
 
+                    if (isset($_SESSION['user_id'])) {
+                        // Ada data user_id, coba fetch data username!
+                        $userModel = $this->model('UserModel');
+                        $user = $userModel->getUserFromID($_SESSION['user_id']);
+
+                        if ($user->is_admin) {
+                            echo json_encode(["redirect_url" => "/public/home"]);
+                        } else {
+                            $artistView = $this->view('artist', 'ArtistPremiumView', ['username' => $user->username, 'is_admin' => $user->is_admin]);
+                            $artistView->render();
+                        }
+                    } else {
+                        echo json_encode(["redirect_url" => BASE_URL . "/user/login"]);
+                    }
+                    
                     break;
                 default:
                     throw new LoggedException('Method Not Allowed', 405);
