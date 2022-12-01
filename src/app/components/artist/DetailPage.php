@@ -20,6 +20,9 @@
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
         const USERNAME = "<?= $this->data['username'] ?? '' ?>";
         const ARTIST_ID = <?= $this->data['artist_ID'] ?>;
+        <?php if (isset($_SESSION['user_id'])) { ?>
+            const USER_ID = <?= $_SESSION['user_id'] ?>;
+        <?php } ?>
         const REST_URL = "<?= REST_URL ?>";
     </script>
     <!-- JavaScript DOM and AJAX -->

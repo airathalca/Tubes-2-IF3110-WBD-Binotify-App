@@ -43,6 +43,9 @@
             <a href="/public/album" class="nav-link">
                 Album list
             </a>
+            <a href="/public/artist/index" class="nav-link">
+                Premium artist
+            </a>
             <?php if ($this->data['username']) : ?>
                 <a href="#" id="log-out" class="nav-link">
                     Log out
