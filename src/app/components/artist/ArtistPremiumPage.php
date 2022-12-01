@@ -17,9 +17,14 @@
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/artist/artist-premium.css">
     <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
+        <?php if (isset($_SESSION['redirect'])) { ?>
+            location.replace("<?= $this->data['redirect'] ?>")
+        <?php } ?>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
         const USERNAME = "<?= $this->data['username'] ?? '' ?>";
-        const USER_ID = <?= $_SESSION['user_id'] ?>;
+        <?php if (isset($_SESSION['user_id'])) { ?>
+            const USER_ID = <?= $_SESSION['user_id'] ?>;
+        <?php } ?>
         const REST_URL = "<?= REST_URL ?>";
         const SOAP_URL = "<?= SOAP_URL ?>";
     </script>

@@ -12,7 +12,7 @@ const fetchArtistData = async () => {
     const { data } = await response.json();
     artistData = data;
     if (artistData.length === 0) {
-      errorParagraph.textContent = "This artist doesn't have any songs yet!";
+      errorParagraph.textContent = "There are no premium artists yet!";
       errorParagraph.style.display = "block";
       artistTable.style.display = "none";
     }
@@ -47,7 +47,11 @@ const fetchSubsData = async () => {
 const generateArtistPremiumPage = async () => {
     await fetchArtistData();
     await fetchSubsData();
-    artistTable.innerHTML = "";
+    artistTable.innerHTML = `<tr>
+      <th><p>#</p></th>
+      <th><p>Artist Name</p></th>
+      <th><p>Actions</p></th>
+    </tr>`;
     if (artistData.length > 0) {
         artistData.forEach((artist, idx) => {
         const onCreateRequest = async () => {
@@ -114,10 +118,10 @@ const generateArtistPremiumPage = async () => {
           tableRowElement.appendChild(lastTableData);
         }
         else if (subsMap[artist.userID].status === "PENDING") {
-          tableRowElement.innerHTML += `<td><p>Pending Subscription. Wait for Approval!</p></td>`;
+          tableRowElement.innerHTML += `<td><p>Pending subscription. Wait for approval!</p></td>`;
         }
         else if (subsMap[artist.userID].status === "REJECTED") {
-          tableRowElement.innerHTML += `<td><p>Sorry Subscription Rejected</p></td>`;
+          tableRowElement.innerHTML += `<td><p>Sorry, subscription rejected</p></td>`;
         }
         else {
           let tableDetailButton = document.createElement("button");
