@@ -8,6 +8,8 @@ services:
     env_file: .env
     volumes:
       - ./src:/var/www/html
+    networks:
+      - web-mysql
   mysql:
     image: mysql:latest
     ports:
@@ -16,6 +18,9 @@ services:
     env_file: .env
     volumes:
       - ./mysql:/var/lib/mysql
+    networks:
+      - web-mysql
 networks:
   web-mysql:
-    driver: bridge
+    external:
+      name: binotify-soap-service_soap-services

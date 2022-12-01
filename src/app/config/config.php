@@ -13,6 +13,7 @@ define('USER', $_ENV['MYSQL_USER'] ?? 'root');
 define('PASSWORD', $_ENV['MYSQL_PASSWORD']);
 define('PORT', $_ENV['MYSQL_PORT']);
 define('ROWS_PER_PAGE', 10); // Application Logic
+define('SOAP_KEY', $_ENV['SOAP_KEY']);
 
 // File
 define('MAX_SIZE', 10 * 1024 * 1024);

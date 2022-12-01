@@ -38,9 +38,17 @@ class SubsController extends Controller implements ControllerInterface
     {
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
-                case 'POST':
+                case 'PUT':
+                    parse_str(file_get_contents('php://input'), $req);
+                    if (!isset($req['soap_key']) || $req['soap_key'] != SOAP_KEY) {
+                        throw new LoggedException('Soap Key is required', 400);
+                    }
+                    
+                    if (!isset($req['creator_id']) || !isset($req['subscriber_id']) || !isset($req['status'])) {
+                        throw new LoggedException('Data not complete', 400);
+                    }
                     $subsModel = $this->model('SubsModel');
-                    $success = $subsModel->updateSubs($_POST['creator_id'], $_POST['subscriber_id'], $_POST['status']);
+                    $success = $subsModel->updateSubs($req['creator_id'], $req['subscriber_id'], $req['status']);
                     
                     header('Content-Type: application/json');
                     http_response_code(200);
@@ -65,7 +73,7 @@ class SubsController extends Controller implements ControllerInterface
                     // Prevent CSRF Attacks
                     $tokenMiddleware = $this->middleware('TokenMiddleware');
                     $tokenMiddleware->checkToken();
-                    
+
                     $subsModel = $this->model('SubsModel');
                     $subsModel->createSubs($_POST['creator_id'], $_POST['subscriber_id'], $_POST['creator_name']);
                     header('Content-Type: application/json');
