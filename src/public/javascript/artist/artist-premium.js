@@ -181,6 +181,8 @@ const checkSubscription = async () => {
                 </Envelope>`,
             });
 
+            // POST DATA JIKA TIDAK DITEMUKAN
+
             if (response !== values.status) {
                 const body = new FormData();
                 body.append("creator_id", keys);
@@ -194,6 +196,7 @@ const checkSubscription = async () => {
                 });
 
                 subsMap[keys] = response;
+                return;
             }
         });
     });
@@ -202,4 +205,4 @@ const checkSubscription = async () => {
 };
 
 generateArtistPremiumPage();
-setTimeout(checkSubscription, POLLING_INTERVAL);
+setInterval(checkSubscription, POLLING_INTERVAL);
