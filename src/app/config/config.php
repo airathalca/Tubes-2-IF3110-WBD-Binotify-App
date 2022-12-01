@@ -4,6 +4,7 @@
 define('BASE_URL', 'http://localhost:8080/public');
 define('STORAGE_URL', 'http://localhost:8080/storage');
 define('REST_URL', 'http://localhost:3000/api');
+define('SOAP_URL', 'http://localhost:8001/api');
 
 // Database
 define('HOST', $_ENV['MYSQL_HOST']);
@@ -11,8 +12,6 @@ define('DBNAME', $_ENV['MYSQL_DATABASE']);
 define('USER', $_ENV['MYSQL_USER'] ?? 'root');
 define('PASSWORD', $_ENV['MYSQL_PASSWORD']);
 define('PORT', $_ENV['MYSQL_PORT']);
-define('SOAP_HOST', $_ENV['SOAP_HOST']);
-define('SOAP_PORT', $_ENV['SOAP_PORT']);
 define('ROWS_PER_PAGE', 10); // Application Logic
 
 // File

@@ -21,7 +21,9 @@
         const USERNAME = "<?= $this->data['username'] ?? '' ?>";
         const USER_ID = <?= $_SESSION['user_id'] ?>;
         const REST_URL = "<?= REST_URL ?>";
+        const SOAP_URL = "<?= SOAP_URL ?>";
     </script>
+    <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/xmlToJson.js" defer></script>
     <!-- JavaScript DOM and AJAX -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/artist/artist-premium.js" defer></script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/component/navbar.js" defer></script>

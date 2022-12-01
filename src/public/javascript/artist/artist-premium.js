@@ -47,8 +47,58 @@ const fetchSubsData = async () => {
 const generateArtistPremiumPage = async () => {
     await fetchArtistData();
     await fetchSubsData();
+    artistTable.innerHTML = "";
     if (artistData.length > 0) {
         artistData.forEach((artist, idx) => {
+        const onCreateRequest = async () => {
+          const response = await fetch(
+              `${SOAP_URL}/subscribe`, {
+              method: 'POST',
+              mode: 'cors',
+              headers: {
+                "Content-Type": "text/xml",
+              },
+              body: `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+                  <Body>
+                    <createSubscribe xmlns="http://service.binotify/">
+                      <arg0 xmlns="">${artist.userID}</arg0>
+                      <arg1 xmlns="">${USER_ID}</arg1>
+                      <arg2 xmlns="">${artist.name}</arg2>
+                      <arg3 xmlns="">${USERNAME}</arg3>
+                    </createSubscribe>
+                  </Body>
+                </Envelope>`
+            }
+          );
+          if (response.ok) {
+            const xml = await response.text();
+            const json = xmlToJson.parse(xml);
+            const status = json["S:Envelope"]["S:Body"]["ns2:createSubscribeResponse"]["return"];
+            if (status === "Subscription created, wait for approval") {
+              var body = new FormData();
+              body.append("csrf_token", CSRF_TOKEN);
+              body.append("creator_id", artist.userID);
+              body.append("creator_name", artist.name);
+              body.append("subscriber_id", USER_ID);
+              const response2 = await fetch(`/public/subs/create`, {
+                method: 'POST',
+                body: body
+              });
+              if (response2.ok) {
+                //TODO - Create Modal
+                const { message } = await response2.json();
+                subsMap[artist.userID] = {name: artist.name, status: "PENDING"};
+                generateArtistPremiumPage();
+              } else {
+                //TODO - Create Modal
+                alert("Something went wrong!");
+              }
+            } else {
+              //TODO - Create Modal
+              alert("Something went wrong!");
+            }
+          }
+        };
         let tableRowElement = document.createElement("tr");
             tableRowElement.innerHTML = `
             <td><p>${idx + 1}</p></td>
@@ -56,9 +106,9 @@ const generateArtistPremiumPage = async () => {
         let lastTableData = document.createElement("td");
         if (subsMap[artist.userID] === undefined) {
           let tableSubscribeButton = document.createElement("button");
-          // tableSubscribeButton.addEventListener("click", async () => {
-          //   await onCreateRequest();
-          // });
+          tableSubscribeButton.addEventListener("click", async () => {
+            await onCreateRequest();
+          });
           tableSubscribeButton.textContent = "Subscribe";
           lastTableData.appendChild(tableSubscribeButton);
           tableRowElement.appendChild(lastTableData);

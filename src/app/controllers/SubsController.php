@@ -62,6 +62,10 @@ class SubsController extends Controller implements ControllerInterface
         try {
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
+                    // Prevent CSRF Attacks
+                    $tokenMiddleware = $this->middleware('TokenMiddleware');
+                    $tokenMiddleware->checkToken();
+                    
                     $subsModel = $this->model('SubsModel');
                     $subsModel->createSubs($_POST['creator_id'], $_POST['subscriber_id'], $_POST['creator_name']);
                     header('Content-Type: application/json');
