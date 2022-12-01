@@ -34,5 +34,6 @@ define('SESSION_EXPIRATION_TIME', 24 * 60 * 60);
 define('SESSION_REGENERATION_TIME', 30 * 60);
 define('MAX_SONG_COUNT', 3); // Application Logic
 
-// Debounce
+// Debounce and Polling
 define('DEBOUNCE_TIMEOUT', 500);
+define('POLLING_INTERVAL', 20 * 1000);
