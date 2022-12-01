@@ -4,6 +4,24 @@ let subsData = [];
 let subsMap = new Map();
 let errorParagraph = document.querySelector(".error-text");
 let artistTable = document.querySelector(".artist-table");
+let modal = document.querySelector(".modal");
+let colorIndicator = document.querySelector(".color-indicator");
+let modalText = document.querySelector(".modal-text");
+
+const showModal = (text, isWarning) => {
+  modal.style.transform = "translateX(-50%) scale(1)";
+  if (isWarning) {
+    colorIndicator.style.background = "#ff7575";
+  } else {
+    colorIndicator.style.background = "#1db954";
+  }
+  modalText.textContent = text;
+
+  // Close modal
+  setTimeout(() => {
+    modal.style.transform = "translateX(-50%) scale(0)";
+  }, 2000);
+}
 
 const fetchArtistData = async () => {
   const response = await fetch(`${REST_URL}/user?page=1&pageSize=10`);
@@ -89,17 +107,15 @@ const generateArtistPremiumPage = async () => {
                 body: body
               });
               if (response2.ok) {
-                //TODO - Create Modal
                 const { message } = await response2.json();
                 subsMap[artist.userID] = {name: artist.name, status: "PENDING"};
                 generateArtistPremiumPage();
+                showModal("Subscription request sent!", false);
               } else {
-                //TODO - Create Modal
-                alert("Something went wrong!");
+                showModal("Something went wrong!", true);
               }
             } else {
-              //TODO - Create Modal
-              alert("Something went wrong!");
+              showModal("Something went wrong!", true);
             }
           }
         };

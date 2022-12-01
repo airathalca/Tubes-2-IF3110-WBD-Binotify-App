@@ -60,6 +60,11 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal">
+            <div class="color-indicator"></div>
+            <p class="modal-text">Subscription successful!</p>
+        </div>
     </div>
 </body>
 
