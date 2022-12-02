@@ -226,6 +226,8 @@
 10. Tambah Lagu
 11. Tambah Album
 12. Daftar User
+13. List Penyanyi Premium
+14. List Lagu dari Seorang Penyanyi Premium
 
 ## Cara Instalasi
 
@@ -300,9 +302,18 @@
 ![User List Page](./screenshots/list-user-1.png)
 ![User List Page](./screenshots/list-user-2.png)
 
+### Daftar Premium Artist
+
+![Premium Artist Page](./screenshots/premium-artist.png)
+
+### Daftar Lagu
+
+![Song List Page](./screenshots/song-list.png)
+
 ## _Entity Relationship Diagram_
 
 ![Entity Relationship Diagram](./screenshots/tubeswbd.png)
+![Additional Schema](./screenshots/extra-schema.png)
 
 ## Pembagian Tugas
 
@@ -322,6 +333,9 @@
 | Tambah Lagu              | 13520101 |
 | Tambah Album             | 13520119 |
 | Daftar User              | 13520065 |
+| Polling                  | 13520065 |
+| Premium Artist           | 13520101 |
+| Premium Artist Songs     | 13520119 |
 
 ### _Client Side_
 
@@ -339,3 +353,5 @@
 | Tambah Lagu              | 13520101 |
 | Tambah Album             | 13520119 |
 | Daftar User              | 13520065 |
+| Premium Artist           | 13520101 |
+| Premium Artist Songs     | 13520119 |
