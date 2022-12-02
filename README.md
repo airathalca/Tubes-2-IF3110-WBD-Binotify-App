@@ -212,6 +212,8 @@
                 .gitkeep
 ```
 
++ new artist related files.
+
 ## Daftar _Requirement_
 
 1. Login
