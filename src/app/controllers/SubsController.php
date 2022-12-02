@@ -112,7 +112,7 @@ class SubsController extends Controller implements ControllerInterface
                     if (isset($_SESSION['user_id'])) {
                         $subsModel = $this->model('SubsModel');
                         $subs = $subsModel->getSubsFromID($_SESSION['user_id']);
-                        $changed = false;
+                        $res = array();
 
                         foreach ($subs as $subscription) {
                             $url = SOAP_URL . '/subscribe';
@@ -141,15 +141,14 @@ class SubsController extends Controller implements ControllerInterface
 
                             if ($subscription->status != $result) {
                                 $subsModel->updateSubs($creator_id, $subscriber_id, $result);
-                                $changed = true;
+                                array_push($res, $subscription);
                             }
                         }
 
-                        if ($changed) {
-                            $subs = $subsModel->getSubsFromID($_SESSION['user_id']);
+                        if (count($res) > 1) {
                             header('Content-Type: application/json');
                             http_response_code(200);
-                            echo json_encode(["data" => $subs]);
+                            echo json_encode(["data" => $res]);
                         } else {
                             header('Content-Type: application/json');
                             http_response_code(404);
