@@ -16,7 +16,7 @@
     <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
-        const DEBOUNCE_TIMEOUT = "<?= DEBOUNCE_TIMEOUT ?>";
+        const DEBOUNCE_TIMEOUT = parseInt("<?= DEBOUNCE_TIMEOUT ?>");
     </script>
     <!-- JavaScript Library -->
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/debounce.js" defer></script>

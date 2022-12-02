@@ -27,6 +27,8 @@
         <?php } ?>
         const REST_URL = "<?= REST_URL ?>";
         const SOAP_URL = "<?= SOAP_URL ?>";
+        const SOAP_KEY = "<?= SOAP_KEY ?>"
+        const POLLING_INTERVAL = parseInt("<?= POLLING_INTERVAL ?>");
     </script>
     <script type="text/javascript" src="<?= BASE_URL ?>/javascript/lib/xmlToJson.js" defer></script>
     <!-- JavaScript DOM and AJAX -->
@@ -49,14 +51,14 @@
                 <h1 class="details-header">Artist Premium</h1>
                 <div class="line-break"></div>
                 <div class="extra-padding">
-                  <p class="error-text">No Artist Premium yet!</p>
-                  <table class="artist-table">
-                    <tr>
-                      <th><p>#</p></th>
-                      <th><p>Artist Name</p></th>
-                      <th><p>Actions</p></th>
-                    </tr>
-                  </table>
+                    <p class="error-text">No Artist Premium yet!</p>
+                    <table class="artist-table">
+                        <tr>
+                        <th><p>#</p></th>
+                        <th><p>Artist Name</p></th>
+                        <th><p>Actions</p></th>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

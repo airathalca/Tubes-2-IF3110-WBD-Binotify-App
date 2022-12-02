@@ -41,12 +41,13 @@ class SubsController extends Controller implements ControllerInterface
                 case 'PUT':
                     parse_str(file_get_contents('php://input'), $req);
                     if (!isset($req['soap_key']) || $req['soap_key'] != SOAP_KEY) {
-                        throw new LoggedException('Soap Key is required', 400);
+                        throw new LoggedException('Soap key is required', 400);
                     }
                     
                     if (!isset($req['creator_id']) || !isset($req['subscriber_id']) || !isset($req['status'])) {
                         throw new LoggedException('Data not complete', 400);
                     }
+
                     $subsModel = $this->model('SubsModel');
                     $success = $subsModel->updateSubs($req['creator_id'], $req['subscriber_id'], $req['status']);
                     
