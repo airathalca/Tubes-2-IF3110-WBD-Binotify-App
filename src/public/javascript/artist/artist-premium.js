@@ -106,7 +106,6 @@ const generateArtistPremiumPage = async () => {
                         body.append("csrf_token", CSRF_TOKEN);
                         body.append("creator_id", artist.userID);
                         body.append("creator_name", artist.name);
-                        body.append("subscriber_id", USER_ID);
 
                         const response2 = await fetch(`/public/subs/create`, {
                             method: "POST",
@@ -160,49 +159,24 @@ const generateArtistPremiumPage = async () => {
 };
 
 const checkSubscription = async () => {
-    const promises = [];
+    const body = new FormData();
+    body.append("csrf_token", CSRF_TOKEN);
 
-    subsMap.forEach((values, keys) => {
-        promises.push(async () => {
-            const response = await fetch(`${SOAP_URL}/subscribe`, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "text/xml",
-                },
-                body: `
-                <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-                    <Body>
-                        <checkStatus xmlns="http://service.binotify/">
-                            <arg0 xmlns="">${keys}</arg0>
-                            <arg1 xmlns="">${USER_ID}</arg1>
-                        </checkStatus>
-                    </Body>
-                </Envelope>`,
-            });
-
-            // POST DATA JIKA TIDAK DITEMUKAN
-
-            if (response !== values.status) {
-                const body = new FormData();
-                body.append("creator_id", keys);
-                body.append("subscriber_id", USER_ID);
-                body.append("status", response);
-                body.append("soap_key", SOAP_KEY);
-
-                await fetch(`/public/subs/update`, {
-                    method: "PUT",
-                    body: body,
-                });
-
-                subsMap[keys] = response;
-                return;
-            }
-        });
+    const response = await fetch("/public/subs/sync", {
+        method: "POST",
+        body: body,
     });
 
-    await Promise.all(promises);
+    if (response.status === 502) {
+        await checkSubscription();
+    } else if (response.status != 200) {
+        setTimeout(checkSubscription, POLLING_INTERVAL);
+    } else {
+        // UPDATE DOM USING DATA
+        console.log(response.data);
+
+        setTimeout(checkSubscription, POLLING_INTERVAL);
+    }
 };
 
 generateArtistPremiumPage();
-setInterval(checkSubscription, POLLING_INTERVAL);
