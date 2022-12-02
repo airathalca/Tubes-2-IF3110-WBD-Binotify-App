@@ -172,11 +172,10 @@ const checkSubscription = async () => {
     } else if (response.status != 200) {
         setTimeout(checkSubscription, POLLING_INTERVAL);
     } else {
-        // UPDATE DOM USING DATA
-        console.log(response.data);
-
+        generateArtistPremiumPage();
         setTimeout(checkSubscription, POLLING_INTERVAL);
     }
 };
 
 generateArtistPremiumPage();
+checkSubscription();
