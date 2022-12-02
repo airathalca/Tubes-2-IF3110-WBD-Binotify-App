@@ -28,8 +28,7 @@ class SubsModel
         $stat = $this->database->fetch();
         if ($stat->status == 'ACCEPTED') {
             return 'Submission Already Accepted';
-        }
-        elseif ($stat->status == 'REJECTED') {
+        } elseif ($stat->status == 'REJECTED') {
             return 'Submission Already Rejected';
         }
         $query = "UPDATE subscription SET status = '$status' WHERE creator_id = :creator_id AND subscriber_id = :subscriber_id";
@@ -42,7 +41,7 @@ class SubsModel
 
     public function getSubsFromID($subscriber_id)
     {
-        $query = 'SELECT * FROM subscription WHERE subscriber_id = :subscriber_id';
+        $query = 'SELECT subscriber_id, creator_id, creator_name, status FROM subscription WHERE subscriber_id = :subscriber_id';
         $this->database->query($query);
         $this->database->bind('subscriber_id', $subscriber_id);
         return $this->database->fetchAll();
