@@ -90,6 +90,7 @@ const generateArtistPremiumPage = async () => {
                                 <arg1 xmlns="">${USER_ID}</arg1>
                                 <arg2 xmlns="">${artist.name}</arg2>
                                 <arg3 xmlns="">${USERNAME}</arg3>
+                                <arg4 xmlns="">${SOAP_KEY}</arg4>
                             </createSubscribe>
                         </Body>
                     </Envelope>`,
