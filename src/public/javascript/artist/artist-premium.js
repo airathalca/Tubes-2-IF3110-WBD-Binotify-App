@@ -159,26 +159,52 @@ const generateArtistPremiumPage = async () => {
 };
 
 const checkSubscription = async () => {
-    const body = new FormData();
-    body.append("csrf_token", CSRF_TOKEN);
+    await fetchSubsData();
+    let subsData = Object.keys(subsMap);
 
-    const response = await fetch("/public/subs/sync", {
-        method: "POST",
-        body: body,
+    subsData.forEach(async (key) => {
+        const response = await fetch(`${SOAP_URL}/subscribe`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "text/xml",
+            },
+            body: `
+            <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+                <Body>
+                    <checkStatus xmlns="http://service.binotify/">
+                        <arg0 xmlns="">${key}</arg0>
+                        <arg1 xmlns="">${USER_ID}</arg1>
+                    </checkStatus>
+                </Body>
+            </Envelope>`,
+        });
+        if (response.ok) {
+            const xml = await response.text();
+            const json = xmlToJson.parse(xml);
+            const status =
+                json["S:Envelope"]["S:Body"][
+                    "ns2:checkStatusResponse"
+                ]["return"];
+            if (status !== subsMap[key].status) {
+                const body = `creator_id=${key}&subscriber_id=${USER_ID}&status=${status}&soap_key=${SOAP_KEY}`;
+
+                const response2 = await fetch(`/public/subs/update`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: body,
+                });
+                if (response2.ok) {
+                    await generateArtistPremiumPage();
+                }
+            }
+        }
     });
-
-    if (response.status === 502) {
+    setTimeout(async () => {
         await checkSubscription();
-    } else if (response.status !== 200) {
-        setTimeout(async () => {
-            await checkSubscription();
-        }, POLLING_INTERVAL);
-    } else {
-        await generateArtistPremiumPage();
-        setTimeout(async () => {
-            await checkSubscription();
-        }, POLLING_INTERVAL);
-    }
+    }, POLLING_INTERVAL);
 };
 
 generateArtistPremiumPage();
