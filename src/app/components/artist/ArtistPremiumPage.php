@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/styles/artist/artist-premium.css">
     <!-- JavaScript Constant and Variables -->
     <script type="text/javascript" defer>
-        <?php if (isset($_SESSION['redirect'])) { ?>
+        <?php if (isset($this->data['redirect'])) { ?>
             location.replace("<?= $this->data['redirect'] ?>")
         <?php } ?>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
