@@ -108,11 +108,11 @@ class SubsController extends Controller implements ControllerInterface
                     // Prevent CSRF Attacks
                     $tokenMiddleware = $this->middleware('TokenMiddleware');
                     $tokenMiddleware->checkToken();
-                    $changed = false;
 
                     if (isset($_SESSION['user_id'])) {
                         $subsModel = $this->model('SubsModel');
                         $subs = $subsModel->getSubsFromID($_SESSION['user_id']);
+                        $changed = false;
 
                         foreach ($subs as $subscription) {
                             $url = SOAP_URL . '/subscribe';
