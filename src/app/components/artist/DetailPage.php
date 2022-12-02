@@ -19,6 +19,7 @@
     <script type="text/javascript" defer>
         const CSRF_TOKEN = "<?= $_SESSION['csrf_token'] ?? '' ?>";
         const USERNAME = "<?= $this->data['username'] ?? '' ?>";
+        const USER_ID = "<?= $this->data['user_id'] ?? '' ?>";
         const ARTIST_ID = <?= $this->data['artist_ID'] ?>;
         <?php if (isset($_SESSION['user_id'])) { ?>
             const USER_ID = <?= $_SESSION['user_id'] ?>;
