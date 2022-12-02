@@ -176,6 +176,7 @@ const checkSubscription = async () => {
                     <checkStatus xmlns="http://service.binotify/">
                         <arg0 xmlns="">${key}</arg0>
                         <arg1 xmlns="">${USER_ID}</arg1>
+                        <arg2 xmlns="">${SOAP_KEY}</arg2>
                     </checkStatus>
                 </Body>
             </Envelope>`,
