@@ -17,10 +17,10 @@ toggleButton &&
         }
     });
 
-logOutButton &&
-    logOutButton.addEventListener("click", async (e) => {
+logOutButton.length > 0 &&
+    logOutButton.forEach(btn => {
+        btn.addEventListener("click", async (e) => {
         e.preventDefault();
-
         const xhr = new XMLHttpRequest();
 
         xhr.open("POST", `/public/user/logout`);
@@ -35,4 +35,4 @@ logOutButton &&
                 location.replace(data.redirect_url);
             }
         };
-    });
+    })});

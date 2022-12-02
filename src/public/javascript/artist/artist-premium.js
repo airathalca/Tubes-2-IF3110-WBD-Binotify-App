@@ -170,12 +170,14 @@ const checkSubscription = async () => {
     if (response.status === 502) {
         await checkSubscription();
     } else if (response.status !== 200) {
-        await Promise((resolve) => setTimeout(resolve, POLLING_INTERVAL));
-        await checkSubscription();
+        setTimeout(async () => {
+            await checkSubscription();
+        }, POLLING_INTERVAL);
     } else {
         await generateArtistPremiumPage();
-        await Promise((resolve) => setTimeout(resolve, POLLING_INTERVAL));
-        await checkSubscription();
+        setTimeout(async () => {
+            await checkSubscription();
+        }, POLLING_INTERVAL);
     }
 };
 

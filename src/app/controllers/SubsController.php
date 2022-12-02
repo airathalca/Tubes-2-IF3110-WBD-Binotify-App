@@ -113,6 +113,7 @@ class SubsController extends Controller implements ControllerInterface
                         $subsModel = $this->model('SubsModel');
                         $subs = $subsModel->getSubsFromID($_SESSION['user_id']);
                         $changed = false;
+                        $returnArray = array();
 
                         foreach ($subs as $subscription) {
                             $url = SOAP_URL . '/subscribe';
