@@ -17,10 +17,10 @@ class ArtistController extends Controller implements ControllerInterface
                         $user = $userModel->getUserFromID($_SESSION['user_id']);
 
                         if ($user->is_admin) {
-                            $artistView = $this->view('artist', 'ArtistPremiumView', ['username' => $user->username, 'is_admin' => $user->is_admin, 'redirect' => BASE_URL . '/home']);
+                            $artistView = $this->view('artist', 'ArtistPremiumView', ['username' => $user->username, 'is_admin' => $user->is_admin, 'redirect' => BASE_URL . '/home', 'user_id' => $_SESSION['user_id']]);
                             $artistView->render();
                         } else {
-                            $artistView = $this->view('artist', 'ArtistPremiumView', ['username' => $user->username, 'is_admin' => $user->is_admin]);
+                            $artistView = $this->view('artist', 'ArtistPremiumView', ['username' => $user->username, 'is_admin' => $user->is_admin, 'user_id' => $_SESSION['user_id']]);
                             $artistView->render();
                         }
                     } else {

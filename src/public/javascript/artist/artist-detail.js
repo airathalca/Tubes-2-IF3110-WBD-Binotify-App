@@ -65,7 +65,7 @@ if (audioPlayer) {
 }
 
 const fetchSongsData = async () => {
-  const response = await fetch(`${REST_URL}/app/song/${ARTIST_ID}`);
+  const response = await fetch(`${REST_URL}/app/song/${ARTIST_ID}?subscriber_id=${USER_ID}`);
 
   if (response.ok) {
     const { data } = await response.json();
@@ -92,7 +92,7 @@ const generateArtistDetailPage = async () => {
   if (songsData.length > 0) {
     songsData.forEach((song, idx) => {
       const onClick = async () => {
-        const response = await fetch(`${REST_URL}/app/song/listen/${song.id}`);
+        const response = await fetch(`${REST_URL}/app/song/listen/${song.id}?subscriber_id=${USER_ID}`);
 
         if (response.ok) {
           const data = await response.blob();
