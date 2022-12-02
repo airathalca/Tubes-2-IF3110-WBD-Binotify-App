@@ -23,7 +23,7 @@ const showModal = (text, isWarning) => {
 };
 
 const fetchArtistData = async () => {
-    const response = await fetch(`${REST_URL}/user?page=1&pageSize=10`);
+    const response = await fetch(`${REST_URL}/user`);
 
     if (response.ok) {
         const { data } = await response.json();
